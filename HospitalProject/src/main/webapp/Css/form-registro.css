@@ -1,0 +1,62 @@
+
+#titulo{
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    
+}
+body{
+    background: grey;
+}
+.formbox{
+ margin: auto;
+width: 450px;
+padding: 40px;
+background: black;
+text-align: center;
+}
+
+.formbox>input
+{
+    border: 0;
+    background: none;
+    display: block;
+    color: white;
+    margin: 20px auto;
+    padding: 14px 10px;
+    text-align: center;
+    border: 2px solid #3742fa;
+    width: 200px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+.formbox>button{
+    border: 0;
+    background: rgb(22, 22, 131);
+    display: block;
+    color: white;
+    margin: 20px auto;
+    padding: 14px 10px;
+    text-align: center;
+    border: 2px solid #3742fa;
+    width: 200px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+.formbox input[type="text"]:focus,
+.formbox input[type="password"]:focus,
+.formbox input[type="number"]:focus,
+.formbox input[type="date"]:focus{
+    width: 230px;
+    border-color: white;
+}
+
+select {
+   width: 200px;
+   background: #0f0f0f;
+   color: rgb(250, 248, 252);
+   border-radius: 20px;
+   height: 40px;
+}
