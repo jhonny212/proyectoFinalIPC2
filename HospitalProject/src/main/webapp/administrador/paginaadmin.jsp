@@ -38,13 +38,11 @@
             <ul>
                 <li><a href="">Cerrar sesion</a></li>
                 <li><a href="./paginaadmin.jsp">Creacion de datos</a></li>
-                <li><a href="./actualizaradmin.jsp">actualizar datos</a></li>
-                <li><a href="./empleadoadmin.jsp">datos empleado</a></li>
-                <li><a href="registrosadmin.jsp">Registros</a></li>
                 <li><a href="./paginaadmin.jsp?id=1">Crear area de trabajo</a></li>
                 <li><a href="./paginaadmin.jsp?id=2">Crear habitaciones</a></li>
                 <li><a href="./paginaadmin.jsp?id=3">Crear tipo de empleo</a></li>
                 <li><a href="./paginaadmin.jsp?id=4">Crear operaciones hechas en el hospital</a></li>
+                <li><a href="./paginaadmin.jsp?id=5">Registrar medico especialista</a></li>
 
             </ul>
         </div>
@@ -66,6 +64,11 @@
                   
                       case "1":%>
                       <%@include file="./crear/crear-area.jsp" %>
+                       <%   
+                      break;
+                       case "5":
+                      %>
+                       <%@include file="./crear/registrarmedico.jsp" %>
                       <%   
                       break;
                        case "2":

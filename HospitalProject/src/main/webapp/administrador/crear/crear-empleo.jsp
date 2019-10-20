@@ -34,12 +34,18 @@
                 String c=Character.toString(a);
                 
         %>
+          <h2 style="margin: auto;color: white; width: 550px;">
+            Bievenido a la creacion de empleos
+        </h2>
+        <br>
         <form class="fc1" action="/HospitalProject/adminsesion?id=3" method="GET" autocomplete="off">
          <input type="text" name="id" value="3" style="opacity: 0; height: 0; width: 0;">
            
             <table class="c1" style="width: 500px;">
             <tr>
                 <td>
+                      <h2 style="height: 0px;">seleccionar area </h2>
+                   
                     <select required name="area" class="styled-select" id="">
                      
                          <% 
@@ -53,19 +59,20 @@
                     </select>
                 </td>
                 <td>
-                    <h2>Fecha de creacion</h2>
+                    <h2>Fecha de creacion</h2><br><br>
                     <input required type="date" name="fecha" id="">
                 </td>
 
             </tr>
             <tr>
                 <td>
-                    <input required type="text" name="costo" placeholder="suedlo">
+                    <input required type="text" name="costo" placeholder="sueldo">
                 </td>
                 <td>
                     <input required type="text" name="nombre" placeholder="nombre del empleo" placeholder="descripcion" id="">
                 </td>
             </tr>
+          
             <tr> <td><input type="submit" value="crear" style="margin: auto; width: 460px;"></td> </tr>
         </table>
         </form>

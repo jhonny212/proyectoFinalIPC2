@@ -33,12 +33,17 @@
     %>
        <div style="width: 100%;">
         <br>
+          <h2 style="margin: auto;color: white; width: 550px;">
+            Bievenido a la creacion de habitaciones
+        </h2>
+        <br>
        <form class="fc1" action="/HospitalProject/adminsesion" method="GET" autocomplete="off">
           <input type="text" name="id" value="2" style="opacity: 0; height: 0; width: 0;">
            
            <table class="c1" style="width: 500px;">
             <tr>
                 <td>
+                     <h2 style="height: 0px;">seleccionar area </h2>
                     <select required name="area" class="styled-select" id="">
                       <% 
                           if(iniciarconeccion.coneccion==null){
@@ -54,18 +59,20 @@
                 </td>
                 <td>
                     <h2>Fecha de creacion </h2>
+                    <br><br>
                     <input required type="date" name="fecha" id="">
                 </td>
 
             </tr>
             <tr>
                 <td>
-                    <input required type="text" name="costo" placeholder="costo de creacion">
+                    <input required type="text" name="costo" placeholder="costo de mantenimiento">
                 </td>
                 <td>
                     <textarea name="descripcion" placeholder="descripcion" id="" cols="30" rows="10"></textarea>
                 </td>
             </tr>
+            
             <tr> <td><input type="submit" value="crear" style="margin: auto; width: 460px;"></td> </tr>
         </table>
         </form>

@@ -74,7 +74,7 @@ java.util.Date date = null;
         double cst=0.0;
         cst=Double.parseDouble(request.getParameter("costo"));
         
-    String sql="INSERT INTO crearHabitacion (descripcion, costo, fecha,usuario,nombre) VALUES (?,?,?,?,?)";
+    String sql="INSERT INTO crearHabitacion (descripcion, costo, fecha,usuario,nombre,estado) VALUES (?,?,?,?,?,?)";
     PreparedStatement crearusuario=null;
     
         try {
@@ -85,7 +85,7 @@ java.util.Date date = null;
          //   crearusuario.setString(4, tmp.getUsuario());
           crearusuario.setString(4, "f");
             crearusuario.setString(5, request.getParameter("area") );
-           
+             crearusuario.setString(6, "activo");
            
             crearusuario.executeUpdate();
         } catch (SQLException ex) {
@@ -148,7 +148,7 @@ java.util.Date date = null;
         double cst=0.0;
         cst=Double.parseDouble(request.getParameter("costo"));
         
-    String sql="INSERT INTO operaciones (nombreOperacion,tarifa, fecha,tipo) VALUES (?,?,?,?)";
+    String sql="INSERT INTO operaciones (nombreOperacion,tarifa, fecha,tipo,precio) VALUES (?,?,?,?,?)";
     PreparedStatement crearusuario=null;
     
         try {
@@ -157,6 +157,7 @@ java.util.Date date = null;
             crearusuario.setDouble(2, cst); 
             crearusuario.setDate(3, sqlStartDate);
             crearusuario.setString(4,request.getParameter("tipo"));
+            crearusuario.setInt(4,Integer.parseInt(request.getParameter("precio")));
           
             
            
@@ -169,5 +170,38 @@ java.util.Date date = null;
     
     return validar;}
     
+              public boolean registrarMedico(administrador tmp, HttpServletRequest request){
+           String startDate=request.getParameter("fecha");
+SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+java.util.Date date = null;
+        try {
+            date = sdf1.parse(startDate);
+        } catch (ParseException ex) {
+       
+        }
+ java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+        
+        boolean validar=true;
+        
+    String sql="INSERT INTO especialista(fecha,direccion,estado,nombre,cui) VALUES (?,?,?,?,?)";
+    PreparedStatement crearusuario=null;
     
+        try {
+            crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
+           
+            crearusuario.setDate(1, sqlStartDate);
+            crearusuario.setString(2,request.getParameter("direccion"));
+            crearusuario.setString(3,"libre");
+            crearusuario.setString(4,request.getParameter("nombre"));
+            crearusuario.setInt(5,Integer.parseInt(request.getParameter("cui")));
+            
+           
+            crearusuario.executeUpdate();
+        } catch (SQLException ex) {
+            validar=false;
+            this.localError=ex.getMessage();
+    
+        }
+    
+    return validar;}
 }

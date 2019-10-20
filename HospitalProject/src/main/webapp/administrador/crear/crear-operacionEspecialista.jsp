@@ -27,12 +27,17 @@
     %>
        <div style="width: 100%;">
         <br>
+        <h2 style="margin: auto;color: white; width: 550px;">
+            Bievenido a la creacion de operaciones validas por el hospital
+        </h2>
+        <br>
         <form class="fc1" action="/HospitalProject/adminsesion?id=4" method="GET" autocomplete="off">
          <input type="text" name="id" value="4" style="opacity: 0; height: 0; width: 0;">
            
             <table class="c1" style="width: 500px;">
             <tr>
                 <td>
+                    
                     <select required name="tipo" class="styled-select" id="">
                         <option  required  >Ambos</option>
                         <option  required  >Empleado</option>
@@ -51,6 +56,12 @@
                 </td>
                 <td>
                     <input required type="text" name="nombre" placeholder="nombre de operacion" placeholder="descripcion" id="">
+                </td>
+            </tr>
+              <tr>
+                <td>
+                         <input required type="text" name="precio" placeholder="costo de la operacion" placeholder="descripcion" id="">
+               
                 </td>
             </tr>
             <tr> <td><input type="submit" value="crear" style="margin: auto; width: 460px;"></td> </tr>

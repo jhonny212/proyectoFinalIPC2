@@ -26,6 +26,7 @@ public class usuario {
           this.nombre=request.getParameter("nombre");
     }
 
+
     public String getNombre() {
         return nombre;
     }

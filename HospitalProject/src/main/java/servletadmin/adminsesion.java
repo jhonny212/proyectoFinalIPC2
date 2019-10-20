@@ -93,6 +93,16 @@ public class adminsesion extends HttpServlet {
         }
       
                 break; 
+                
+                  case "5":
+                         if(tmp.registrarMedico(tmp, request)){
+          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4");
+        }else{
+        s.print(tmp.getError());
+         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=error");
+        }
+      
+                break; 
             
             }
     }
