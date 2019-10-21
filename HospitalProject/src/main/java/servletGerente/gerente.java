@@ -33,13 +33,19 @@ private String error;
             }
         try {
            String sql=null;
-            sql="UPDATE operaciones (SET tarifa=?) WHERE nombreOperacion=?";
+            sql="UPDATE operaciones SET tarifa=? WHERE nombreOperacion=?";
            PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
            iniciarSesion.setInt(1,Integer.parseInt(request.getParameter("precio")));
+           iniciarSesion.setString(2,request.getParameter("id"));
            iniciarSesion.executeUpdate();
      
        } catch (SQLException ex) {
             this.error=ex.getMessage();
+            validar=false;
+            }catch(NumberFormatException e){
+            this.error=e.getMessage();
+            validar=false;
+            
             }
     
     return validar;}
@@ -50,15 +56,21 @@ private String error;
             iniciarconeccion.IniciarConeccion();
             }
         try {
-            String act=request.getParameter("kind");
+            String act=request.getParameter("iddato");
            String sql=null;
-           sql="UPDATE datosGlobales(SET "+act+"=?) WHERE nombreOperacion=?";
+           sql="UPDATE datosGlobales SET precio=? WHERE nombreDatos=?";
            PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
-           iniciarSesion.setInt(1,Integer.parseInt(request.getParameter("precio")));
+           iniciarSesion.setInt(1,Integer.parseInt(request.getParameter("costo")));
+           iniciarSesion.setString(2, act);
            iniciarSesion.executeUpdate();
      
        } catch (SQLException ex) {
             this.error=ex.getMessage();
+            validar=false;
+            }catch(NumberFormatException e){
+            this.error=e.getMessage();
+            validar=false;
+            
             }
     
     return validar;}

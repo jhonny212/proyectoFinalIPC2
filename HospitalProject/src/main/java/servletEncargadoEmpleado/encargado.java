@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servletGerente;
+package servletEncargadoEmpleado;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jhonny
  */
-@WebServlet(name = "servletgerente", urlPatterns = {"/servletgerente"})
-public class servletgerente extends HttpServlet {
+@WebServlet(name = "encargado", urlPatterns = {"/encargado"})
+public class encargado extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +31,20 @@ public class servletgerente extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet encargado</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet encargado at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -46,33 +59,6 @@ public class servletgerente extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        gerente tmp=new gerente();
-           PrintWriter s=response.getWriter();
-      
-        
-        switch(request.getParameter("ids")){
-            case "1":
-                if(tmp.actualizarTarifario(request)){
-            s.print("ja");
-              response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=1&error=erro");
-       
-        }else{
-           response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=1&error=error");
-       
-        s.print(tmp.getError()+"a");
-        }
-                break;
-            case "2":
-              if(tmp.actualizarGlobal(request)){
-              response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=erro");
-       
-        }else{
-           response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=error");
-       s.print(tmp.getError());
-        }
-                break;
-        
-        }
     }
 
     /**

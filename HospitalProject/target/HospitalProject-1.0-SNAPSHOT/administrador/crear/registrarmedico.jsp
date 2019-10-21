@@ -30,7 +30,7 @@
                   
                     <br>
                     <br><br><br>
-                    <input required type="text" placeholder="nombre" name="fecha" id="">
+                    <input required type="text" placeholder="nombre" name="nombre" id="">
                 </td>
                 <td>
                     <h2>Fecha de creacion</h2>

@@ -6,7 +6,9 @@
 package paquetescompartidos;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -104,5 +106,24 @@ public class empleado extends usuario {
     
     return validar;
     }
+               public static LinkedList empleos(){
+    LinkedList <String> tmp=new LinkedList();
+    String sql="SELECT nombreEmpleo FROM crearEmpleo ";
+    PreparedStatement crearusuario=null; 
+    if(iniciarconeccion.coneccion==null){
+    iniciarconeccion.IniciarConeccion();
+    }
+        try {
+          crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
+          
+          ResultSet res=crearusuario.executeQuery();
+          while(res.next()){
+         tmp.add(res.getString("nombreEmpleo"));
+          }
+        } catch (SQLException ex) {
+          
+        }
+    
+    return tmp;}
     
 }

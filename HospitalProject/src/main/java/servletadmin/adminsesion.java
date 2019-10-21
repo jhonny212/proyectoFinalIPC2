@@ -59,7 +59,7 @@ public class adminsesion extends HttpServlet {
           switch (request.getParameter("id")){
             case "1":
                              if(tmp.crearAreaDeTrabajo(tmp, request)){
-        response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=1");
+        response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=1&error=erro");
         }else{
         s.print(tmp.getError());
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=1&error=error");
@@ -67,7 +67,7 @@ public class adminsesion extends HttpServlet {
                 break;
             case "2":
                          if(tmp.crearAreaHabitacion(tmp, request)){
-         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=2");
+         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=2&error=erro");
         }else{
         s.print(tmp.getError());
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=2&error=error");
@@ -76,7 +76,7 @@ public class adminsesion extends HttpServlet {
                 
                case "3":
                          if(tmp.crearEmpleo(tmp, request)){
-         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=3");
+         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=3&error=erro");
         }else{
         s.print(tmp.getError());
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=3&error=error");
@@ -86,7 +86,7 @@ public class adminsesion extends HttpServlet {
                 
                   case "4":
                          if(tmp.crearOperaciones(tmp, request)){
-          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4");
+          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=erro");
         }else{
         s.print(tmp.getError());
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=error");
@@ -96,10 +96,10 @@ public class adminsesion extends HttpServlet {
                 
                   case "5":
                          if(tmp.registrarMedico(tmp, request)){
-          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4");
+          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=5&error=erro");
         }else{
         s.print(tmp.getError());
-         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=error");
+         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=5&error=error");
         }
       
                 break; 

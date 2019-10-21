@@ -157,7 +157,7 @@ java.util.Date date = null;
             crearusuario.setDouble(2, cst); 
             crearusuario.setDate(3, sqlStartDate);
             crearusuario.setString(4,request.getParameter("tipo"));
-            crearusuario.setInt(4,Integer.parseInt(request.getParameter("precio")));
+            crearusuario.setInt(5,Integer.parseInt(request.getParameter("precio")));
           
             
            
@@ -174,12 +174,14 @@ java.util.Date date = null;
            String startDate=request.getParameter("fecha");
 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date date = null;
+ java.sql.Date sqlStartDate =null; 
         try {
             date = sdf1.parse(startDate);
+            sqlStartDate = new java.sql.Date(date.getTime());
         } catch (ParseException ex) {
        
         }
- java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+
         
         boolean validar=true;
         
