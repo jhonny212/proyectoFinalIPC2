@@ -42,6 +42,8 @@
                 <li><a href="./principalManager.jsp?id=2">Actualizar datos globales</a></li>
                 <li><a href="./principalManager.jsp?id=3">Contratar empleado</a></li>
                 <li><a href="./principalManager.jsp?id=4">Contratar empleado-temporal</a></li>
+                <li><a href="./principalManager.jsp?id=5">deshabilitar habitacion</a></li>
+                <li><a href="./principalManager.jsp?id=6">Habilitar habitacion</a></li>
              
             </ul>
         </div>
@@ -77,11 +79,19 @@
                       break;
                        case "4":
                       %>
-                       <%@include file="./actualizar/contratarTemporal.jsp" %>
-                      <%   
+                   <%@include file="./actualizar/contratarTemporal.jsp" %>
+                          
+                  <%   
                       break;
+                      case "6":
+                      
+                      %><%@include file="./actualizar/habilitarHabitacion.jsp" %>
+                      <%
+                          break;
                        case "5":
-                      %>
+                       
+                      %>  <%@include file="./actualizar/deshabilitarHabitacion.jsp" %>
+                 
                       <%   
                       break;}
                      %>

@@ -5,6 +5,7 @@
  */
 package servletadmin;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +38,12 @@ public class administrador extends usuario {
             crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
             crearusuario.setString(1, tmp.getUsuario());
             crearusuario.setString(2, tmp.getContraseña());
-            crearusuario.execute();
+            ResultSet res=crearusuario.executeQuery();
+          if(res.next()){
+        
+           }else{
+          validar=false;
+          }
         } catch (SQLException ex) {
             validar=false;
              this.localError=ex.getMessage();

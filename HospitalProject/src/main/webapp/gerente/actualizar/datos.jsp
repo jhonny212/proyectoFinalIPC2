@@ -59,7 +59,7 @@
             <tr >
                
                 
-                <td><input type="submit" value="dias de vacaiones" name="iddato" style="margin: auto;"></td>
+                <td><input type="submit" value="dias de vacaciones" name="iddato" style="margin: auto;"></td>
                 
             </tr>
         

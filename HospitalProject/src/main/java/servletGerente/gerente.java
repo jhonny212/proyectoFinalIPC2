@@ -139,13 +139,108 @@ java.util.Date date = null;
             crearusuario.setInt(4,tmp.getTelefono());
            crearusuario.setString(5, "libre");
            crearusuario.setInt(6, tmp.getSueldo());
-           crearusuario.setInt(7,Integer.parseInt(request.getParameter("meses")));
+           crearusuario.setInt(7,tmp.getHoras());
           crearusuario.setDate(8, sqlStartDate);
             crearusuario.executeUpdate();
         } catch (SQLException ex) {
             validar=false;
     this.error=ex.getMessage();
         }
+    
+    return validar;}
+      
+            public boolean generarPago(HttpServletRequest request){
+            String startDate=request.getParameter("fecha");
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = null;
+        try {
+            date = sdf1.parse(startDate);
+        } catch (ParseException ex) {
+       this.error=ex.getMessage();
+        }
+ java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+        
+        boolean validar=true;
+     
+      
+    String sql="INSERT INTO pagoHabitacion(descripcion,idcrearHabitacion,costo,fecha1) VALUES (?,?,?,?)";
+    PreparedStatement crearusuario=null;
+    
+        try {
+            crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
+          crearusuario.setString(1, request.getParameter("descripcion"));
+          crearusuario.setInt(2,Integer.parseInt(request.getParameter("btn")));
+          crearusuario.setInt(3,Integer.parseInt(request.getParameter("costo")));
+           crearusuario.setDate(4, sqlStartDate);
+           crearusuario.executeUpdate();
+           actualizarHabitacion(request,"deshabilitado");
+        } catch (SQLException ex) {
+            validar=false;
+    this.error=ex.getMessage();
+        }
+    
+    return validar;}
+     
+ public boolean actualizarHabitacion(HttpServletRequest request, String c){
+    boolean validar=true;
+    
+    if(iniciarconeccion.coneccion==null){
+            iniciarconeccion.IniciarConeccion();
+            }
+        try {
+           String sql=null;
+           sql="UPDATE crearHabitacion SET estado=? WHERE idcrearHabitacion=?";
+           PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
+           iniciarSesion.setString(1, c);
+           iniciarSesion.setInt(2,Integer.parseInt(request.getParameter("btn")) );
+           
+           iniciarSesion.executeUpdate();
+     
+       } catch (SQLException ex) {
+            this.error=ex.getMessage();
+            validar=false;
+            }catch(NumberFormatException e){
+            this.error=e.getMessage();
+            validar=false;
+            
+            }
+    
+    return validar;}
+ 
+  public boolean actualizarPAgo(HttpServletRequest request, String c){
+    boolean validar=true;
+    
+    if(iniciarconeccion.coneccion==null){
+            iniciarconeccion.IniciarConeccion();
+            }
+     String startDate=request.getParameter("fecha");
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = null;
+        try {
+            date = sdf1.parse(startDate);
+        } catch (ParseException ex) {
+       this.error=ex.getMessage();
+        }
+ java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+        
+        try {
+           String sql=null;
+           sql="UPDATE pagoHabitacion SET fecha2=? WHERE idcrearHabitacion=?";
+           PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
+           iniciarSesion.setDate(1, sqlStartDate);
+           iniciarSesion.setInt(2,Integer.parseInt(request.getParameter("btn")) );
+           
+           iniciarSesion.executeUpdate();
+           actualizarHabitacion(request,"habilitado");
+     
+       } catch (SQLException ex) {
+            this.error=ex.getMessage();
+            validar=false;
+            }catch(NumberFormatException e){
+            this.error=e.getMessage();
+            validar=false;
+            
+            }
     
     return validar;}
      

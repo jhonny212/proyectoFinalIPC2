@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import paquetescompartidos.empleado;
 
 /**
  *
@@ -64,12 +65,50 @@ public class servletgerente extends HttpServlet {
                 break;
             case "2":
               if(tmp.actualizarGlobal(request)){
+                  s.print(request.getParameter("iddato"));
               response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=erro");
        
         }else{
            response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=error");
        s.print(tmp.getError());
         }
+                break;
+                
+                  case "3":
+                      empleado ts=new empleado(request, request);
+              if(tmp.contratar(request, ts)){
+             // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=erro");
+       
+        }else{
+          // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=error");
+       s.print(tmp.getError()+"yes");
+        }
+                break;
+                
+                     case "4":
+                 empleado tss=new empleado(request, request);
+              if(tmp.contratarTemporal(request, tss)){
+             // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=erro");
+       
+        }else{
+          // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=error");
+       s.print(tmp.getError()+"yes");
+        }
+                break;
+                
+                     case "5":
+                if(tmp.generarPago(request)){
+                }else{
+                 s.print(tmp.getError()+"yes");
+      
+                }
+                break;
+                      case "6":
+                if(tmp.actualizarPAgo(request,"")){
+                }else{
+                 s.print(tmp.getError()+"yes");
+      
+                }
                 break;
         
         }

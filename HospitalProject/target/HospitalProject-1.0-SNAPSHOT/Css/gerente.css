@@ -35,3 +35,7 @@ th{
      font-size: 30px;
      background: gray;
 }
+td textarea{
+    height: 100px;
+    background: none;
+}
