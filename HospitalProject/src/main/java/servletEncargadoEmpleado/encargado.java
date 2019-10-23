@@ -31,19 +31,7 @@ public class encargado extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet encargado</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet encargado at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,6 +47,12 @@ public class encargado extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        encargadoEmpleado tmp=new encargadoEmpleado();
+        PrintWriter s=response.getWriter();
+        
+       
+        tmp.actualizarVacaciones(request);
+        s.print(tmp.getError());
     }
 
     /**

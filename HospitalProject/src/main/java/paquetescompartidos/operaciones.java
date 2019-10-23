@@ -23,7 +23,11 @@ public class operaciones {
     this.precio=precio;
     this.tarifa=tarifa;
     }
-    
+    public operaciones(){
+     this.nombre="";
+    this.precio=0;
+    this.tarifa=0;
+    }
             public static LinkedList operaciones(){
     LinkedList <operaciones> tmp=new LinkedList();
     String sql="SELECT * FROM operaciones ";
@@ -47,6 +51,10 @@ public class operaciones {
     
     return tmp;}
 
+            
+            
+            
+            
     public String getNombre() {
         return nombre;
     }
