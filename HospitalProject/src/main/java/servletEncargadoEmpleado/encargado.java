@@ -51,7 +51,8 @@ public class encargado extends HttpServlet {
         PrintWriter s=response.getWriter();
         
        
-        tmp.actualizarVacaciones(request);
+        //tmp.actualizarVacaciones(request);
+        tmp.actualizarEmpleado(request,2);
         s.print(tmp.getError());
     }
 

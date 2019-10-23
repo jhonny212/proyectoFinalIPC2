@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="paquetescompartidos.operaciones"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -42,7 +43,7 @@
                 <li><a href="">Cerrar sesion</a></li>
                 <li><a href="./principalEncargado.jsp">Cerrar sesion</a></li>
                 <li><a href="./principalEncargado.jsp?id=1">Asignar vacaciones</a></li>
-                <li><a href="./principalEncargado.jsp">Actualizar vacaciones</a></li>
+                <li><a href="./principalEncargado.jsp?id=2">Actualizar vacaciones</a></li>
                 <li><a href="./principalEncargado.jsp?id=3">Despido</a></li>
                 <li><a href="./principalEncargado.jsp">Renuncia</a></li>
                 <li><a href="./principalEncargado.jsp">pago empleo</a></li>
@@ -84,7 +85,8 @@
                         else{
                            String alert="alert('"+"El mes de asignacion ha pasado"+"');";
                      out.print("<script>"+alert+"</script>");
-                     
+                        operaciones op =new operaciones();
+                        op.actualizarVacaciones();
                         }
                       break;
                        case "2":

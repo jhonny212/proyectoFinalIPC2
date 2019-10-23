@@ -96,7 +96,6 @@ java.util.Date date = null;
     
     return validar;}
       
-      
             public encargadoEmpleado asignarVacaciones(String cui,String d){
     encargadoEmpleado tmp=new encargadoEmpleado();
     
@@ -136,5 +135,50 @@ java.util.Date date = null;
             }
     
     return tmp;}
-
+             public boolean actualizarEmpleado(HttpServletRequest request,int t){
+    boolean validar=true;
+                String startDate=request.getParameter("fecha");
+SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+java.util.Date date = null;
+        try {
+            date = sdf1.parse(startDate);
+        } catch (ParseException ex) {
+       
+        }
+ java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+      
+    if(iniciarconeccion.coneccion==null){
+            iniciarconeccion.IniciarConeccion();
+            }
+    String sql="";
+       sql ="INSERT INTO renunciadespido (idcontratoEmpleado,tipo,fecha,descripcion) VALUES (?,?,?,?)";
+  
+        PreparedStatement crearusuario=null;
+    
+        try {
+            crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
+            crearusuario.setInt(1, Integer.parseInt(request.getParameter("cui")));
+            if(t==2){
+            crearusuario.setString(2,"renuncia");
+            
+            }else{
+            crearusuario.setString(2,"despido");
+            
+            }
+            crearusuario.setDate(3, sqlStartDate);
+                crearusuario.setString(4,request.getParameter("descripcion"));
+           
+            crearusuario.executeUpdate();
+        } catch (SQLException ex) {
+            validar=false;
+    this.error=ex.getMessage();
+        }
+    
+    return validar;}
+      
+            
+            
 }
+
+
+

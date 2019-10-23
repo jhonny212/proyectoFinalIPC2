@@ -70,7 +70,7 @@
                      out.print("<td><h2>"+tmp.getDireccion()+"</h2></td>");
                      out.print("<td><h2>"+tmp.getTelefono()+"</h2></td>");
                      out.print("<td><h2 name="+c+"cui"+c+">"+tmp.getCui()+"</h2></td>    </tr>");
-                     out.print("<input type="+c+"text"+c+"name="+c+"cui"+c+"value="+c+request.getParameter("cui")+c+""
+                     out.print("<input type="+c+"text"+c+"name="+c+"cui"+c+"value="+c+tmp.getTelefono()+c+""
                              + "style="+c+"opacity:0;height:0;width:0;"+c);
                      out.print("<tr><td><input type="+c+"submit"+c+"></td></tr>");
                            
