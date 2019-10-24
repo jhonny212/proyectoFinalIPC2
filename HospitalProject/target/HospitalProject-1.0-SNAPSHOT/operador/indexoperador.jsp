@@ -1,6 +1,6 @@
 <%-- 
-    Document   : paginaadmin
-    Created on : 17/10/2019, 02:24:54 PM
+    Document   : indexoperador
+    Created on : 23/10/2019, 09:16:12 AM
     Author     : jhonny
 --%>
 
@@ -33,18 +33,14 @@
     </script>
     </head>
     <body onload="My_onLoad()">
-      
           <div class="sidebar">
             <h2>MENU</h2>
             <ul>
                 <li><a href="">Cerrar sesion</a></li>
-                <li><a href="./paginaadmin.jsp">Creacion de datos</a></li>
-                <li><a href="./paginaadmin.jsp?id=1">Crear area de trabajo</a></li>
-                <li><a href="./paginaadmin.jsp?id=2">Crear habitaciones</a></li>
-                <li><a href="./paginaadmin.jsp?id=3">Crear tipo de empleo</a></li>
-                <li><a href="./paginaadmin.jsp?id=4">Crear operaciones hechas en el hospital</a></li>
-                <li><a href="./paginaadmin.jsp?id=5">Registrar medico especialista</a></li>
-
+                <li><a href="./indexoperador.jsp?id=1">Registrar medicamento</a></li>
+                <li><a href="./indexoperador.jsp?id=2">Actualizar medicamento</a></li>
+                <li><a href="./indexoperador.jsp?id=3">Actualizar minimo</a></li>
+             
             </ul>
         </div>
         
@@ -64,36 +60,25 @@
                   switch (request.getParameter("id")){
                   
                       case "1":%>
-                      <%@include file="./crear/crear-area.jsp" %>
+                      <%@include file="./src/registro.jsp" %>
                        <%   
-                      break;
-                       case "5":
-                      %>
-                       <%@include file="./crear/registrarmedico.jsp" %>
-                      <%   
                       break;
                        case "2":
                       %>
-                       <%@include file="./crear/crear-habitacion.jsp" %>
+                       <%@include file="./src/actualizar.jsp" %>
                       <%   
                       break;
                        case "3":
                       %>
-                       <%@include file="./crear/crear-empleo.jsp" %>
+                       <%@include file="./src/actualizarMinimo.jsp" %>
                       <%   
-                      break;
-                       case "4":
+                      
                       %>
-                       <%@include file="./crear/crear-operacionEspecialista.jsp" %>
+                  
+                  
                       <%   
                       break;}
                      %>
-                  
-                  
-                  
-                  
-                  
-               
                   <% 
                  }
                 %>

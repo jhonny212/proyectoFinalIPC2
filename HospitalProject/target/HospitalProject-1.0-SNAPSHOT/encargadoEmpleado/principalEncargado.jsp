@@ -45,9 +45,9 @@
                 <li><a href="./principalEncargado.jsp?id=1">Asignar vacaciones</a></li>
                 <li><a href="./principalEncargado.jsp?id=2">Actualizar vacaciones</a></li>
                 <li><a href="./principalEncargado.jsp?id=3">Despido</a></li>
-                <li><a href="./principalEncargado.jsp">Renuncia</a></li>
-                <li><a href="./principalEncargado.jsp">pago empleo</a></li>
-                    <li><a href="./principalEncargado.jsp">crear usuario</a></li>
+                <li><a href="./principalEncargado.jsp?id=4">Renuncia</a></li>
+                <li><a href="./principalEncargado.jsp?id=5">pago empleo</a></li>
+                    <li><a href="./principalEncargado.jsp?id=6">crear usuario</a></li>
             
                     <li><a href="./principalEncargado.jsp">pago especialista</a></li>
                 <li><a href="./principalEncargado.jsp">aumento salarial</a></li>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : indexGerente
-    Created on : 20/10/2019, 09:52:34 AM
+    Document   : registro
+    Created on : 23/10/2019, 09:17:03 AM
     Author     : jhonny
 --%>
 

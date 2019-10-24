@@ -18,11 +18,9 @@
                    <% 
     if(request.getParameter("error")!=null){
     if(request.getParameter("error").equals("error")){
-      String alert="alert('"+"Erro al crear usuario, intente de nuevo"+"');";
+      String alert="alert('"+"Los datos no coinciden intente de nuevo"+"');";
                      out.print("<script>"+alert+"</script>");
-    }else{
-      String alert="alert('"+"Usuario creado exitosamente"+"');";
-                     out.print("<script>"+alert+"</script>");
+                     
     }
     }
     %>

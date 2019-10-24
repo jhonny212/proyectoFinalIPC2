@@ -7,11 +7,19 @@ package servletEncargadoEmpleado;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import paquetescompartidos.empleado;
+import paquetescompartidos.iniciarconeccion;
+import paquetescompartidos.usuario;
 
 /**
  *
@@ -50,10 +58,41 @@ public class encargado extends HttpServlet {
         encargadoEmpleado tmp=new encargadoEmpleado();
         PrintWriter s=response.getWriter();
         
+       switch(request.getParameter("ids")){
        
+           case "1":
+               tmp.asignarVacaciones(request.getParameter("cui"),"e");
+                   break;
+              case "2":
+                  String sql=null;
+            sql="SELECT DATEDIFF('1997-12-31 ','1997-12-30') as diferencia";
+             {
+            try {
+                PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
+                tmp.actualizarVacaciones(request);
+            } catch (SQLException ex) {
+            }
+            }
+           
+                  
+                   break;
+             case "3":
+                   break;        
+               case "4":
+                   break;    
+           case "5":
+                   break;
+                   
+              case "6":
+                   break;
+                   
+             case "7":
+                   break;    
+                   
+               case "8":
+                   break;          
+       }
         //tmp.actualizarVacaciones(request);
-        tmp.actualizarEmpleado(request,2);
-        s.print(tmp.getError());
     }
 
     /**
@@ -67,7 +106,34 @@ public class encargado extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter s=response.getWriter();
         processRequest(request, response);
+    if(iniciarconeccion.coneccion==null){
+    iniciarconeccion.IniciarConeccion();
+    }
+            empleado tmp=new empleado(Integer.parseInt(request.getParameter("cui")),request.getParameter("contra"));
+             boolean validar=false;  
+            String sql="SELECT idcontratoEmpleado FROM contratoEmpleado WHERE cui=?";
+            PreparedStatement crearusuario=null; 
+        try {
+            crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
+            crearusuario.setInt(1, tmp.getCui());
+         
+            ResultSet res=crearusuario.executeQuery();
+            if(res.next()){
+            validar=true;
+            tmp.setId(res.getInt("idcontratoEmpleado"));
+            }
+        } catch (SQLException ex) {
+            validar=false;
+            s.print(ex.getMessage());
+        }
+        if(validar){
+      
+        tmp.crearUsuario(tmp);
+        }
+    
+  
     }
 
     /**

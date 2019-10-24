@@ -22,7 +22,7 @@ public class creacionadmin extends administrador{
     public creacionadmin(HttpServletRequest request) {
         super(request);
     }
-    public boolean crearAreaDeTrabajo(administrador tmp, HttpServletRequest request){
+    public boolean crearAreaDeTrabajo(String user, HttpServletRequest request){
              String startDate=request.getParameter("fecha");
 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date date = null;
@@ -46,7 +46,7 @@ java.util.Date date = null;
             crearusuario.setDouble(2, cst); 
             crearusuario.setDate(3, sqlStartDate);
            // crearusuario.setString(4, tmp.getUsuario());
-            crearusuario.setString(4, "f");
+            crearusuario.setString(4, user);
             crearusuario.setString(5, request.getParameter("modulo"));
             
            
@@ -59,7 +59,7 @@ java.util.Date date = null;
     
     return validar;}
 
-    public boolean crearAreaHabitacion(administrador tmp, HttpServletRequest request){
+    public boolean crearAreaHabitacion(String user, HttpServletRequest request){
         String startDate=request.getParameter("fecha");
 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date date = null;
@@ -83,7 +83,7 @@ java.util.Date date = null;
             crearusuario.setDouble(2, cst); 
             crearusuario.setDate(3, sqlStartDate);
          //   crearusuario.setString(4, tmp.getUsuario());
-          crearusuario.setString(4, "f");
+          crearusuario.setString(4, user);
             crearusuario.setString(5, request.getParameter("area") );
              crearusuario.setString(6, "activo");
            
@@ -97,7 +97,7 @@ java.util.Date date = null;
     return validar;
     }
     
-        public boolean crearEmpleo(administrador tmp, HttpServletRequest request){
+        public boolean crearEmpleo(String user, HttpServletRequest request){
           String startDate=request.getParameter("fecha");
 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date date = null;
@@ -133,7 +133,7 @@ java.util.Date date = null;
     
     return validar;}
     
-            public boolean crearOperaciones(administrador tmp, HttpServletRequest request){
+            public boolean crearOperaciones(String user, HttpServletRequest request){
            String startDate=request.getParameter("fecha");
 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date date = null;
@@ -170,7 +170,7 @@ java.util.Date date = null;
     
     return validar;}
     
-              public boolean registrarMedico(administrador tmp, HttpServletRequest request){
+              public boolean registrarMedico(String user, HttpServletRequest request){
            String startDate=request.getParameter("fecha");
 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date date = null;

@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import paquetescompartidos.usuario;
 
 import paquetescompartidos.iniciarconeccion;
@@ -55,10 +56,12 @@ public class adminsesion extends HttpServlet {
         processRequest(request, response);
         
       //  administrador tmp=new administrador(request);
+        HttpSession sesion=request.getSession();
+      
         creacionadmin tmp=new creacionadmin(request);
           switch (request.getParameter("id")){
             case "1":
-                             if(tmp.crearAreaDeTrabajo(tmp, request)){
+                             if(tmp.crearAreaDeTrabajo(sesion.getAttribute("usuario").toString(), request)){
         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=1&error=erro");
         }else{
         s.print(tmp.getError());
@@ -66,7 +69,7 @@ public class adminsesion extends HttpServlet {
         }
                 break;
             case "2":
-                         if(tmp.crearAreaHabitacion(tmp, request)){
+                         if(tmp.crearAreaHabitacion(sesion.getAttribute("usuario").toString(), request)){
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=2&error=erro");
         }else{
         s.print(tmp.getError());
@@ -75,7 +78,7 @@ public class adminsesion extends HttpServlet {
                 break;
                 
                case "3":
-                         if(tmp.crearEmpleo(tmp, request)){
+                         if(tmp.crearEmpleo(sesion.getAttribute("usuario").toString(), request)){
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=3&error=erro");
         }else{
         s.print(tmp.getError());
@@ -85,7 +88,7 @@ public class adminsesion extends HttpServlet {
                 break;  
                 
                   case "4":
-                         if(tmp.crearOperaciones(tmp, request)){
+                         if(tmp.crearOperaciones(sesion.getAttribute("usuario").toString(), request)){
           response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=erro");
         }else{
         s.print(tmp.getError());
@@ -95,7 +98,7 @@ public class adminsesion extends HttpServlet {
                 break; 
                 
                   case "5":
-                         if(tmp.registrarMedico(tmp, request)){
+                         if(tmp.registrarMedico(sesion.getAttribute("usuario").toString(), request)){
           response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=5&error=erro");
         }else{
         s.print(tmp.getError());
@@ -137,6 +140,10 @@ public class adminsesion extends HttpServlet {
             case "2":
                     if(tmp.iniciarSesion(tmp)){
             response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp");
+            HttpSession sesion=request.getSession();
+            
+          
+            sesion.setAttribute("usuario", tmp.getUsuario());
         }else{
         s.print(tmp.getError()+"aca");
        

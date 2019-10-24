@@ -46,7 +46,7 @@ public class administrador extends usuario {
           }
         } catch (SQLException ex) {
             validar=false;
-             this.localError=ex.getMessage();
+            this.localError=ex.getMessage();
     
         }
     

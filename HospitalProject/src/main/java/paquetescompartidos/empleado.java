@@ -25,6 +25,17 @@ public class empleado extends usuario {
     private final int horas;
      private final int sueldo; 
 
+    public empleado(int cui, String contraseña) {
+        super(cui, contraseña);
+        this.Nombre="";
+        this.Direccion="";
+        this.NombreEmpleo="";
+        this.cui=cui;
+        this.telefono=0;
+        this.horas=0;
+        this.sueldo=0;
+    }
+
     @Override
     public String getNombre() {
         return Nombre;
@@ -52,7 +63,7 @@ public class empleado extends usuario {
     
     
     
-    public empleado(HttpServletRequest request,HttpServletRequest request2) {
+   public empleado(HttpServletRequest request,HttpServletRequest request2) {
         super(request);
         this.Direccion=request2.getParameter("direccion");
        this.Nombre=request2.getParameter("nombre");
@@ -62,7 +73,7 @@ public class empleado extends usuario {
        this.horas=Integer.parseInt(request2.getParameter("horas"));
         this.sueldo=Integer.parseInt(request2.getParameter("sueldo"));
     }
-
+   
     public int getSueldo() {
         return sueldo;
     }
@@ -70,11 +81,11 @@ public class empleado extends usuario {
     
         public boolean  iniciarSesion(usuario tmp){
         boolean validar=true;  
-    String sql="SELECT * FROM usuarioEmpleado WHERE usuario=? && contraseña=?";
+    String sql="SELECT * FROM usuarioEmpleado WHERE cui=? && contraseña=?";
     PreparedStatement crearusuario=null; 
         try {
             crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
-            crearusuario.setString(1, tmp.getUsuario());
+            crearusuario.setInt(1, tmp.getCui());
             crearusuario.setString(2, tmp.getContraseña());
             crearusuario.execute();
         } catch (SQLException ex) {
@@ -85,17 +96,21 @@ public class empleado extends usuario {
     return validar;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
         
            public boolean  crearUsuario(empleado tmp){
     boolean validar=true;  
-    String sql="INSERT INTO usuarioEmpleado (usuario, contraseña,idcontratoEmpleado) VALUES (?,?,?)";
+    String sql="INSERT INTO usuarioEmpleado (cui, contraseña,idcontratoEmpleado) VALUES (?,?,?)";
     PreparedStatement crearusuario=null; 
         try {
             crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
-            crearusuario.setString(1, tmp.getUsuario());
+            crearusuario.setInt(1, tmp.getCui());
             crearusuario.setString(2, tmp.getContraseña());
             crearusuario.setInt(3, tmp.getId());
             crearusuario.executeUpdate();
