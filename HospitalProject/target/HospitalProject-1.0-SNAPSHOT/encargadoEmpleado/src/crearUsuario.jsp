@@ -31,7 +31,9 @@
     %>
         <br>
          <form autocomplete="off" class="formbox" action="/HospitalProject/encargado" method="POST">
-                <h1 id="titulo">REGISTRAR</h1>
+              <input type="text" name="ids" value="6" style="opacity: 0; height: 0; width: 0;">
+              
+             <h1 id="titulo">REGISTRAR</h1>
                 <input type ="number" id="nombre" name="cui" placeholder="cui" required /> 
                 <input type ="password" id="contraseña" name="contra" placeholder=" contraseña " required/>
             

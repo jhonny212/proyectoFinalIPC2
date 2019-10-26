@@ -10,8 +10,9 @@ import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,29 +63,91 @@ public class encargado extends HttpServlet {
        
            case "1":
                tmp.asignarVacaciones(request.getParameter("cui"),"e");
+               
                    break;
               case "2":
                   String sql=null;
-            sql="SELECT DATEDIFF('1997-12-31 ','1997-12-30') as diferencia";
-             {
+                  Calendar fecha = new GregorianCalendar();
+                  
+            {
             try {
+                   if(iniciarconeccion.coneccion==null){
+                   iniciarconeccion.IniciarConeccion();
+                   }
+                sql="select vacaciones from contratoEmpleado where cui=?";
                 PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
-                tmp.actualizarVacaciones(request);
+               
+                iniciarSesion.setInt(1, Integer.parseInt(request.getParameter("cui")));
+                ResultSet res=iniciarSesion.executeQuery();
+                if(res.next()){
+                sql="SELECT DATEDIFF('"+res.getDate("vacaciones")+"','"+fecha.get(Calendar.YEAR)+"-"+fecha.get(Calendar.MONTH)+"-"+fecha.get(Calendar.DAY_OF_MONTH)+"') as diferencia";
+                PreparedStatement iniciarSesion2=iniciarconeccion.coneccion.prepareStatement(sql);
+                ResultSet ResultSet2 = iniciarSesion2.executeQuery();
+                if(ResultSet2.next()){
+                s.print(ResultSet2.getLong(1)+"aca");
+                
+                if(ResultSet2.getLong("diferencia")>=0){
+                if(tmp.actualizarVacaciones(request)){
+                         response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=2&error=erro");
+          
+                }else{
+                  response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=2&error=error");
+          
+                }
+                }else{
+                         response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=2&error=error");
+          
+                }
+                }else{
+                   response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=2&error=error");
+          
+                }
+                }
+                
             } catch (SQLException ex) {
+                s.print(ex.getMessage());
             }
             }
            
                   
                    break;
              case "3":
+                    if(tmp.actualizarEmpleado(request, 2)){
+                   response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=3&error=error");
+          
+                    }else
+                    {
+                     response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=3&error=error");
+          
+                    }
+                    
                    break;        
                case "4":
+                                       if(tmp.actualizarEmpleado(request, 1)){
+                   response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=4&error=erro");
+          
+                    }else
+                    {
+                     response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=4&error=error");
+          
+                    }
                    break;    
            case "5":
                    break;
                    
               case "6":
-                   break;
+                
+                  empleado a=new empleado(Integer.parseInt(request.getParameter("cui")),request.getParameter("contra"));
+                  if(a.crearUsuario(a)){
+                         response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=erro");
+          
+                  
+                  }else{
+                     response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=error");
+          
+                  
+                  }
+                  break;
                    
              case "7":
                    break;    
@@ -130,7 +193,15 @@ public class encargado extends HttpServlet {
         }
         if(validar){
       
-        tmp.crearUsuario(tmp);
+        if(tmp.crearUsuario(tmp)){
+                response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=erro");
+          
+                 
+        }else{
+                response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=error");
+          
+                 
+        }
         }
     
   

@@ -84,10 +84,11 @@ java.util.Date date = null;
             }
         try {
            String sql=null;
-            sql="UPDATE contratoEmpleado SET vacaciones=? WHERE cui=?";
+            sql="UPDATE contratoEmpleado SET vacaciones=? WHERE cui=? && estado2=?";
            PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
            iniciarSesion.setDate(1, sqlStartDate);
            iniciarSesion.setInt(2,Integer.parseInt(request.getParameter("cui")));
+           iniciarSesion.setString(3,"activo");
            iniciarSesion.executeUpdate();
      
        } catch (SQLException ex) {
@@ -104,9 +105,10 @@ java.util.Date date = null;
             }
         try {
            String sql=null;
-            sql="select * from contratoEmpleado where cui=?";
+            sql="select * from contratoEmpleado where cui=? && estado2=?";
            PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
            iniciarSesion.setInt(1,Integer.parseInt(cui));
+           iniciarSesion.setString(2,"activo");
             ResultSet res=iniciarSesion.executeQuery();
             if(d!="1"){
             if(res.next()){
@@ -169,6 +171,7 @@ java.util.Date date = null;
                 crearusuario.setString(4,request.getParameter("descripcion"));
            
             crearusuario.executeUpdate();
+            actualizarEmpleadO(request);
         } catch (SQLException ex) {
             validar=false;
     this.error=ex.getMessage();
@@ -176,7 +179,26 @@ java.util.Date date = null;
     
     return validar;}
       
-            
+       public boolean actualizarEmpleadO(HttpServletRequest request){
+    boolean validar=true;
+ 
+    if(iniciarconeccion.coneccion==null){
+            iniciarconeccion.IniciarConeccion();
+            }
+        try {
+           String sql=null;
+            sql="UPDATE contratoEmpleado SET estado2=? WHERE cui=? ";
+           PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
+           iniciarSesion.setString(1, "desactivo");
+           iniciarSesion.setInt(1,Integer.parseInt(request.getParameter("cui")));
+           iniciarSesion.executeUpdate();
+     
+       } catch (SQLException ex) {
+            this.error=ex.getMessage();
+            }
+    
+    return validar;}
+           
             
 }
 
