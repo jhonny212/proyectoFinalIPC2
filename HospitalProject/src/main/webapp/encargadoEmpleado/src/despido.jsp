@@ -38,7 +38,7 @@
                     <form action="./principalEncargado.jsp">
                         <input type="text" name="id" value="3" style="opacity: 0; height: 0; width: 0;">
            
-                         <input required style="height: 40px; background: none; border: 1px solid white; border-radius: 20px; " type="number" placeholder="cui" name="cui" >
+                         <input required style="height: 40px; color: white; background: none; border: 1px solid white; border-radius: 20px; " type="number" placeholder="cui" name="cui" >
                             <input type="submit" value="ok">
                         </form>
         <form class="fc1" action="/HospitalProject/encargado" method="GET" autocomplete="off">
@@ -54,6 +54,9 @@
                     <th>Cui</th>
                 </tr>
             </thead>
+            <td>
+                <textarea style="color: white;" name="descripcion" placeholder="descripcion" id="" cols="30" rows="10"></textarea>
+            </td>
             <%
                    if(request.getParameter("cui")!=null){
                        try{
@@ -76,8 +79,12 @@
                            
                
                    
+                   }else{
+             
                    }
-                     }catch(Exception e){}
+                     }catch(Exception e){
+                     out.print(e.getMessage());
+                     }
                }
                %>
               

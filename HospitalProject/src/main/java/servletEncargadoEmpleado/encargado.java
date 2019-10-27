@@ -112,13 +112,13 @@ public class encargado extends HttpServlet {
                   
                    break;
              case "3":
-                    if(tmp.actualizarEmpleado(request, 2)){
-                   response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=3&error=error");
+                    if(tmp.actualizarEmpleado(request, 2) ){
+                  response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=3&error=erro");
           
                     }else
                     {
                      response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=3&error=error");
-          
+                        s.print(tmp.getError());
                     }
                     
                    break;        

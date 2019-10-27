@@ -168,10 +168,10 @@ java.util.Date date = null;
             
             }
             crearusuario.setDate(3, sqlStartDate);
-                crearusuario.setString(4,request.getParameter("descripcion"));
+            crearusuario.setString(4,request.getParameter("descripcion"));
            
             crearusuario.executeUpdate();
-            actualizarEmpleadO(request);
+            actualizarEmpleadO(request, Integer.parseInt(request.getParameter("cui")));
         } catch (SQLException ex) {
             validar=false;
     this.error=ex.getMessage();
@@ -179,7 +179,7 @@ java.util.Date date = null;
     
     return validar;}
       
-       public boolean actualizarEmpleadO(HttpServletRequest request){
+       public boolean actualizarEmpleadO(HttpServletRequest request, int i){
     boolean validar=true;
  
     if(iniciarconeccion.coneccion==null){
@@ -187,14 +187,15 @@ java.util.Date date = null;
             }
         try {
            String sql=null;
-            sql="UPDATE contratoEmpleado SET estado2=? WHERE cui=? ";
+            sql="UPDATE contratoEmpleado SET estado2=? WHERE idcontratoEmpleado=? ";
            PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
            iniciarSesion.setString(1, "desactivo");
-           iniciarSesion.setInt(1,Integer.parseInt(request.getParameter("cui")));
+           iniciarSesion.setInt(2,i);
            iniciarSesion.executeUpdate();
      
-       } catch (SQLException ex) {
+       } catch (Exception ex) {
             this.error=ex.getMessage();
+            validar=false;
             }
     
     return validar;}

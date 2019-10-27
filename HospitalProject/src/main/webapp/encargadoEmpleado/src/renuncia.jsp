@@ -36,13 +36,13 @@
           <br>
           <h2>Escriba el cui</h2>
                     <form action="./principalEncargado.jsp">
-                        <input type="text" name="id" value="3" style="opacity: 0; height: 0; width: 0;">
+                        <input type="text" name="id" value="4" style="opacity: 0; height: 0; width: 0;">
            
                          <input required style="height: 40px; background: none; border: 1px solid white; border-radius: 20px; " type="number" placeholder="cui" name="cui" >
                             <input type="submit" value="ok">
                         </form>
         <form class="fc1" action="/HospitalProject/encargado" method="GET" autocomplete="off">
-            <input type="text" name="ids" value="3" style="opacity: 0; height: 0; width: 0;">
+            <input type="text" name="ids" value="4" style="opacity: 0; height: 0; width: 0;">
            
             <table class="c1" style="width: 500px;">
             <thead>
