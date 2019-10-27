@@ -133,6 +133,8 @@ public class encargado extends HttpServlet {
                     }
                    break;    
            case "5":
+               
+               
                    break;
                    
               case "6":

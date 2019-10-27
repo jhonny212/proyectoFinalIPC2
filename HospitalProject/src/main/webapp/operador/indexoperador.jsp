@@ -37,9 +37,10 @@
             <h2>MENU</h2>
             <ul>
                 <li><a href="">Cerrar sesion</a></li>
-                <li><a href="./indexoperador.jsp?id=1">Registrar medicamento</a></li>
-                <li><a href="./indexoperador.jsp?id=2">Actualizar medicamento</a></li>
-                <li><a href="./indexoperador.jsp?id=3">Actualizar minimo</a></li>
+                <li><a href="./indexoperador.jsp?id=1">Registrar medicamento nuevo</a></li>
+               
+                <li><a href="./indexoperador.jsp?id=2">Actualizar minimo</a></li>
+                <li><a href="./indexoperador.jsp?id=3">Actualizar medicamento</a></li>
              
             </ul>
         </div>
@@ -63,12 +64,14 @@
                       <%@include file="./src/registro.jsp" %>
                        <%   
                       break;
-                       case "2":
-                      %>
-                       <%@include file="./src/actualizar.jsp" %>
-                      <%   
-                      break;
                        case "3":
+                      %>
+                      <%@include file="./src/actualizar.jsp" %>
+                      
+                      <%   
+
+                      break;
+                       case "2":
                       %>
                        <%@include file="./src/actualizarMinimo.jsp" %>
                       <%   

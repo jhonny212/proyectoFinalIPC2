@@ -7,11 +7,13 @@ package servletoperador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import paquetescompartidos.iniciarconeccion;
 
 /**
  *
@@ -32,18 +34,7 @@ public class Operator extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Operator</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Operator at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,6 +50,55 @@ public class Operator extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        PrintWriter s=response.getWriter();
+        if(iniciarconeccion.coneccion==null){
+        iniciarconeccion.IniciarConeccion();}
+        switch(request.getParameter("ids")){
+            case "1":
+                medicamento tmp=null;
+                try{
+                tmp=new medicamento(request);
+               if(tmp.actualizar(tmp)){
+                }else{
+                }
+                s.print(tmp.getError());
+                }catch(NumberFormatException e){
+                }
+              
+                break;
+               
+                
+            case "2":
+               
+              medicamento medicamento=new medicamento();
+                    String fecha=request.getParameter("fecha");
+                    String [] date=fecha.split("-");
+                    String cod=date[0]+date[1];
+                   if(medicamento.Colamedicamento(request, cod)){
+                   
+                   }else{
+                   s.print(medicamento.getError()+"aca");
+                   }
+              break;
+            
+            case "3":
+               int codigo=0;
+               if(request.getParameter("cantidad").equals("0") && request.getParameter("costo").equals("0") )
+               {
+               }else if(request.getParameter("cantidad").equals("0") && !request.getParameter("costo").equals("0")){
+               codigo=1;
+               }else if(!request.getParameter("cantidad").equals("0") && request.getParameter("costo").equals("0")){
+               codigo=2;
+               }else if(!request.getParameter("cantidad").equals("0") && !request.getParameter("costo").equals("0")){
+               codigo=3;
+               }
+               medicamento medi=new medicamento();
+               medi.actualizarMedicamento(codigo, request);
+               
+               s.print(codigo);
+                break;    
+        
+        }
     }
 
     /**
