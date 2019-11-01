@@ -7,6 +7,7 @@ package servletoperador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -71,10 +72,9 @@ public class Operator extends HttpServlet {
             case "2":
                
               medicamento medicamento=new medicamento();
-                    String fecha=request.getParameter("fecha");
-                    String [] date=fecha.split("-");
-                    String cod=date[0]+date[1];
-                   if(medicamento.Colamedicamento(request, cod)){
+                    Calendar fechA = Calendar.getInstance();
+                    String getFecha=Integer.toString(fechA.get(Calendar.YEAR)+fechA.get(Calendar.MONTH));
+                   if(medicamento.Colamedicamento(request, getFecha)){
                    
                    }else{
                    s.print(medicamento.getError()+"aca");

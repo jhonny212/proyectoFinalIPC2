@@ -80,9 +80,11 @@ public class empleado extends usuario {
     
     
         public boolean  iniciarSesion(usuario tmp){
+            if(iniciarconeccion.coneccion==null){
+            iniciarconeccion.IniciarConeccion();}
         boolean validar=true;  
-    String sql="SELECT * FROM usuarioEmpleado WHERE cui=? && contraseña=?";
-    PreparedStatement crearusuario=null; 
+         String sql="SELECT a.cui, a.contraseña FROM usuarioEmpleado join contratoEmpleado b on a.cui=b.cui where b.nombreEmpleo='enfermera' || b.nombreEmpleo='operador' || b.nombreEmpleo='recepcionista'";
+      PreparedStatement crearusuario=null; 
         try {
             crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
             crearusuario.setInt(1, tmp.getCui());

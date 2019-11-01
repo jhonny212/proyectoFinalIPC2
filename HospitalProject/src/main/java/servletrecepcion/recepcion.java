@@ -65,6 +65,29 @@ public class recepcion extends HttpServlet {
               tmps.cancelarconsulta(request);
               s.print(tmps.getError());
                break;
+               
+           case "3":
+               internado internar=new internado(request);
+               if(internado.internar(internar)){
+               enfermera.asignarEmpleado(enfermera.id(request), enfermera.codigo(request.getParameter("enfermera")));
+               if(!request.getParameter("seleccion1").equals("No") && request.getParameter("seleccion2").equals("No") ){
+                     enfermera.asignarEmpleado(enfermera.id(request), enfermera.codigo(request.getParameter("seleccion1")));
+             
+                   
+               }else if(request.getParameter("seleccion1").equals("No") && !request.getParameter("seleccion2").equals("No")){
+                                medico.asignarEmpleado(enfermera.id(request), enfermera.codigo(request.getParameter("seleccion2")));
+             
+               
+               }else if(!request.getParameter("seleccion1").equals("No") && !request.getParameter("seleccion2").equals("No"))
+               {
+                           enfermera.asignarEmpleado(enfermera.id(request), enfermera.codigo(request.getParameter("seleccion1")));
+                           medico.asignarEmpleado(enfermera.id(request), enfermera.codigo(request.getParameter("seleccion2")));
+             
+               
+               }
+                   }
+              
+               break;
     }
     }
 

@@ -89,7 +89,7 @@ java.util.Date date = null;
         boolean validar=true;
      
       
-    String sql="INSERT INTO contratoEmpleado (estado,fecha,nombreEmpleo,cui,horas,sueldo,nombre,direccion,telefono) VALUES (?,?,?,?,?,?,?,?,?)";
+    String sql="INSERT INTO contratoEmpleado (estado,fecha,nombreEmpleo,cui,horas,sueldo,nombre,direccion,telefono,estado2) VALUES (?,?,?,?,?,?,?,?,?,?)";
     PreparedStatement crearusuario=null;
     
         try {
@@ -103,7 +103,7 @@ java.util.Date date = null;
            crearusuario.setString(7, tmp.getNombre());
            crearusuario.setString(8,tmp.getDireccion());
            crearusuario.setInt(9,tmp.getTelefono());
-           
+           crearusuario.setString(10,"activo"); 
             crearusuario.executeUpdate();
         } catch (SQLException ex) {
             validar=false;

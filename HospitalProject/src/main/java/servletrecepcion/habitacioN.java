@@ -19,23 +19,51 @@ import paquetescompartidos.iniciarconeccion;
  */
 
 public class habitacioN {
- 
+ private String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
     
-    public static LinkedList<String> habitaciones(){
+    public static LinkedList<String> habitaciones(String letra, String le){
     LinkedList <String> lista=new LinkedList();
    if(iniciarconeccion.coneccion==null){
    iniciarconeccion.IniciarConeccion();}
-        try {
-            PreparedStatement res=iniciarconeccion.coneccion.prepareStatement("SELECT * FROM crearHabitacion WHERE nombre='Consultas' && estado='habilitado'");
+      
+   int count=0;
+   try {
+            String sql="";
+            if(!le.equals("")){
+                sql="SELECT * FROM crearHabitacion join operaciones b WHERE nombre='"+letra+"' && estado='habilitado'  && b.nombreOperacion='apendice'";
+            }else{
+                sql="SELECT * FROM crearHabitacion WHERE nombre='"+letra+"' && estado='habilitado'";
+            }
+            PreparedStatement res=iniciarconeccion.coneccion.prepareStatement(sql);
             ResultSet r=res.executeQuery();
             while(r.next()){
-            
+                if(count==0 && !le.equals("")){
+            lista.add(r.getString("b.tipo"));
+                count++;
+                }
             lista.add(Integer.toString(r.getInt("idcrearHabitacion")));
+            
             }
         } catch (SQLException ex) {
+            lista.add(ex.getMessage());
         }
+     
+        
     return lista;
     }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+      
      private String error;
 
     public  String getError() {

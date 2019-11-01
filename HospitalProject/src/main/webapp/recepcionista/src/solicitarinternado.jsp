@@ -4,6 +4,8 @@
     Author     : jhonny
 --%>
 
+<%@page import="servletrecepcion.enfermera"%>
+<%@page import="servletrecepcion.medico"%>
 <%@page import="servletrecepcion.consulta"%>
 <%@page import="servletrecepcion.habitacioN"%>
 <%@page import="servletrecepcion.paciente"%>
@@ -58,20 +60,12 @@
                         <input type="submit" value="Buscar">
                     </td>
                 </tr>
-                    <tr>
-        <td>
-            <h2 >Seleccione una habitacion</h2>
-        </td>
-    </tr>
-    <tr>
-      
-    </tr>
             </table>
         </form>
           <form class="fc1" style="width: 1000px; " id="formget" action="/HospitalProject/recepcion" method="GET" autocomplete="off">
-            <input type="text" name="ids" value="1" style="opacity: 0; height: 0; width: 0;">
+            <input type="text" name="ids" value="3" style="opacity: 0; height: 0; width: 0;">
             <td><input type="number" name="cui" value<%out.print("='"+request.getParameter("cui")+"'"); %> style="opacity: 0; height: 0px; width: 0px;">
-                <input type="text" name="seleccion" value<%out.print("='"+request.getParameter("seleccion")+"'"); %> style="opacity: 0; height: 0; width: 0;">
+                <input type="text" name="nombre" value<%out.print("='"+request.getParameter("operacion")+"'"); %> style="opacity: 0; height: 0; width: 0;">
               
              
             <table class="c1" style="width: 1000px; ">
@@ -88,7 +82,7 @@
                 paciente tmp=paciente.paciente(Integer.parseInt(request.getParameter("cui")));
                if(tmp.getCui()!=0){
             %>
-           
+     
             
             <%
             }else
@@ -115,10 +109,117 @@
         }
     %>
        
+    
     <%
- 
+        LinkedList<String> habitaciones=habitacioN.habitaciones("Operaciones","apendice");
+        String letra=habitaciones.get(0);
+    
 
-    }
+%>
+    <tr>
+          
+           <td><h2>Asignar enfermera</h2></td>
+            <td><h2>Habitaciones</h2></td>
+           <%if(letra.equals("Empleado")){ %>
+           <td><h2>Medicos(Empleados)</h2></td> <%} %>
+              <%if(letra.equals("Especialista")){ %>
+           <td><h2>Medicos(Especialistas)</h2></td> <%} %>
+              <%if(letra.equals("Ambos")){ %>
+           <td><h2>Medicos(Empleados)</h2></td> 
+           <td><h2>Medicos(Especialista)</h2></td> 
+           
+           <%} %>
+    </tr>  
+               <tr>
+                       <td><select name="enfermera" id="">
+                <% 
+                LinkedList<enfermera> ListadO=enfermera.medico("s");
+                for(int i=0;i<ListadO.size();i++){ 
+                %>
+                <option ><% 
+                    out.print(ListadO.get(i).getNombre());
+                    %></option>
+                <% }%>
+        </select>
+</td> 
+       
+                           <td><select name="habitacion" id="">
+                <% 
+                for(int i=1;i<habitaciones.size();i++){ 
+                %>
+                <option ><% 
+                    out.print(habitaciones.get(i));
+                    %></option>
+                <% }%>
+        </select>
+        </td>
+    
+  
+        <%if(habitaciones.get(0).equals("Empleado")){
+
+%>
+
+<td><select name="seleccion1" id="">
+                <% 
+                LinkedList<medico> Listado=medico.medico(habitaciones.get(0));
+                for(int i=0;i<Listado.size();i++){ 
+                %>
+                <option ><% 
+                    out.print(Listado.get(i).getNombre());
+                    %></option>
+                <% }%>
+        </select>
+</td>    <% }%>    
+        <%if(habitaciones.get(0).equals("Especialista")){
+
+%>
+<td><select name="seleccion1" id="">
+                <% 
+                LinkedList<medico> Listado=medico.medicoEspecialista("1");
+                for(int i=0;i<Listado.size();i++){ 
+                %>
+                <option ><% 
+                    out.print(Listado.get(i).getNombre());
+                    %></option>
+                <% }%>
+        </select>
+</td>    <% }%>  
+    <%if(habitaciones.get(0).equals("Ambos")){
+
+%>
+<td><select name="seleccion1" id="">
+                <% 
+                LinkedList<medico> Listado=medico.medicoEspecialista("1");
+                for(int i=0;i<Listado.size();i++){ 
+                %>
+                <option ><% 
+                    out.print(Listado.get(i).getNombre());
+                    %></option>
+                <% }%>
+        </select>
+</td>    
+<td><select name="seleccion2" id="">
+        <option>No</option>
+                <% 
+                LinkedList<medico> Listado2=medico.medicoEspecialista("3");
+                for(int i=0;i<Listado2.size();i++){ 
+                %>
+                <option ><% 
+                    out.print(Listado2.get(i).getNombre());
+                    %></option>
+                <% }%>
+        </select>
+</td>  
+<% }%> 
+ </tr> 
+ <tr>
+   <td><input type="date" name="fecha" required id=""></td>
+    <td><input type="submit" value="ok"></td>
+   
+ </tr>
+          
+    <%
+  }
           %>
         </table>
         <br>

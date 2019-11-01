@@ -115,6 +115,8 @@ return validar;}
 
 public static LinkedList lista(){
     LinkedList<medicamento> tmp=new LinkedList();
+    if(iniciarconeccion.coneccion ==null){
+    iniciarconeccion.IniciarConeccion();}
        try {
             
             String sql="SELECT * FROM medicamento";
@@ -139,6 +141,7 @@ public static LinkedList lista(){
     }
     
     public boolean Colamedicamento(HttpServletRequest request, String id){
+        
          boolean validar=true;
           String startDate=request.getParameter("fecha");
      SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");

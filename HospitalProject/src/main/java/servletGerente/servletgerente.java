@@ -78,8 +78,7 @@ public class servletgerente extends HttpServlet {
                       empleado ts=new empleado(request, request);
               if(tmp.contratar(request, ts)){
              // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=erro");
-       
-        }else{
+       }else{
           // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=error");
        s.print(tmp.getError()+"yes");
         }

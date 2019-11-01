@@ -85,7 +85,7 @@ java.util.Date date = null;
          //   crearusuario.setString(4, tmp.getUsuario());
           crearusuario.setString(4, user);
             crearusuario.setString(5, request.getParameter("area") );
-             crearusuario.setString(6, "activo");
+             crearusuario.setString(6, "habilitado");
            
             crearusuario.executeUpdate();
         } catch (SQLException ex) {
