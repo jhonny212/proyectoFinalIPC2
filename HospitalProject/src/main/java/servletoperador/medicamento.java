@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -164,17 +165,20 @@ public static LinkedList lista(){
             up.setString(3,id);
             up.setDate(4,sqlDate );
              up.executeUpdate();
+             llenar(request,id);
         } catch (SQLException ex) {
              try {
-                 sql="SELECT cantidad FROM colamedicamento WHERE idcola=?";
+                 sql="SELECT cantidad FROM colamedicamento WHERE idcola=? && nombre";
                  PreparedStatement get=iniciarconeccion.coneccion.prepareStatement(sql);
                  get.setString(1, id);
+                 get.setString(2, request.getParameter("valor"));
                  ResultSet res=get.executeQuery();
                  if(res.next()){
-                 sql="UPDATE colamedicamento SET cantidad=? WHERE idcola=?";
+                 sql="UPDATE colamedicamento SET cantidad=? WHERE idcola=? && nombre=?";
                  PreparedStatement cant=iniciarconeccion.coneccion.prepareStatement(sql);
                  cant.setInt(1, res.getInt("cantidad")+Integer.parseInt(request.getParameter("cantidad")));
                  cant.setString(2, id);
+                 cant.setString(3, request.getParameter("valor"));
                  cant.executeUpdate();
                  }else{
                  validar=false;
@@ -235,4 +239,32 @@ public static LinkedList lista(){
             
     return validar;}
 
+public void llenar(HttpServletRequest  request, String id){
+     Calendar fechA = Calendar.getInstance();
+     String getFecha="";
+     
+     if(fechA.get(Calendar.MONTH)==1){
+     getFecha=Integer.toString(fechA.get(Calendar.YEAR)-1);
+     getFecha+="12";
+     }else{
+     getFecha=Integer.toString(fechA.get(Calendar.YEAR));
+     getFecha+=Integer.toString(fechA.get(Calendar.MONTH)-1);
+     }
+                   
+   String sql="";
+   sql="UPDATE colamedicamento a, colamedicamento b SET a.cantidad=b.cantidad+a.cantidad WHERE b.idcola=? && b.nombre=? && a.idcola=? && a.nombre=?";
+        try {
+            PreparedStatement get=iniciarconeccion.coneccion.prepareStatement(sql);
+                 get.setString(1, getFecha);
+                 get.setString(2, request.getParameter("valor"));
+                 
+                 get.setString(3, id);
+                 get.setString(4, request.getParameter("valor"));
+                 get.executeUpdate();
+                 
+        } catch (SQLException ex) {
+       
+        }
+    
+}
 }

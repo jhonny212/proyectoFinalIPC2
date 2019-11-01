@@ -13,7 +13,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
+        <% 
+        if(request.getParameter("error")!=null){
+        if(request.getParameter("error").equals("error")){
+          String alert="alert('"+"Registro no creado"+"');";
+                         out.print("<script>"+alert+"</script>");
+        }else{
+          String alert="alert('"+"Registro creado exitosamente"+"');";
+                         out.print("<script>"+alert+"</script>");
+        }
+        }
+        %>
        <div style="width: 100%;">
       
    <br>
@@ -33,7 +43,7 @@
                     <input required type="text" placeholder="nombre" name="nombre" id="">
                 </td>
                 <td>
-                    <h2>Fecha de creacion</h2>
+                    <h2>Fecha de registro</h2>
                    
                     <input required type="date" name="fecha" id="">
                 </td>

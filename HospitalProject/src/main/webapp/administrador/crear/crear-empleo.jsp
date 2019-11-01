@@ -19,7 +19,7 @@
                         <% 
     if(request.getParameter("error")!=null){
     if(request.getParameter("error").equals("error")){
-      String alert="alert('"+"Erro al crear usuario, intente de nuevo"+"');";
+      String alert="alert('"+"Registro no creado"+"');";
                      out.print("<script>"+alert+"</script>");
     }else{
       String alert="alert('"+"Registro creado exitosamente"+"');";

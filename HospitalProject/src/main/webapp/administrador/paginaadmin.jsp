@@ -37,7 +37,7 @@
           <div class="sidebar">
             <h2>MENU</h2>
             <ul>
-                <li><a href="">Cerrar sesion</a></li>
+                <li><a href="./indexAdmin.jsp?sesion=true">Cerrar sesion</a></li>
                 <li><a href="./paginaadmin.jsp">Creacion de datos</a></li>
                 <li><a href="./paginaadmin.jsp?id=1">Crear area de trabajo</a></li>
                 <li><a href="./paginaadmin.jsp?id=2">Crear habitaciones</a></li>
@@ -49,7 +49,7 @@
         </div>
         
         <div class="contenido">
-              <img src="" alt="s"  class="menu-bar">
+              <img src="../iconmenu.png" alt=""  class="menu-bar">
               <div class="contenedor-crear" style="width: 90%;">
                   <% 
                   boolean validar=false;

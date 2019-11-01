@@ -61,39 +61,76 @@ public class adminsesion extends HttpServlet {
         creacionadmin tmp=new creacionadmin(request);
           switch (request.getParameter("id")){
             case "1":
-                             if(tmp.crearAreaDeTrabajo(sesion.getAttribute("usuario").toString(), request)){
+       
+                         try{
+                Double.parseDouble(request.getParameter("costo"));
+                if(tmp.crearAreaDeTrabajo(sesion.getAttribute("usuario").toString(), request)){
         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=1&error=erro");
         }else{
         s.print(tmp.getError());
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=1&error=error");
         }
+        }catch(NumberFormatException e){
+         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=1&error=error");
+        
+        }
+        
                 break;
             case "2":
-                         if(tmp.crearAreaHabitacion(sesion.getAttribute("usuario").toString(), request)){
+               try{
+               
+                      Double.parseDouble(request.getParameter("costo"));
+              
+                      if(tmp.crearAreaHabitacion(sesion.getAttribute("usuario").toString(), request)){
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=2&error=erro");
         }else{
         s.print(tmp.getError());
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=2&error=error");
         }
+           
+               }catch(NumberFormatException e){
+                response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=2&error=error");
+        
+               }
                 break;
                 
                case "3":
+                   
+               try{
+                         Double.parseDouble(request.getParameter("costo"));
+               
+               
                          if(tmp.crearEmpleo(sesion.getAttribute("usuario").toString(), request)){
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=3&error=erro");
         }else{
         s.print(tmp.getError());
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=3&error=error");
         }
+               }catch(NumberFormatException e){
+                 response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=3&error=error");
+       
+               }
+         
       
                 break;  
                 
                   case "4":
-                         if(tmp.crearOperaciones(sesion.getAttribute("usuario").toString(), request)){
+                 try{
+                               Double.parseDouble(request.getParameter("costo"));
+                               Double.parseDouble(request.getParameter("precio"));
+               
+                      
+                     if(tmp.crearOperaciones(sesion.getAttribute("usuario").toString(), request)){
           response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=erro");
         }else{
         s.print(tmp.getError());
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=error");
         }
+                 }catch(NumberFormatException e){
+                  response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=error");
+        }
+                      
+         
       
                 break; 
                 
