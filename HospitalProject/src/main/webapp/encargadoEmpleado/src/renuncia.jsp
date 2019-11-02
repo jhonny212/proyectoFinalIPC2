@@ -47,11 +47,11 @@
             <table class="c1" style="width: 500px;">
             <thead>
                 <tr>
-                    <th>Asignar vacaciones</th>
-                   <th>Nombre</th>
-                    <th>Direccion</th>
-                    <th>Telefono</th>
-                    <th>Cui</th>
+                    <th>Descripcion</th>
+                    <th>Nombre</th>
+                     <th>Vacaciones</th>
+                     <th>Telefono</th>
+                     <th>Cui</th>
                 </tr>
             </thead>
             <%

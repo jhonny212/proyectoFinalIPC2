@@ -78,20 +78,39 @@ public class empleado extends usuario {
         return sueldo;
     }
     
-    
-        public boolean  iniciarSesion(usuario tmp){
+    private String employeeKind;
+
+    public String getEmployeeKind() {
+        return employeeKind;
+    }
+
+    public void setEmployeeKind(String employeeKind) {
+        this.employeeKind = employeeKind;
+    }
+
+    /**
+     *
+     * @param tmp
+     * @return
+     */
+    public String iniciarSesio(usuario tmp){
             if(iniciarconeccion.coneccion==null){
             iniciarconeccion.IniciarConeccion();}
-        boolean validar=true;  
-         String sql="SELECT a.cui, a.contraseña FROM usuarioEmpleado join contratoEmpleado b on a.cui=b.cui where b.nombreEmpleo='enfermera' || b.nombreEmpleo='operador' || b.nombreEmpleo='recepcionista'";
+        String validar="";  
+         String sql="SELECT a.cui, a.contraseña, b.nombreEmpleo FROM usuarioEmpleado a join contratoEmpleado b on a.cui=b.cui where b.nombreEmpleo='Enfermera' || b.nombreEmpleo='Operador' || b.nombreEmpleo='Recepcionista'"
+                 + "|| b.nombreEmpleo='Gerente' || b.nombreEmpleo='Encargado de empleado' && a.cui=? && a.contraseña=?";
       PreparedStatement crearusuario=null; 
         try {
             crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
             crearusuario.setInt(1, tmp.getCui());
             crearusuario.setString(2, tmp.getContraseña());
-            crearusuario.execute();
+            ResultSet res=crearusuario.executeQuery();
+            if(res.next()){
+            validar=res.getString("b.nombreEmpleo");
+            
+            }
         } catch (SQLException ex) {
-            validar=false;
+          validar=ex.getMessage();
          
         }
     
@@ -108,16 +127,18 @@ public class empleado extends usuario {
         
            public boolean  crearUsuario(empleado tmp){
     boolean validar=true;  
-    String sql="INSERT INTO usuarioEmpleado (cui, contraseña,idcontratoEmpleado) VALUES (?,?,?)";
+    if(iniciarconeccion.coneccion==null){iniciarconeccion.IniciarConeccion();}
+   String sql="insert into usuarioEmpleado (cui, contraseña, idcontratoEmpleado) select a.cui, '"+tmp.getContraseña()+"', a.idcontratoEmpleado from contratoEmpleado a where a.cui=?";
     PreparedStatement crearusuario=null; 
         try {
             crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
             crearusuario.setInt(1, tmp.getCui());
-            crearusuario.setString(2, tmp.getContraseña());
-            crearusuario.setInt(3, tmp.getId());
+          
             crearusuario.executeUpdate();
         } catch (SQLException ex) {
             validar=false;
+            this.error=ex.getMessage();
+            System.out.print(ex.getMessage());
     
         }
     

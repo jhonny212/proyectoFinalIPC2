@@ -36,12 +36,13 @@
     }
     </script>
     </head>
+  
     <body onload="My_onLoad()">
           <div class="sidebar">
             <h2>MENU</h2>
             <ul>
                 <li><a href="">Cerrar sesion</a></li>
-                <li><a href="./principalEncargado.jsp">Cerrar sesion</a></li>
+                <li><a href="./principalEncargado.jsp?id=0">firmar vacacion</a></li>
                 <li><a href="./principalEncargado.jsp?id=1">Asignar vacaciones</a></li>
                 <li><a href="./principalEncargado.jsp?id=2">Actualizar vacaciones</a></li>
                 <li><a href="./principalEncargado.jsp?id=3">Despido</a></li>
@@ -49,8 +50,8 @@
                 <li><a href="./principalEncargado.jsp?id=5">pago empleo</a></li>
                     <li><a href="./principalEncargado.jsp?id=6">crear usuario</a></li>
             
-                    <li><a href="./principalEncargado.jsp">pago especialista</a></li>
-                <li><a href="./principalEncargado.jsp">aumento salarial</a></li>
+                    <li><a href="./principalEncargado.jsp?id=7">pago especialista</a></li>
+                <li><a href="./principalEncargado.jsp?id=8">aumento salarial</a></li>
             
                  
             </ul>
@@ -92,7 +93,11 @@
                        case "2":
                       %>
                         <%@include file="./src/actualizarVacaciones.jsp" %>
-                     <%   
+                        <%  break;
+                            case "0":
+                      %>
+                        <%@include file="./src/firmar.jsp" %>   
+                  <%   
                       break;
                        case "3":
                       %>

@@ -4,6 +4,7 @@
     Author     : jhonny
 --%>
 
+<%@page import="paquetescompartidos.gastos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="paquetescompartidos.iniciarconeccion" %>
 <!DOCTYPE html>
@@ -14,6 +15,8 @@
         <title>Administrador</title>
     </head>
     <body>
+         <% gastos.gastosHabitacion(); %>
+       
         <% iniciarconeccion.IniciarConeccion();%>
                    <% 
     if(request.getParameter("error")!=null){

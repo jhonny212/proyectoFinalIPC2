@@ -30,7 +30,7 @@
     }
     %>
         <br>
-         <form autocomplete="off" class="formbox" action="/HospitalProject/encargado" method="POST">
+         <form autocomplete="off" class="formbox" action="/HospitalProject/encargado" method="GET">
               <input type="text" name="ids" value="6" style="opacity: 0; height: 0; width: 0;">
               
              <h1 id="titulo">REGISTRAR</h1>
@@ -38,7 +38,7 @@
                 <input type ="password" id="contraseña" name="contra" placeholder=" contraseña " required/>
             
                 
-                <button type="submit" name="btn" >Registrar</button>
+                <button type="submit" name="btn" >Registrar usuario</button>
               
                
           </form>  

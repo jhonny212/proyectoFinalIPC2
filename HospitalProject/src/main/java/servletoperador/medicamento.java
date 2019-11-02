@@ -243,12 +243,12 @@ public void llenar(HttpServletRequest  request, String id){
      Calendar fechA = Calendar.getInstance();
      String getFecha="";
      
-     if(fechA.get(Calendar.MONTH)==1){
+     if(fechA.get(Calendar.MONTH)==0){
      getFecha=Integer.toString(fechA.get(Calendar.YEAR)-1);
      getFecha+="12";
      }else{
      getFecha=Integer.toString(fechA.get(Calendar.YEAR));
-     getFecha+=Integer.toString(fechA.get(Calendar.MONTH)-1);
+     getFecha+=Integer.toString(fechA.get(Calendar.MONTH));
      }
                    
    String sql="";

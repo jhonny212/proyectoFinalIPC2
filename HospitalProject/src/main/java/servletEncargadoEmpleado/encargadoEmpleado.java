@@ -105,7 +105,7 @@ java.util.Date date = null;
             }
         try {
            String sql=null;
-            sql="select * from contratoEmpleado where cui=? && estado2=?";
+            sql="select * from contratoEmpleado where cui=? && estado2=? && estado='libre'  || estado='ocupado'";
            PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
            iniciarSesion.setInt(1,Integer.parseInt(cui));
            iniciarSesion.setString(2,"activo");
@@ -121,7 +121,7 @@ java.util.Date date = null;
             }}else{
                if(res.next()){
             tmp.setCui(res.getInt("cui"));
-            tmp.setDireccion(res.getString("direccion"));
+            tmp.setDireccion(res.getString("vacaciones"));
             tmp.setNombre(res.getString("nombre"));
             tmp.setTelefono(res.getInt("idcontratoEmpleado"));
             

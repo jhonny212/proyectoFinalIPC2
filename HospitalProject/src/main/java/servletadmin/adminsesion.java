@@ -135,7 +135,7 @@ public class adminsesion extends HttpServlet {
                 break; 
                 
                   case "5":
-                         if(tmp.registrarMedico(sesion.getAttribute("usuario").toString(), request)){
+                  if(tmp.registrarMedico(sesion.getAttribute("usuario").toString(), request)){
           response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=5&error=erro");
         }else{
         s.print(tmp.getError());

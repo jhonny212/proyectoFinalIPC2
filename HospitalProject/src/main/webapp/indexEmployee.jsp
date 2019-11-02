@@ -4,6 +4,9 @@
     Author     : jhonny
 --%>
 
+<%@page import="java.util.LinkedList"%>
+<%@page import="paquetescompartidos.operaciones"%>
+<%@page import="paquetescompartidos.gastos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +16,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <% gastos.gastosHabitacion(); 
+        
+        LinkedList<String> tmp=operaciones.Updateemployee();
+        
+    %>
         <section>
      <div>
          <h1>Iniciar sesion</h1>

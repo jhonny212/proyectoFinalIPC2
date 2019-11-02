@@ -77,9 +77,9 @@ public class servletgerente extends HttpServlet {
                   case "3":
                       empleado ts=new empleado(request, request);
               if(tmp.contratar(request, ts)){
-             // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=erro");
+              response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=3&error=erro");
        }else{
-          // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=error");
+           response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=3&error=error");
        s.print(tmp.getError()+"yes");
         }
                 break;
@@ -87,10 +87,10 @@ public class servletgerente extends HttpServlet {
                      case "4":
                  empleado tss=new empleado(request, request);
               if(tmp.contratarTemporal(request, tss)){
-             // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=erro");
+              response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=4&error=erro");
        
         }else{
-          // response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=2&error=error");
+           response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=4&error=error");
        s.print(tmp.getError()+"yes");
         }
                 break;

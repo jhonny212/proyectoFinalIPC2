@@ -14,6 +14,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -117,4 +119,39 @@ java.util.Date date = null;
     public int getPrecio() {
         return precio;
     }
+    
+    public static LinkedList  Updateemployee(){
+       LinkedList <String> tmp=new LinkedList();
+    Calendar fechA=Calendar.getInstance();
+    int año=fechA.get(Calendar.YEAR);
+    int mes=fechA.get(Calendar.MONTH)+1;
+    int dia=fechA.get(Calendar.DAY_OF_MONTH);
+    String fecha=Integer.toString(año)+"-"+Integer.toString(mes)+"-"+Integer.toString(dia);
+    if(iniciarconeccion.coneccion==null){iniciarconeccion.IniciarConeccion();}
+        String sql="select a.precio, interval a.precio day +b.vacaciones as fechados,datediff(interval a.precio day +b.vacaciones,'"+fecha+"') as diferencia,b.idcontratoEmpleado, b.vacaciones, b.idcontratoEmpleado as id from contratoEmpleado b join datosGlobales a where a.nombreDatos='dias de vacaciones';";
+        try {
+            PreparedStatement p=iniciarconeccion.coneccion.prepareStatement(sql);
+            ResultSet r=p.executeQuery();
+            String sql2="";
+            while(r.next()){
+            
+               tmp.add(fecha);
+                 //tmp.add(r.getFloat("diferencia"));
+            if(r.getFloat("diferencia")>=0 && r.getFloat("diferencia")<=r.getInt("a.precio") ){
+            sql2="UPDATE contratoEmpleado SET estado2='desactivo' WHERE idcontratoEmpleado=?";
+            PreparedStatement p2=iniciarconeccion.coneccion.prepareStatement(sql2);
+            p2.setInt(1, r.getInt("b.idcontratoEmpleado"));
+            p2.executeUpdate();
+           
+            }else{
+             sql2="UPDATE contratoEmpleado SET estado2='activo' WHERE idcontratoEmpleado=?";
+            PreparedStatement p2=iniciarconeccion.coneccion.prepareStatement(sql2);
+            p2.setInt(1, r.getInt("b.idcontratoEmpleado"));
+            p2.executeUpdate();
+            }
+            }
+        } catch (SQLException ex) {
+        
+        }
+    return tmp;} 
 }

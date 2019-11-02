@@ -184,7 +184,7 @@ java.util.Date date = null;
 
         
         boolean validar=true;
-        
+  
     String sql="INSERT INTO especialista(fecha,direccion,estado,nombre,cui) VALUES (?,?,?,?,?)";
     PreparedStatement crearusuario=null;
     

@@ -65,12 +65,39 @@ public class servletemployee extends HttpServlet {
         processRequest(request, response);
         PrintWriter print=response.getWriter();
         empleado tmp=new empleado(Integer.parseInt(request.getParameter("cui")),request.getParameter("contra"));
-        if(tmp.iniciarSesion(tmp)){
-        print.print("correcto");
-        HttpSession sesion =request.getSession();
-        sesion.setAttribute("usuario", tmp.getCui());
-        }else{
-        print.print("no");
+        String tipo=tmp.iniciarSesio(tmp);
+        if( tipo.equals("")){
+     response.sendRedirect("/HospitalProject/indexEmployee.jsp");
+     }else{
+             HttpSession sesion=request.getSession();
+             sesion.setAttribute("cui", tmp.getCui());
+        switch(tipo){
+            case "Encargado de empleado":
+                response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp");
+    
+                break;
+                    case "Recepcionista":
+                 response.sendRedirect("/HospitalProject/recepcionista/indexrecepcion.jsp");
+    
+                break;
+                
+                            case "Operador":
+                 response.sendRedirect("/HospitalProject/operador/indexoperador.jsp");
+    
+                break;
+                
+                            case "Enfermera":
+                 response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp");
+    
+                break;
+                
+                            case "Gerente":
+                response.sendRedirect("/HospitalProject/gerente/principalManager.jsp");
+    
+                break;
+                
+        
+        }
         }
     }
 

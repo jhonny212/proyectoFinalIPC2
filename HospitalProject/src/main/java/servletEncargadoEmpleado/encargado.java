@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,9 +60,35 @@ public class encargado extends HttpServlet {
         processRequest(request, response);
         encargadoEmpleado tmp=new encargadoEmpleado();
         PrintWriter s=response.getWriter();
-        
+         if(iniciarconeccion.coneccion==null){
+                   iniciarconeccion.IniciarConeccion();
+                   }
        switch(request.getParameter("ids")){
        
+           case "0":
+               
+         if(iniciarconeccion.coneccion==null){iniciarconeccion.IniciarConeccion();}      
+        {
+            try {
+                String sql="UPDATE contratoEmpleado SET estate='SI' WHERE cui=?";
+                PreparedStatement up=iniciarconeccion.coneccion.prepareStatement(sql);
+                up.setInt(1, Integer.parseInt(request.getParameter("cui")));
+                up.executeUpdate();
+                       response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=0&error=erro");
+          
+              
+            } catch (SQLException ex) {
+                   response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=0&error=erro");
+          
+              
+            }
+        }
+               
+               
+               
+               break;
+               
+               
            case "1":
                tmp.asignarVacaciones(request.getParameter("cui"),"e");
                
@@ -71,9 +99,7 @@ public class encargado extends HttpServlet {
                   
             {
             try {
-                   if(iniciarconeccion.coneccion==null){
-                   iniciarconeccion.IniciarConeccion();
-                   }
+                  
                 sql="select vacaciones from contratoEmpleado where cui=?";
                 PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql);
                
@@ -138,15 +164,15 @@ public class encargado extends HttpServlet {
                    break;
                    
               case "6":
-                
-                  empleado a=new empleado(Integer.parseInt(request.getParameter("cui")),request.getParameter("contra"));
-                  if(a.crearUsuario(a)){
+                 empleado a=new empleado(Integer.parseInt(request.getParameter("cui")),request.getParameter("contra"));
+                 
+                 if(a.crearUsuario(a)){
                          response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=erro");
           
                   
                   }else{
-                     response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=error");
-          
+                 response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=error");
+                s.print(a.getError()+"aca");
                   
                   }
                   break;
@@ -155,7 +181,25 @@ public class encargado extends HttpServlet {
                    break;    
                    
                case "8":
-                   break;          
+                   
+                   String Sql="UPDATE contratoEmpleado a SET a.sueldo=a.sueldo+'"+request.getParameter("aumento")+"' where a.cui=? ";
+               {
+            try {
+                PreparedStatement act=iniciarconeccion.coneccion.prepareStatement(Sql);
+                act.setInt(1, Integer.parseInt(request.getParameter("cui")));
+                act.executeUpdate();
+                            response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=8&error=erro");
+          
+             
+            } catch (SQLException ex) {
+                            response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=8&error=erro");
+          
+             
+                s.print(ex.getMessage());
+            }
+        }
+                   
+                   break;                    
        }
         //tmp.actualizarVacaciones(request);
     }
