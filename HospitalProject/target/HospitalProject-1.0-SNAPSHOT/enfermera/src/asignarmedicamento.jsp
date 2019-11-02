@@ -30,6 +30,13 @@
     }
     %>
     <body>
+        <style>
+        .cst:hover{
+            cursor: none;
+
+
+        }
+        </style>
         
        <div style="width: 100%;">
       
@@ -39,7 +46,6 @@
         </h2>
           <br>
           <form class="fc1" style="width: 1000px;" action="/HospitalProject/servletenfermera" method="GET" autocomplete="off">
-            <input type="text" name="ids" value="2" style="opacity: 0; height: 0; width: 0;">
             <table>
                 <tr>
                      <td>
@@ -50,6 +56,8 @@
             </table>
             <table class="c1" style="width: 1000px; ">
          <thead>
+              <input type="text" name="ids" value="4" style="opacity: 0; height: 0; width: 0;">
+    
                 <tr>
                  <th>Descripcion</th>
                  <th>Costo</th>
@@ -69,9 +77,9 @@
                        LinkedList<medicamento> me=medicamento.lista();
                          for(int i=0; i<me.size();i++){
                  out.print("<tr> <td><h2>"+me.get(i).getDescripcion()+"</h2></td>");
-                 %>
-                <%
-                    out.print("<td><h2>"+me.get(i).getCosto()+"</h2></td>");
+                 out.print("<td><h2>"+me.get(i).getCosto()+"</h2></td>");
+                 
+                        out.print("</td>");
                  out.print("<td><input type='submit' name='valor' value='"+me.get(i).getNombre()+"'></td>");
                  out.print("</tr>");
                  } 

@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import servletrecepcion.enfermera;
 
 /**
  *
@@ -31,20 +33,7 @@ public class servletenfermera extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet servletenfermera</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet servletenfermera at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+      }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -59,6 +48,40 @@ public class servletenfermera extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+       
+        int id1=0;
+        int cui=0;
+          HttpSession sesion=request.getSession();
+        
+          PrintWriter s=response.getWriter();
+       try{
+          id1=Integer.parseInt(request.getParameter("idcontrato"));
+      
+          cui=Integer.parseInt(sesion.getAttribute("cui").toString());
+       }catch(NumberFormatException e){}
+        switch(request.getParameter("ids")){
+            case "1":
+             s.print(   enfermera.update(cui, id1) );
+               response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp?id=1");
+              
+                break;
+              case "2":
+                s.print(   enfermera.update(cui, id1) );
+             response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp?id=2");
+                
+                break;  
+                
+              case "4":
+                  if(colamedicamento.colamedicamento(request)){
+              response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp?id=4&error=erro");
+                  
+                  }else{
+              response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp?id=4&error=error");
+                  }
+                  break;
+        
+        }
+        
     }
 
     /**

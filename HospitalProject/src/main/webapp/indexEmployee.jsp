@@ -16,8 +16,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% gastos.gastosHabitacion(); 
-        
+        <% gastos.gastosHabitacion();
+        operaciones a=new operaciones();
+        a.actualizarVacaciones();
         LinkedList<String> tmp=operaciones.Updateemployee();
         
     %>

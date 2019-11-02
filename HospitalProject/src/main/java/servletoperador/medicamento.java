@@ -13,8 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import javax.servlet.http.HttpServletRequest;
 import paquetescompartidos.iniciarconeccion;

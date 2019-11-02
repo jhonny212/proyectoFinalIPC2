@@ -45,19 +45,19 @@
     
           <form class="fc1" style="width: 1000px; " id="formget" action="/HospitalProject/servletenfermera" method="GET" autocomplete="off">
            
-             
+                <input type="text" name="ids" value="2" style="opacity: 0; height: 0; width: 0;">
+           
             <table class="c1" style="width: 1000px; ">
          <thead>
                 <tr>
-                 <th></th>
-                 <th></th>
-                 <th></th>
+                 <th>Telefono</th>
+                 <th>Nombre</th>
+                 <th>Asignar medico</th>
                  <th></th>
                  </tr>
             </thead>
   
  <tr>
-   <td><input type="date" name="fecha" required id=""></td>
   
   <%LinkedList<medico> Listado=medico.medico(""); %>
  </tr>
@@ -67,7 +67,7 @@
                   %>
                   <%out.print("<td><h2>"+Listado.get(i).getCui()+"</h2></td>"); %>
                   <%out.print("<td><h2>"+Listado.get(i).getNombre()+"</h2></td>"); %>
-                  <%out.print("<td><input type='submit' name='seleccion1' value='"+Listado.get(i).getId()+"'></td>"); %>
+                  <%out.print("<td><input type='submit' name='idcontrato' value='"+Listado.get(i).getId()+"'></td>"); %>
                 
                   <%
                    out.print("</tr></td>");

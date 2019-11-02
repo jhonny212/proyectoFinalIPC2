@@ -31,6 +31,7 @@
     }
     </script>
     </head>
+  
     <body onload="My_onLoad()">
           <div class="sidebar">
             <h2>MENU</h2>

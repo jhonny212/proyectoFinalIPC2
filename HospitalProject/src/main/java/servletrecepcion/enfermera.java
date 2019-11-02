@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import paquetescompartidos.iniciarconeccion;
 
@@ -127,4 +129,24 @@ public class enfermera {
         } catch (SQLException ex) {
         }
     }
+    
+    public static String update(int id, int id2){
+        String iD=Integer.toString(id2);
+    String sql="INSERT INTO medicosDestinados  (idinternado, idcontratoEmpleado) select a.idinternado, "+iD+" from medicosDestinados a join contratoEmpleado b join internado c on b.idcontratoEmpleado=a.idcontratoEmpleado where b.cui=? && c.estado='No'";
+    String w="";  
+    if(iniciarconeccion.coneccion==null){
+    iniciarconeccion.IniciarConeccion();
+        try {
+            PreparedStatement state=iniciarconeccion.coneccion.prepareStatement(sql);
+            state.setInt(1, id);
+            state.executeUpdate();
+            actualizar(id2);
+        } catch (SQLException ex) {
+        w=ex.getMessage();
+        }
+      }
+      
+      
+    
+    return w;}
 }

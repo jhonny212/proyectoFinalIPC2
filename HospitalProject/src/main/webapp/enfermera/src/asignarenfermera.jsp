@@ -23,6 +23,7 @@
         <title>JSP Page</title>
     </head>
                    <% 
+                        HttpSession sesion=request.getSession();
     if(request.getParameter("error")!=null){
     if(request.getParameter("error").equals("error")){
       String alert="alert('"+"Erro al crear usuario, intente de nuevo"+"');";
@@ -50,15 +51,14 @@
          <thead>
                 <tr>
                  <th></th>
-                 <th></th>
-                 <th></th>
-                 <th></th>
+                 <th>Telefono</th>
+                 <th>Nombre</th>
+                 <th>Asignar enfermera</th>
                  </tr>
             </thead>
   
- <tr>
-   <td><input type="date" name="fecha" required id=""></td>
-    <td><input type="submit" value="ok"></td>
+ <tr>         <input type="text" name="ids" value="1" style="opacity: 0; height: 0; width: 0;">
+           
     <%  LinkedList<enfermera> ListadO=enfermera.medico("");%>
  </tr>
           
@@ -67,7 +67,7 @@
                   %>
                   <%out.print("<td><h2>"+ListadO.get(i).getCui()+"</h2></td>"); %>
                   <%out.print("<td><h2>"+ListadO.get(i).getNombre()+"</h2></td>"); %>
-                   <%out.print("<td><input type='submit' value='"+ListadO.get(i).getId()+"'></td>"); %>
+                   <%out.print("<td><input name='idcontrato' type='submit' value='"+ListadO.get(i).getId()+"'></td>"); %>
                   <%
                    out.print("</td></tr>");
                   } %>

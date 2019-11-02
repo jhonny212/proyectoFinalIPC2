@@ -4,6 +4,8 @@
     Author     : jhonny
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="servletrecepcion.enfermera"%>
 <%@page import="servletrecepcion.medico"%>
 <%@page import="servletrecepcion.consulta"%>
@@ -57,9 +59,25 @@
             </thead>
   
  <tr>
-   <td><input type="date" name="fecha" required id=""></td>
-  
-  <%LinkedList<medico> Listad=medico.medicoEspecialista("3");
+     <input type="text" name="ids" value="3" style="opacity: 0; height: 0; width: 0;">
+     
+     <%
+     String sql="select b.tipo from internado a join operaciones b  join contratoEmpleado d  on a.nombre=b.nombreOperacion WHERE a.estado='No' && d.cui=?;";
+     PreparedStatement state=iniciarconeccion.coneccion.prepareStatement(sql);
+       HttpSession sesiOn=request.getSession();
+       int cui=Integer.parseInt(sesiOn.getAttribute("cui").toString());
+       
+     state.setInt(1, cui);
+     ResultSet res=state.executeQuery();
+     String tipo="";
+if(res.next()){
+tipo=res.getString("b.tipo");
+}
+     %>
+  <%
+     
+      if(tipo.equals("Ambos") || tipo.equals("Especialista") ){
+      LinkedList<medico> Listad=medico.medicoEspecialista("3");
                  %>
  </tr>
           
@@ -72,7 +90,7 @@
                 
                   <%
                    out.print("</tr></td>");
-                  } %>
+                  } }%>
 
         </table>
         <br>

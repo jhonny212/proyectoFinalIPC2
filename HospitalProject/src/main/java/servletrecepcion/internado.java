@@ -60,13 +60,14 @@ public class internado {
         boolean validar=true;
     if(iniciarconeccion.coneccion==null){
     iniciarconeccion.IniciarConeccion();}
-    String sql="INSERT INTO internado (cui,fechaEntrada, idcrearHabitacion, nombre) VALUES (?,?,?,?)";
+    String sql="INSERT INTO internado (cui,fechaEntrada, idcrearHabitacion, nombre, estado) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement prepared=iniciarconeccion.coneccion.prepareStatement(sql);
             prepared.setInt(1, tmp.getCui());
             prepared.setDate(2, tmp.getSqlStartDate());
             prepared.setInt(3, tmp.getId());
             prepared.setString(4, tmp.getNombre());
+            prepared.setString(5, "No");
             prepared.executeUpdate();
             
         } catch (SQLException ex) {
