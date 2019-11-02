@@ -74,7 +74,7 @@ public class Operator extends HttpServlet {
               medicamento medicamento=new medicamento();
                     Calendar fechA = Calendar.getInstance();
                     String getFecha=Integer.toString(fechA.get(Calendar.YEAR));
-                   getFecha+=Integer.toString(fechA.get(Calendar.MONTH));
+                   getFecha+=Integer.toString(fechA.get(Calendar.MONTH)+1);
                 if(medicamento.Colamedicamento(request, getFecha)){
                    
                    }else{

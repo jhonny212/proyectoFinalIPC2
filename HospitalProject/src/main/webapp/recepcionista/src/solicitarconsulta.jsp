@@ -63,7 +63,7 @@
     <tr>
         <td><select name="seleccion" id="">
                 <% 
-                LinkedList<String> habitacion=habitacioN.habitaciones("Consultas","");
+                LinkedList<String> habitacion=habitacioN.habitaciones("Consulta","");
                 for(int i=0;i<habitacion.size();i++){
                 %>
                 <option ><% 

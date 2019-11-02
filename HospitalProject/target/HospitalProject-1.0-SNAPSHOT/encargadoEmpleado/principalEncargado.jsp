@@ -41,7 +41,7 @@
           <div class="sidebar">
             <h2>MENU</h2>
             <ul>
-                <li><a href="">Cerrar sesion</a></li>
+                <li><a href="">Cerrar sesion </a></li>
                 <li><a href="./principalEncargado.jsp?id=0">firmar vacacion</a></li>
                 <li><a href="./principalEncargado.jsp?id=1">Asignar vacaciones</a></li>
                 <li><a href="./principalEncargado.jsp?id=2">Actualizar vacaciones</a></li>

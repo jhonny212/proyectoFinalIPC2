@@ -97,17 +97,16 @@ public class empleado extends usuario {
             if(iniciarconeccion.coneccion==null){
             iniciarconeccion.IniciarConeccion();}
         String validar="";  
-         String sql="SELECT a.cui, a.contraseña, b.nombreEmpleo FROM usuarioEmpleado a join contratoEmpleado b on a.cui=b.cui where b.nombreEmpleo='Enfermera' || b.nombreEmpleo='Operador' || b.nombreEmpleo='Recepcionista'"
-                 + "|| b.nombreEmpleo='Gerente' || b.nombreEmpleo='Encargado de empleado' && a.cui=? && a.contraseña=?";
+         String sql="SELECT a.cui, a.contraseña, b.nombreEmpleo FROM usuarioEmpleado a join contratoEmpleado b on a.cui=b.cui where a.cui=? && a.contraseña=? && b.cui=? ";
       PreparedStatement crearusuario=null; 
         try {
             crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
             crearusuario.setInt(1, tmp.getCui());
             crearusuario.setString(2, tmp.getContraseña());
+             crearusuario.setInt(3, tmp.getCui());
             ResultSet res=crearusuario.executeQuery();
             if(res.next()){
             validar=res.getString("b.nombreEmpleo");
-            
             }
         } catch (SQLException ex) {
           validar=ex.getMessage();

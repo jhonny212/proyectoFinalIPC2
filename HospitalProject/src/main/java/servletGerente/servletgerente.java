@@ -97,15 +97,21 @@ public class servletgerente extends HttpServlet {
                 
                      case "5":
                 if(tmp.generarPago(request)){
+                         response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=5&error=erro");
+      
                 }else{
                  s.print(tmp.getError()+"yes");
+           response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=5&error=error");
       
                 }
                 break;
                       case "6":
                 if(tmp.actualizarPAgo(request,"")){
+                         response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=6&error=erro");
+      
                 }else{
                  s.print(tmp.getError()+"yes");
+           response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=6&error=error");
       
                 }
                 break;

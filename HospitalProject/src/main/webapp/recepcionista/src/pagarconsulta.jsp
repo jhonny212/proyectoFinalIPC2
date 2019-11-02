@@ -79,7 +79,7 @@
                     <%if(request.getParameter("cui")!=null){
                     consulta pago=consulta.consulta(Integer.parseInt(request.getParameter("cui")));
                     if(pago.getHora()!=null){
-                   %>
+                    %>
                    <td>
                        <h2><%out.print(pago.getValid()); %></h2>
                       <input type="number"  value<%out.print("='"+pago.getId2()+"'"); %> style="opacity: 0; height: 0px; width: 0px;">
@@ -96,7 +96,7 @@
  
                    </td>
                      <td>
-                      <input type="submit" name="idconsulta" value<%out.print("='"+pago.getId()+"'");%>>
+                      <input type="submit" name="idconsulta" value<%out.print("='"+pago.getDate()+"'");%>>
                        <input type="number"  value<%out.print("='"+pago.getId2()+"'"); %> style="opacity: 0; height: 0px; width: 0px;">
  
                      </td>

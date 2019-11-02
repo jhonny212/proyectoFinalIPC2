@@ -34,7 +34,7 @@ public class habitacioN {
    try {
             String sql="";
             if(!le.equals("")){
-                sql="SELECT * FROM crearHabitacion join operaciones b WHERE nombre='"+letra+"' && estado='habilitado'  && b.nombreOperacion='apendice'";
+                sql="SELECT * FROM crearHabitacion join operaciones b WHERE nombre='"+letra+"' && estado='habilitado'  && b.nombreOperacion='"+le+"'";
             }else{
                 sql="SELECT * FROM crearHabitacion WHERE nombre='"+letra+"' && estado='habilitado'";
             }

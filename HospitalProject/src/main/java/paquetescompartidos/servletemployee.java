@@ -66,12 +66,15 @@ public class servletemployee extends HttpServlet {
         PrintWriter print=response.getWriter();
         empleado tmp=new empleado(Integer.parseInt(request.getParameter("cui")),request.getParameter("contra"));
         String tipo=tmp.iniciarSesio(tmp);
+        PrintWriter s=response.getWriter();
         if( tipo.equals("")){
      response.sendRedirect("/HospitalProject/indexEmployee.jsp");
      }else{
              HttpSession sesion=request.getSession();
              sesion.setAttribute("cui", tmp.getCui());
+             s.print(tipo);
         switch(tipo){
+             
             case "Encargado de empleado":
                 response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp");
     
@@ -92,7 +95,7 @@ public class servletemployee extends HttpServlet {
                 break;
                 
                             case "Gerente":
-                response.sendRedirect("/HospitalProject/gerente/principalManager.jsp");
+            response.sendRedirect("/HospitalProject/gerente/principalManager.jsp");
     
                 break;
                 

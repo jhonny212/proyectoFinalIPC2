@@ -48,16 +48,18 @@ public class recepcion extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         PrintWriter s=response.getWriter();
+        try{
        switch(request.getParameter("ids")){
            case "1":
            try{
         Integer.parseInt(request.getParameter("telefono"));
-       // paciente.registrar(request);
-        }catch(NumberFormatException e){}
-        
+       
+            paciente.registrar(request);
         consulta tmp=new consulta();
         tmp.crearconsulta(request);
-        s.print(tmp.getError());
+        }catch(NumberFormatException e){}
+        
+     
         break;
         
            case "2":
@@ -67,6 +69,8 @@ public class recepcion extends HttpServlet {
                break;
                
            case "3":
+               
+            
                internado internar=new internado(request);
                if(internado.internar(internar)){
                enfermera.asignarEmpleado(enfermera.id(request), enfermera.codigo(request.getParameter("enfermera")));
@@ -88,6 +92,8 @@ public class recepcion extends HttpServlet {
                    }
               
                break;
+    }}catch(NumberFormatException e){
+    
     }
     }
 

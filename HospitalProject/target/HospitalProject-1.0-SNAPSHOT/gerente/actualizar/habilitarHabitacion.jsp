@@ -66,7 +66,7 @@
             </thead>
             <tr>
                 <td>    <h2>Fecha de renovacion</h2>
-                            <input type="date" name="fecha" id="">
+                            <input type="date" required name="fecha" id="">
                 
                 </td>
             </tr>

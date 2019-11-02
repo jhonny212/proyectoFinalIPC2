@@ -111,9 +111,11 @@
        
     
     <%
-        LinkedList<String> habitaciones=habitacioN.habitaciones("Operaciones","apendice");
-        String letra=habitaciones.get(0);
-    
+        LinkedList<String> habitaciones=habitacioN.habitaciones("Operaciones",request.getParameter("operacion"));
+        String letra="";
+        try{
+       letra =habitaciones.get(0);
+        }catch(IndexOutOfBoundsException e){}
 
 %>
     <tr>
@@ -155,7 +157,9 @@
         </td>
     
   
-        <%if(habitaciones.get(0).equals("Empleado")){
+        <%
+            try{
+            if(habitaciones.get(0).equals("Empleado")){
 
 %>
 
@@ -169,11 +173,19 @@
                     %></option>
                 <% }%>
         </select>
-</td>    <% }%>    
-        <%if(habitaciones.get(0).equals("Especialista")){
+</td>   
+
+<td><select name="seleccion2" style="opacity: 0;"   ><option >No</option></select></td>
+<% }
+
+}catch(IndexOutOfBoundsException e){}
+%>    
+        <%try{
+            if(habitaciones.get(0).equals("Especialista")){
 
 %>
-<td><select name="seleccion1" id="">
+<td><select name="seleccion2" id="">
+    <option >No</option>
                 <% 
                 LinkedList<medico> Listado=medico.medicoEspecialista("1");
                 for(int i=0;i<Listado.size();i++){ 
@@ -183,11 +195,18 @@
                     %></option>
                 <% }%>
         </select>
-</td>    <% }%>  
-    <%if(habitaciones.get(0).equals("Ambos")){
+</td>  
+<td><select name="seleccion1" style="opacity: 0;"   ><option >No</option></select></td>
+<% }
+
+}catch(IndexOutOfBoundsException e){}
+%>  
+    <%try{
+        if(habitaciones.get(0).equals("Ambos")){
 
 %>
 <td><select name="seleccion1" id="">
+        <option>No</option>
                 <% 
                 LinkedList<medico> Listado=medico.medicoEspecialista("1");
                 for(int i=0;i<Listado.size();i++){ 
@@ -210,7 +229,8 @@
                 <% }%>
         </select>
 </td>  
-<% }%> 
+<% }
+}catch(IndexOutOfBoundsException e){}%> 
  </tr> 
  <tr>
    <td><input type="date" name="fecha" required id=""></td>

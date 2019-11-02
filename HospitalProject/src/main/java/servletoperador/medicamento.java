@@ -168,7 +168,7 @@ public static LinkedList lista(){
              llenar(request,id);
         } catch (SQLException ex) {
              try {
-                 sql="SELECT cantidad FROM colamedicamento WHERE idcola=? && nombre";
+                 sql="SELECT cantidad FROM colamedicamento WHERE idcola=? && nombre=?";
                  PreparedStatement get=iniciarconeccion.coneccion.prepareStatement(sql);
                  get.setString(1, id);
                  get.setString(2, request.getParameter("valor"));
@@ -185,7 +185,7 @@ public static LinkedList lista(){
                  }
              } catch (SQLException ex1) {
               validar=false;   
-              this.error=ex1.getMessage();
+              this.error=ex1.getMessage()+"aca yes";
              }
             
         }

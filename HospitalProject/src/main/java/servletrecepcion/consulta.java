@@ -73,15 +73,20 @@ public class consulta {
     public consulta(){}
     public consulta(HttpServletRequest request){
     this.hora=request.getParameter("hora");
+    try{
     this.id=Integer.parseInt(request.getParameter("idconsulta"));
-     this.id2=Integer.parseInt(request.getParameter("habitacion"));
+     }catch(NumberFormatException e){}
+    this.id2=Integer.parseInt(request.getParameter("habitacion"));
     }
     public void crearconsulta(HttpServletRequest request){
              String array[]=request.getParameter("time").split(":");
            
             Calendar fecha = new GregorianCalendar();    
-            String date=Integer.toString(fecha.get(Calendar.YEAR)+fecha.get(Calendar.MONTH)+fecha.get(Calendar.DAY_OF_MONTH));
-        if(iniciarconeccion.coneccion==null){iniciarconeccion.IniciarConeccion();}
+               int año=fecha.get(Calendar.YEAR);
+    int mes=fecha.get(Calendar.MONTH)+1;
+    int dia=fecha.get(Calendar.DAY_OF_MONTH);
+    String date=Integer.toString(año)+"-"+Integer.toString(mes)+"-"+Integer.toString(dia);
+            if(iniciarconeccion.coneccion==null){iniciarconeccion.IniciarConeccion();}
          try {
              PreparedStatement r=iniciarconeccion.coneccion.prepareStatement("INSERT INTO consulta (idconsulta, cui,idcrearhabitacion,idcontratoempleado,hora,cancelado) VALUES (?,?,?,?,?,?)");
             r.setString(1, date);
@@ -97,13 +102,14 @@ public class consulta {
          }
         
     }
+    
     public consulta cancelarconsulta(HttpServletRequest request){
         consulta tmp=new consulta( request);
          String sql="insert into pagoconsulta (idconsulta, idcrearhabitacion, hora, pago ) select b.idconsulta , b.idcrearhabitacion, b.hora,  a.precio from datosGlobales a join consulta b where a.nombreDatos='consulta' && b.idconsulta=? && b.idcrearhabitacion=? && b.hora=?";   
         if(iniciarconeccion.coneccion==null){iniciarconeccion.IniciarConeccion();}
          try {
              PreparedStatement r=iniciarconeccion.coneccion.prepareStatement(sql);
-             r.setString(1, Integer.toString(tmp.getId()));
+             r.setString(1,request.getParameter("idconsulta"));
              r.setInt(2, tmp.getId2());
                r.setString(3,tmp.getHora());
             r.executeUpdate();
@@ -112,11 +118,23 @@ public class consulta {
              cancel.setInt(2, tmp.getId2());
                cancel.setString(3,tmp.getHora());
                cancel.executeUpdate();
+               update(request);
          } catch (SQLException ex) {
          this.error=ex.getMessage();
          }
        
    return tmp; }
+    public void update(HttpServletRequest r){
+    String sql="UPDATE consulta SET cancelado='SI' WHERE idconsulta=?";
+         try {
+             PreparedStatement up=iniciarconeccion.coneccion.prepareStatement(sql);
+             up.setString(1,r.getParameter("idconsulta"));
+             up.executeUpdate();
+             
+         } catch (SQLException ex) {
+         
+         }
+    }
     public static consulta consulta(int cui){
     consulta tmp=new consulta();
       
@@ -129,15 +147,26 @@ public class consulta {
              ResultSet res=get.executeQuery();
              if(res.next()){
              tmp.setHora(res.getString("a.hora"));
-             tmp.setId(res.getInt("a.idconsulta"));
+             tmp.setDate(res.getString("a.idconsulta"));
              tmp.setId2(res.getInt("a.idcrearhabitacion"));
              tmp.setValid(res.getString("b.nombre"));
+             
              
              }else{
            
              }
          } catch (SQLException ex) {
+             tmp.setValid(ex.getMessage());
        
          }
     return tmp;}
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
