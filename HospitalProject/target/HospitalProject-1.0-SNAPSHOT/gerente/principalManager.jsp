@@ -36,7 +36,7 @@
           <div class="sidebar">
             <h2>MENU</h2>
             <ul>
-                <li><a href="">Cerrar sesion</a></li>
+                <li><a href="../indexEmployee.jsp">Cerrar sesion</a></li>
                 <li><a href="./principalManager.jsp">Creacion de datos</a></li>
                 <li><a href="./principalManager.jsp?id=1">Actualizar tarifario</a></li>
                 <li><a href="./principalManager.jsp?id=2">Actualizar datos globales</a></li>

@@ -49,7 +49,7 @@
                 </tr>
                 <tr>
                     <td> 
-                        <input type="number" required name="cui" id="">
+                        <input type="number" required name="cui" id="numero">
                     </td>
                     <td>
                         <input type="submit" value="Buscar">
@@ -92,7 +92,12 @@
             </thead>
             <% 
             if(request.getParameter("cui")!=null){
-                paciente tmp=paciente.paciente(Integer.parseInt(request.getParameter("cui")));
+                try{
+                Integer.parseInt(request.getParameter("cui"));
+                
+                
+              paciente tmp=paciente.paciente(Integer.parseInt(request.getParameter("cui")));
+             
                if(tmp.getCui()!=0){
             %>
            
@@ -119,7 +124,9 @@
             </tr>
 
         <%
-        }
+        }}catch(NumberFormatException e){
+                response.sendRedirect("http://localhost:8080/HospitalProject/recepcionista/indexrecepcion.jsp?id=1");
+                }
     %>
        
     <%
@@ -196,5 +203,7 @@ boolean validaR=true;
         <br>
         </form>
        </div>
+       <script src="http://localhost:8080/HospitalProject/Js/archivos.js"> </script>
+   
     </body>
 </html>

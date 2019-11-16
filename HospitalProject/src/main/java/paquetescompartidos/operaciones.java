@@ -69,7 +69,7 @@ public class operaciones {
         try {
            String sql=null;
            String sql2;
-           sql2="select * from contratoEmpleado";
+           sql2="select * from contratoEmpleado where estado3='activo'";
          
            PreparedStatement iniciarSesion=iniciarconeccion.coneccion.prepareStatement(sql2);
            
@@ -128,7 +128,7 @@ java.util.Date date = null;
     int dia=fechA.get(Calendar.DAY_OF_MONTH);
     String fecha=Integer.toString(año)+"-"+Integer.toString(mes)+"-"+Integer.toString(dia);
     if(iniciarconeccion.coneccion==null){iniciarconeccion.IniciarConeccion();}
-        String sql="select a.precio, interval a.precio day +b.vacaciones as fechados,datediff(interval a.precio day +b.vacaciones,'"+fecha+"') as diferencia,b.idcontratoEmpleado, b.vacaciones, b.idcontratoEmpleado as id from contratoEmpleado b join datosGlobales a where a.nombreDatos='dias de vacaciones';";
+        String sql="select a.precio, interval a.precio day +b.vacaciones as fechados,datediff(interval a.precio day +b.vacaciones,'"+fecha+"') as diferencia,b.idcontratoEmpleado, b.vacaciones, b.idcontratoEmpleado as id from contratoEmpleado b join datosGlobales a where a.nombreDatos='dias de vacaciones' && b.estado3='activo';";
         try {
             PreparedStatement p=iniciarconeccion.coneccion.prepareStatement(sql);
             ResultSet r=p.executeQuery();

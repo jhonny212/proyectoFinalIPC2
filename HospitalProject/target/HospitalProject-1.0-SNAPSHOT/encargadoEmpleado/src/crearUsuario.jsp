@@ -34,7 +34,7 @@
               <input type="text" name="ids" value="6" style="opacity: 0; height: 0; width: 0;">
               
              <h1 id="titulo">REGISTRAR</h1>
-                <input type ="number" id="nombre" name="cui" placeholder="cui" required /> 
+                <input type ="number" id="numero" name="cui" placeholder="cui" required /> 
                 <input type ="password" id="contraseña" name="contra" placeholder=" contraseña " required/>
             
                 
@@ -43,6 +43,7 @@
                
           </form>  
       
-          
+          <script src="http://localhost:8080/HospitalProject/Js/archivos.js"> </script>
+   
     </body>
 </html>

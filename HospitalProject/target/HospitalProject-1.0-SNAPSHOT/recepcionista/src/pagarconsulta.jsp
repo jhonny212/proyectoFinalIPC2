@@ -49,7 +49,7 @@
                 </tr>
                 <tr>
                     <td> 
-                        <input type="number" required name="cui" id="">
+                        <input type="number" required name="cui" id="numero">
                     </td>
                     <td>
                         <input type="submit" value="Buscar">
@@ -107,5 +107,7 @@
        
         </form>
        </div>
+       <script src="http://localhost:8080/HospitalProject/Js/archivos.js"> </script>
+   
     </body>
 </html>

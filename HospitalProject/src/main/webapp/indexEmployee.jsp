@@ -21,16 +21,19 @@
         a.actualizarVacaciones();
         LinkedList<String> tmp=operaciones.Updateemployee();
         
+        
     %>
         <section>
      <div>
          <h1>Iniciar sesion</h1>
          <form action="/HospitalProject/servletemployee" method="POST" autocomplete="off">
-             <input type="number" required name="cui" placeholder="cui " id="">
+             <input type="number" required name="cui" placeholder="cui " id="numero">
              <input type="password" required name="contra" placeholder="contraseña" id="">
              <input type="submit" value="Iniciar sesion">
          </form>
      </div>
         </section>
+        <script src="http://localhost:8080/HospitalProject/Js/archivos.js"> </script>
+   
     </body>
 </html>

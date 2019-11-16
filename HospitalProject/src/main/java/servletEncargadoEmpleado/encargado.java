@@ -12,8 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import paquetescompartidos.empleado;
 import paquetescompartidos.iniciarconeccion;
-import paquetescompartidos.usuario;
+
 
 /**
  *
@@ -164,7 +163,8 @@ public class encargado extends HttpServlet {
                    break;
                    
               case "6":
-                 empleado a=new empleado(Integer.parseInt(request.getParameter("cui")),request.getParameter("contra"));
+                try{
+                  empleado a=new empleado(Integer.parseInt(request.getParameter("cui")),request.getParameter("contra"));
                  
                  if(a.crearUsuario(a)){
                          response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=erro");
@@ -174,10 +174,30 @@ public class encargado extends HttpServlet {
                  response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=error");
                 s.print(a.getError()+"aca");
                   
-                  }
+                  }}catch(NumberFormatException ex){
+                   response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=6&error=error");
+                }
                   break;
                    
              case "7":
+                 
+                           String Query="INSERT INTO pagoespecialista (pago, idinternado)  select a.tarifa, b.idinternado from operaciones a join internado b on b.nombre=a.nombreOperacion where b.estado='Si' or b.estado='Cancelado' && b.idinternado=?; ";
+       {
+           try {
+               PreparedStatement Prepared=iniciarconeccion.coneccion.prepareStatement(Query);
+               Prepared.setInt(1, Integer.parseInt(request.getParameter("valor")));
+               Prepared.executeUpdate();
+               Query="update internado set estado='Cobrado' where idinternado=?";
+               PreparedStatement PrepareD=iniciarconeccion.coneccion.prepareStatement(Query);
+               PrepareD.setInt(1, Integer.parseInt(request.getParameter("valor")));
+               PrepareD.executeUpdate();
+               
+           } catch (SQLException ex) {
+               s.print(ex.getMessage());
+           }
+            response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=7&error=erro");
+                
+       }
                    break;    
                    
                case "8":

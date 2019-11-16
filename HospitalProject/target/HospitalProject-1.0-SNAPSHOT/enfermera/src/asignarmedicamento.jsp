@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="servletenfermera.colamedicamento"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="paquetescompartidos.iniciarconeccion"%>
 <%@page import="servletoperador.medicamento"%>
@@ -61,6 +62,7 @@
                 <tr>
                  <th>Descripcion</th>
                  <th>Costo</th>
+                 <th>Cantidad</th>
                
                  <th>Nombre</th>
                  
@@ -74,10 +76,11 @@
                  <%
                        if(iniciarconeccion.coneccion==null){
         iniciarconeccion.IniciarConeccion();}
-                       LinkedList<medicamento> me=medicamento.lista();
+                       LinkedList<colamedicamento> me=colamedicamento.lista();
                          for(int i=0; i<me.size();i++){
                  out.print("<tr> <td><h2>"+me.get(i).getDescripcion()+"</h2></td>");
                  out.print("<td><h2>"+me.get(i).getCosto()+"</h2></td>");
+                 out.print("<td><h2>"+me.get(i).getCantidad()+"</h2></td>");
                  
                         out.print("</td>");
                  out.print("<td><input type='submit' name='valor' value='"+me.get(i).getNombre()+"'></td>");

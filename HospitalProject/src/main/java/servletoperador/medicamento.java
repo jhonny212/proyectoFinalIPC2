@@ -25,7 +25,7 @@ import paquetescompartidos.iniciarconeccion;
 public class medicamento {
     private  String nombre;
     private  java.sql.Date sqlStartDate;
-    private  int cantidad;
+    private  double cantidad;
     private double costo;
     private int minimo;
     private String error;
@@ -47,6 +47,7 @@ public class medicamento {
         }
     this.sqlStartDate = new java.sql.Date(date.getTime());
     this.costo=Double.parseDouble(request.getParameter("costo"));
+    this.cantidad=Double.parseDouble(request.getParameter("cantidad"));
     this.minimo=Integer.parseInt(request.getParameter("minimo"));
     this.descripcion=request.getParameter("descripcion");
  }
@@ -59,7 +60,7 @@ public class medicamento {
         return sqlStartDate;
     }
 
-    public int getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
@@ -84,7 +85,7 @@ boolean validar=true;
             medicamento.setString(1, tmp.getNombre());
             medicamento.setDate(2, tmp.getSqlStartDate());
             medicamento.setDouble(3, tmp.getCosto());
-            medicamento.setInt(4, 0);
+            medicamento.setDouble(4, tmp.getCantidad());
             medicamento.setInt(5, tmp.getMinimo());
             medicamento.setString(6, tmp.getDescripcion());
             medicamento.executeUpdate();
@@ -136,6 +137,8 @@ public static LinkedList lista(){
         }
     
  return tmp;}
+
+
     public double getCosto() {
         return costo;
     }
@@ -157,27 +160,30 @@ public static LinkedList lista(){
          String sql="";
         try {
            
-            sql="INSERT INTO colamedicamento (nombre,cantidad,idcola,fecha) VALUES (?,?,?,?)";
+            sql="INSERT INTO colamedicamento (nombre,cantidad,idcola,fecha, inicial) VALUES (?,?,?,?,?)";
             PreparedStatement up=iniciarconeccion.coneccion.prepareStatement(sql);
             up.setString(1, request.getParameter("valor"));
             up.setInt(2, Integer.parseInt(request.getParameter("cantidad")));
             up.setString(3,id);
             up.setDate(4,sqlDate );
+            up.setInt(5, Integer.parseInt(request.getParameter("cantidad")));
              up.executeUpdate();
              llenar(request,id);
         } catch (SQLException ex) {
              try {
-                 sql="SELECT cantidad FROM colamedicamento WHERE idcola=? && nombre=?";
+                 sql="SELECT cantidad, inicial FROM colamedicamento WHERE idcola=? && nombre=?";
                  PreparedStatement get=iniciarconeccion.coneccion.prepareStatement(sql);
                  get.setString(1, id);
                  get.setString(2, request.getParameter("valor"));
                  ResultSet res=get.executeQuery();
                  if(res.next()){
-                 sql="UPDATE colamedicamento SET cantidad=? WHERE idcola=? && nombre=?";
+                 sql="UPDATE colamedicamento SET cantidad=?, inicial=? WHERE idcola=? && nombre=?";
                  PreparedStatement cant=iniciarconeccion.coneccion.prepareStatement(sql);
                  cant.setInt(1, res.getInt("cantidad")+Integer.parseInt(request.getParameter("cantidad")));
-                 cant.setString(2, id);
-                 cant.setString(3, request.getParameter("valor"));
+                 cant.setInt(1, res.getInt("cantidad")+Integer.parseInt(request.getParameter("cantidad")));
+                
+                 cant.setString(3, id);
+                 cant.setString(4, request.getParameter("valor"));
                  cant.executeUpdate();
                  }else{
                  validar=false;

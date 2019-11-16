@@ -157,7 +157,7 @@ java.util.Date date = null;
             crearusuario.setDouble(2, cst); 
             crearusuario.setDate(3, sqlStartDate);
             crearusuario.setString(4,request.getParameter("tipo"));
-            crearusuario.setInt(5,Integer.parseInt(request.getParameter("precio")));
+            crearusuario.setDouble(5,Double.parseDouble(request.getParameter("precio")));
           
             
            

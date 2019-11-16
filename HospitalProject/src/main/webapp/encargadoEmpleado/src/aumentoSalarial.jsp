@@ -38,7 +38,7 @@
                     <form action="./principalEncargado.jsp?id=1">
                         <input type="text" name="id" value="8" style="opacity: 0; height: 0; width: 0;">
            
-                         <input required style="height: 40px; background: none; border: 1px solid white; border-radius: 20px; " type="number" placeholder="cui" name="cui" >
+                         <input required style="height: 40px; background: none; border: 1px solid white; border-radius: 20px; " type="number" id="numero" placeholder="cui" name="cui" >
                             <input type="submit" value="ok">
                         </form>
         <form class="fc1" action="/HospitalProject/encargado" method="GET" autocomplete="off">
@@ -92,5 +92,7 @@
         </table>
         </form>
        </div>
+       <script src="http://localhost:8080/HospitalProject/Js/archivos.js"> </script>
+   
     </body>
 </html>

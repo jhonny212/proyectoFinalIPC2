@@ -116,8 +116,8 @@ public class adminsesion extends HttpServlet {
                 
                   case "4":
                  try{
-                               Double.parseDouble(request.getParameter("costo"));
-                               Double.parseDouble(request.getParameter("precio"));
+                         Double c=      Double.parseDouble(request.getParameter("costo"));
+                          Double d=     Double.parseDouble(request.getParameter("precio"));
                
                       
                      if(tmp.crearOperaciones(sesion.getAttribute("usuario").toString(), request)){
@@ -127,6 +127,7 @@ public class adminsesion extends HttpServlet {
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=error");
         }
                  }catch(NumberFormatException e){
+                     s.print(e.getMessage());
                   response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=4&error=error");
         }
                       
@@ -135,11 +136,15 @@ public class adminsesion extends HttpServlet {
                 break; 
                 
                   case "5":
+                      try{
                   if(tmp.registrarMedico(sesion.getAttribute("usuario").toString(), request)){
           response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=5&error=erro");
         }else{
         s.print(tmp.getError());
          response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=5&error=error");
+        }}catch(NumberFormatException e){
+         response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=5&error=error");
+        
         }
       
                 break; 

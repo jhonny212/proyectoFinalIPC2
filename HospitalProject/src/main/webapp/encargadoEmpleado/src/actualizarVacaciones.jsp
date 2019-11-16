@@ -18,7 +18,7 @@
                    <% 
     if(request.getParameter("error")!=null){
     if(request.getParameter("error").equals("error")){
-      String alert="alert('"+"Erro al crear usuario, intente de nuevo"+"');";
+      String alert="alert('"+"Erro actualizar"+"');";
                      out.print("<script>"+alert+"</script>");
     }else{
       String alert="alert('"+"Registro creado exitosamente"+"');";
@@ -32,14 +32,14 @@
       
    <br>
         <h2 style="margin: auto;color: white; width: 550px;">
-            Bievenido a la actualizacion de tarifario
+            Bievenido a la actualizacion de vacaciones
         </h2>
           <br>
           <h2>Escriba el cui</h2>
                     <form action="./principalEncargado.jsp?id=1">
                         <input type="text" name="id" value="2" style="opacity: 0; height: 0; width: 0;">
            
-                         <input required style="height: 40px; background: none; border: 1px solid white; border-radius: 20px; " type="number" placeholder="cui" name="cui" >
+                         <input required style="height: 40px; background: none; border: 1px solid white; border-radius: 20px; " type="number" id="numero" placeholder="cui" name="cui" >
                             <input type="submit" value="ok">
                         </form>
         <form class="fc1" action="/HospitalProject/encargado" method="GET" autocomplete="off">
@@ -89,5 +89,7 @@
         </table>
         </form>
        </div>
+       <script src="http://localhost:8080/HospitalProject/Js/archivos.js"> </script>
+   
     </body>
 </html>

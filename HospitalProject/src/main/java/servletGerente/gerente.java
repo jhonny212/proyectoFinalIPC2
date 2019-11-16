@@ -89,7 +89,7 @@ java.util.Date date = null;
         boolean validar=true;
      
       
-    String sql="INSERT INTO contratoEmpleado (estado,fecha,nombreEmpleo,cui,horas,sueldo,nombre,direccion,telefono,estado2) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    String sql="INSERT INTO contratoEmpleado (estado,fecha,nombreEmpleo,cui,horas,sueldo,nombre,direccion,telefono,estado2,estado3) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     PreparedStatement crearusuario=null;
     
         try {
@@ -104,6 +104,7 @@ java.util.Date date = null;
            crearusuario.setString(8,tmp.getDireccion());
            crearusuario.setInt(9,tmp.getTelefono());
            crearusuario.setString(10,"activo"); 
+            crearusuario.setString(11,"activo"); 
             crearusuario.executeUpdate();
         } catch (SQLException ex) {
             validar=false;
@@ -174,9 +175,12 @@ java.util.Date date = null;
            crearusuario.setDate(4, sqlStartDate);
            crearusuario.executeUpdate();
            actualizarHabitacion(request,"deshabilitado");
-        } catch (SQLException ex) {
+        } catch (SQLException ex  ) {
             validar=false;
     this.error=ex.getMessage();
+        }catch(NumberFormatException s){
+        validar=false;
+    this.error=s.getMessage();
         }
     
     return validar;}

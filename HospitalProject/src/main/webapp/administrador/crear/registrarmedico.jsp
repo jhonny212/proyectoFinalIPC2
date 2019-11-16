@@ -54,12 +54,13 @@
                     <input required type="text" name="direccion" placeholder="direccion">
                 </td>
                 <td>
-                    <input required type="number" name="cui" placeholder="cui" >
+                    <input required type="number" id="numero" name="cui" placeholder="cui" >
                 </td>
             </tr>
             <tr> <td><input type="submit" value="crear" style="margin: auto; width: 460px;"></td> </tr>
         </table>
         </form>
        </div>
+       <script src="http://localhost:8080/HospitalProject/Js/archivos.js"> </script>
     </body>
 </html>

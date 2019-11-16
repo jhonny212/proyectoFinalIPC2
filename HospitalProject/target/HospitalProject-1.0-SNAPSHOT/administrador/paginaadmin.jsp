@@ -44,6 +44,9 @@
                 <li><a href="./paginaadmin.jsp?id=3">Crear tipo de empleo</a></li>
                 <li><a href="./paginaadmin.jsp?id=4">Crear operaciones hechas en el hospital</a></li>
                 <li><a href="./paginaadmin.jsp?id=5">Registrar medico especialista</a></li>
+                <li><a href="./paginaadmin.jsp?id=6">Contratar empleado</a></li>
+                <li><a href="./paginaadmin.jsp?id=7">Crear usuario</a></li>
+
 
             </ul>
         </div>
@@ -82,10 +85,20 @@
                        <%@include file="./crear/crear-empleo.jsp" %>
                       <%   
                       break;
+                      case "6":%>
+                       <%@include file="/gerente/actualizar/contratarEmpleado.jsp" %>
+                      
+                       <%break;
+                        case "7":%>
+                       <%@include file="/encargadoEmpleado/src/crearUsuario.jsp" %>
+                      
+                       <%break;
                        case "4":
                       %>
                        <%@include file="./crear/crear-operacionEspecialista.jsp" %>
-                      <%   
+                      <%  
+                          
+                          
                       break;}
                      %>
                   

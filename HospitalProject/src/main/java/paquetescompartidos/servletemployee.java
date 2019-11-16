@@ -75,11 +75,11 @@ public class servletemployee extends HttpServlet {
              s.print(tipo);
         switch(tipo){
              
-            case "Encargado de empleado":
+            case "encargado de empleado":
                 response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp");
     
                 break;
-                    case "Recepcionista":
+                    case "recepcionista":
                  response.sendRedirect("/HospitalProject/recepcionista/indexrecepcion.jsp");
     
                 break;
@@ -89,12 +89,12 @@ public class servletemployee extends HttpServlet {
     
                 break;
                 
-                            case "Enfermera":
+                            case "enfermera":
                  response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp");
     
                 break;
                 
-                            case "Gerente":
+                            case "gerente":
             response.sendRedirect("/HospitalProject/gerente/principalManager.jsp");
     
                 break;

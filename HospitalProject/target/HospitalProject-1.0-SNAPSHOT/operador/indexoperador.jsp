@@ -36,11 +36,12 @@
           <div class="sidebar">
             <h2>MENU</h2>
             <ul>
-                <li><a href="">Cerrar sesion</a></li>
+                <li><a href="../indexEmployee.jsp">Cerrar sesion</a></li>
                 <li><a href="./indexoperador.jsp?id=1">Registrar medicamento nuevo</a></li>
                
                 <li><a href="./indexoperador.jsp?id=2">Actualizar minimo</a></li>
                 <li><a href="./indexoperador.jsp?id=3">Actualizar medicamento</a></li>
+                <li><a href="./indexoperador.jsp?id=4">Reportes</a></li>
              
             </ul>
         </div>
@@ -71,6 +72,13 @@
                       <%   
 
                       break;
+                      case "4":
+                        %>
+                       <%@include file="./src/reportes.jsp" %>
+                      <%   
+                      break;
+                    
+                      
                        case "2":
                       %>
                        <%@include file="./src/actualizarMinimo.jsp" %>

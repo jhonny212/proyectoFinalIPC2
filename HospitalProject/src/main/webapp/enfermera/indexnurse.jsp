@@ -36,11 +36,11 @@
           <div class="sidebar">
             <h2>MENU</h2>
             <ul>
-                <li><a href="">Cerrar sesion</a></li>
+                <li><a href="../indexEmployee.jsp">Cerrar sesion</a></li>
                
                 <li><a href="./indexnurse.jsp?id=1">Asignar enfermera</a></li>
                 <li><a href="./indexnurse.jsp?id=2">Asignar medico</a></li>
-                <li><a href="./indexnurse.jsp?id=3">Asignar especialista</a></li>
+                <li><a href="#">Asignar especialista</a></li>
                 <li><a href="./indexnurse.jsp?id=4">Asignar medicamentos </a></li>
                 <li><a href="./indexnurse.jsp?id=5">Dar de alta</a></li>
              

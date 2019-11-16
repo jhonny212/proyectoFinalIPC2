@@ -43,6 +43,7 @@
                    <th>Nombre de medicamento</th>
                    <th>Fecha de ingreso </th>
                    <th>Costo unitario</th>
+                   <th>Precio unitario</th>
                    
                    
                 </tr>
@@ -58,7 +59,7 @@
                 <td>
                     <input type="text" name="costo" id="" required>
                 </td>
-               
+               <td><input type="text" name="cantidad" id="" required></td>
               
             </tr>
             <tr>

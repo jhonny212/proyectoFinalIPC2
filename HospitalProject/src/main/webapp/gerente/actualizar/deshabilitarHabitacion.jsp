@@ -22,10 +22,10 @@
                 
     if(request.getParameter("error")!=null){
     if(request.getParameter("error").equals("error")){
-      String alert="alert('"+"Erro al crear usuario, intente de nuevo"+"');";
+      String alert="alert('"+"Error al deshabilitar"+"');";
                      out.print("<script>"+alert+"</script>");
     }else{
-      String alert="alert('"+"Registro creado exitosamente"+"');";
+      String alert="alert('"+"habitacion deshabilitada"+"');";
                      out.print("<script>"+alert+"</script>");
     }
     }

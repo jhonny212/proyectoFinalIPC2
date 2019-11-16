@@ -34,7 +34,7 @@ public class habitacioN {
    try {
             String sql="";
             if(!le.equals("")){
-                sql="SELECT * FROM crearHabitacion join operaciones b WHERE nombre='"+letra+"' && estado='habilitado'  && b.nombreOperacion='"+le+"'";
+                sql="SELECT * FROM crearHabitacion a join operaciones b WHERE a.nombre='"+letra+"' && a.estado='habilitado'  && b.nombreOperacion='"+le+"'";
             }else{
                 sql="SELECT * FROM crearHabitacion WHERE nombre='"+letra+"' && estado='habilitado'";
             }
@@ -72,7 +72,7 @@ public class habitacioN {
      public LinkedList disponibilidad(int id){
     LinkedList <consulta> lista=new LinkedList();
      Calendar fecha = new GregorianCalendar();    
-            String date=Integer.toString(fecha.get(Calendar.YEAR)+fecha.get(Calendar.MONTH)+fecha.get(Calendar.DAY_OF_MONTH));
+            String date=Integer.toString(fecha.get(Calendar.YEAR))+"-"+Integer.toString(fecha.get(Calendar.MONTH)+1)+"-"+Integer.toString(fecha.get(Calendar.DAY_OF_MONTH));
        
    if(iniciarconeccion.coneccion==null){
    iniciarconeccion.IniciarConeccion();}
@@ -88,6 +88,7 @@ public class habitacioN {
            }
         } catch (SQLException ex) {
         this.error=ex.getMessage();
+     
         }
     return lista;
     }

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subventaempleado1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="62a78b84-ca0d-4910-9140-7957ce8cc304">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombre" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombreempleado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="precio compra" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="costo venta" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.nombre, a.fecha, a.cantidad from pagomedicamento a join contratoEmpleado b on a.cui=b.cui where b.nombre like '%$P!{nombreempleado}%' && a.nombre=$P{nombre}
+&& b.estado3='activo' ;]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="variable1" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{cantidad}*$P{costo venta}-$P{precio compra}*$F{cantidad}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="13" width="100" height="20" uuid="2b8947e6-f778-459b-ac70-59efb1c2859f"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="13" width="100" height="20" uuid="dfe9c150-26dc-47a4-9503-9b0baa905524"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="13" width="100" height="20" uuid="b22788dd-f946-4388-9cbc-4516a3d1c84e"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="538" y="13" width="100" height="20" uuid="af530c03-75b5-4b09-84b0-0abf2c467a0e"/>
+				<textFieldExpression><![CDATA[$P{costo venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="384" y="13" width="100" height="20" uuid="f69bc89c-4748-40e4-ac1f-8fb15a395ddc"/>
+				<textFieldExpression><![CDATA[$P{precio compra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="686" y="13" width="100" height="20" uuid="5cae7aaf-a124-4573-b44f-4a66358a16e2"/>
+				<textFieldExpression><![CDATA[$V{variable1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

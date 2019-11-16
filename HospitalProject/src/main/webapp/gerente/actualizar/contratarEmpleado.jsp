@@ -20,7 +20,7 @@
                 
     if(request.getParameter("error")!=null){
     if(request.getParameter("error").equals("error")){
-      String alert="alert('"+"Erro al crear usuario, intente de nuevo"+"');";
+      String alert="alert('"+"Erro al contratar"+"');";
                      out.print("<script>"+alert+"</script>");
     }else{
       String alert="alert('"+"Registro creado exitosamente"+"');";
@@ -47,18 +47,18 @@
                 </tr>
             </thead>
             <tr>
-                <td><input type="number" name="cui" placeholder="cui" id=""></td>
-                <td><input type="number" name="telefono" placeholder="telefono" id=""></td>
-                <td><input type="text" name="nombre" placeholder="nombre" id=""></td>
+                <td><input type="number" name="cui" required placeholder="cui" id="numero"></td>
+                <td><input type="number" name="telefono" required placeholder="telefono" id=""></td>
+                <td><input type="text" name="nombre" required placeholder="nombre" id=""></td>
             </tr>
             
             <tr>
                
                 
-                <td><input type="number" name="horas" placeholder="horas de trabajo" id=""></td>
+                <td><input type="number" name="horas" required placeholder="horas de trabajo" id=""></td>
                 
-                <td><input type="number" name="sueldo" placeholder="sueldo" id=""></td>
-                <td><input type="text" name="direccion" placeholder="direccion" id=""></td>
+                <td><input type="number" name="sueldo" required placeholder="sueldo" id=""></td>
+                <td><input type="text" name="direccion" required placeholder="direccion" id=""></td>
            
             </tr>
             <tr>
@@ -82,5 +82,6 @@
         </table>
         </form>
        </div>
+       <script src="http://localhost:8080/HospitalProject/Js/archivos.js"> </script>
     </body>
 </html>

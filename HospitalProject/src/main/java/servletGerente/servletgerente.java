@@ -7,12 +7,18 @@ package servletGerente;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import paquetescompartidos.empleado;
+import paquetescompartidos.iniciarconeccion;
 
 /**
  *
@@ -49,7 +55,7 @@ public class servletgerente extends HttpServlet {
         processRequest(request, response);
         gerente tmp=new gerente();
            PrintWriter s=response.getWriter();
-      
+      if(iniciarconeccion.coneccion==null){iniciarconeccion.IniciarConeccion();};
         
         switch(request.getParameter("ids")){
             case "1":
@@ -75,9 +81,18 @@ public class servletgerente extends HttpServlet {
                 break;
                 
                   case "3":
-                      empleado ts=new empleado(request, request);
-              if(tmp.contratar(request, ts)){
-              response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=3&error=erro");
+                     
+                    
+              if(  validar(request)){
+                  try{
+                       empleado ts=new empleado(request, request);
+                  if(tmp.contratar(request, ts)){
+                         response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=3&error=erro");
+                  }
+                  }catch(NumberFormatException e){
+                      response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=3&error=error");
+       
+                  }
        }else{
            response.sendRedirect("/HospitalProject/gerente/principalManager.jsp?id=3&error=error");
        s.print(tmp.getError()+"yes");
@@ -118,7 +133,21 @@ public class servletgerente extends HttpServlet {
         
         }
     }
+public static boolean validar(HttpServletRequest request){
+boolean validar=true;
 
+        try {
+            PreparedStatement p=iniciarconeccion.coneccion.prepareStatement("SELECT * FROM contratoEmpleado WHERE cui=? && estado3='activo'");
+            p.setInt(1, Integer.parseInt(request.getParameter("cui")));
+            ResultSet r=p.executeQuery();
+            while(r.next()){
+            validar=false;
+            }
+        } catch (SQLException ex)  {
+       
+        }catch(NumberFormatException ts){}
+
+return validar;}
     /**
      * Handles the HTTP <code>POST</code> method.
      *

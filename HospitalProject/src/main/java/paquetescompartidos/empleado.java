@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class empleado extends usuario {
     private int id;
-    private final String Nombre;
-    private final String Direccion;
-    private final String NombreEmpleo;
-    private final int cui;
-    private final int telefono;
-    private final int horas;
-     private final int sueldo; 
+    private  String Nombre;
+    private  String Direccion;
+    private  String NombreEmpleo;
+    private  int cui;
+    private  int telefono;
+    private  int horas;
+     private  int sueldo; 
 
     public empleado(int cui, String contraseña) {
         super(cui, contraseña);
@@ -65,13 +65,15 @@ public class empleado extends usuario {
     
    public empleado(HttpServletRequest request,HttpServletRequest request2) {
         super(request);
-        this.Direccion=request2.getParameter("direccion");
+  
+       this.Direccion=request2.getParameter("direccion");
        this.Nombre=request2.getParameter("nombre");
        this.NombreEmpleo=request2.getParameter("empleo");
        this.cui=Integer.parseInt(request2.getParameter("cui"));
        this.telefono=Integer.parseInt(request2.getParameter("telefono"));
        this.horas=Integer.parseInt(request2.getParameter("horas"));
         this.sueldo=Integer.parseInt(request2.getParameter("sueldo"));
+    
     }
    
     public int getSueldo() {
@@ -97,7 +99,7 @@ public class empleado extends usuario {
             if(iniciarconeccion.coneccion==null){
             iniciarconeccion.IniciarConeccion();}
         String validar="";  
-         String sql="SELECT a.cui, a.contraseña, b.nombreEmpleo FROM usuarioEmpleado a join contratoEmpleado b on a.cui=b.cui where a.cui=? && a.contraseña=? && b.cui=? ";
+         String sql="SELECT a.cui, a.contraseña, b.nombreEmpleo FROM usuarioEmpleado a join contratoEmpleado b on a.cui=b.cui where a.cui=? && a.contraseña=? && b.cui=? && b.estado3='activo'";
       PreparedStatement crearusuario=null; 
         try {
             crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);

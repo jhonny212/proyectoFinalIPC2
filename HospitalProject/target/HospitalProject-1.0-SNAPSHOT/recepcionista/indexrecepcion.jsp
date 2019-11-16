@@ -36,11 +36,13 @@
           <div class="sidebar">
             <h2>MENU</h2>
             <ul>
-                <li><a href="">Cerrar sesion</a></li>
-                <li><a href="./indexrecepcion.jsp?id=1">Solicitar consulta</a></li>
+                 <li><a href="../indexEmployee.jsp">Cerrar sesion</a></li>
+               <li><a href="./indexrecepcion.jsp?id=1">Solicitar consulta</a></li>
                
                 <li><a href="./indexrecepcion.jsp?id=2">Pagar consulta</a></li>
                 <li><a href="./indexrecepcion.jsp?id=3">Solicitar internado</a></li>
+                <li><a href="./indexrecepcion.jsp?id=4">Pagar internado</a></li>
+              <li><a href="./indexrecepcion.jsp?id=5">Pagar medicamento</a></li>
              
             </ul>
         </div>
@@ -76,9 +78,16 @@
                        <%@include file="./src/pagarconsulta.jsp" %>
                      
                       <%   
-                      
+                       break; 
+                       case "4":
                       %>
-                  
+                  <%@include file="./src/pagarinternado.jsp" %>
+                       <%   
+                       break; 
+                       case "5":
+                      %>
+                  <%@include file="./src/pagarmedicamento.jsp" %>
+                     
                   
                       <%   
                       break;}
@@ -90,5 +99,6 @@
               </div>
         </div>
               <script src="../Js/abrir.js"></script>
+   
     </body>
 </html>

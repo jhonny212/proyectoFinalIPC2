@@ -39,7 +39,7 @@
       
    <br>
         <h2 style="margin: auto;color: white; width: 550px;">
-            Nuevo ingreso de medicamentos
+                Solicitud de cirugias
         </h2>
           <br>
         <form action="/HospitalProject/recepcionista/indexrecepcion.jsp?id=1">
@@ -51,7 +51,7 @@
                 </tr>
                 <tr>
                     <td> 
-                        <input type="number" required name="cui" id="">
+                        <input type="number" required name="cui" id="numero">
                     </td>
                     <td>
                         <input type="text" required name="operacion" placeholder="operacion solicitada" id="">
@@ -78,6 +78,7 @@
                  </tr>
             </thead>
             <% 
+                try{
             if(request.getParameter("cui")!=null){
                 paciente tmp=paciente.paciente(Integer.parseInt(request.getParameter("cui")));
                if(tmp.getCui()!=0){
@@ -111,7 +112,7 @@
        
     
     <%
-        LinkedList<String> habitaciones=habitacioN.habitaciones("Operaciones",request.getParameter("operacion"));
+        LinkedList<String> habitaciones=habitacioN.habitaciones("operacion",request.getParameter("operacion"));
         String letra="";
         try{
        letra =habitaciones.get(0);
@@ -185,9 +186,9 @@
 
 %>
 <td><select name="seleccion2" id="">
-    <option >No</option>
+  
                 <% 
-                LinkedList<medico> Listado=medico.medicoEspecialista("1");
+                LinkedList<medico> Listado=medico.medicoEspecialista("3");
                 for(int i=0;i<Listado.size();i++){ 
                 %>
                 <option ><% 
@@ -239,11 +240,15 @@
  </tr>
           
     <%
-  }
+  }}catch(NumberFormatException e){
+                response.sendRedirect("http://localhost:8080/HospitalProject/recepcionista/indexrecepcion.jsp?id=3");
+                }
           %>
         </table>
         <br>
         </form>
        </div>
+       <script src="http://localhost:8080/HospitalProject/Js/archivos.js"> </script>
+   
     </body>
 </html>

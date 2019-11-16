@@ -113,23 +113,22 @@ public class consulta {
              r.setInt(2, tmp.getId2());
                r.setString(3,tmp.getHora());
             r.executeUpdate();
-            PreparedStatement cancel=iniciarconeccion.coneccion.prepareStatement("UPDATE consulta b SET cancelado='si' WHERE b.idconsulta=? && b.idcrearhabitacion=? && b.hora=?");
-                cancel.setString(1, Integer.toString(tmp.getId()));
-             cancel.setInt(2, tmp.getId2());
-               cancel.setString(3,tmp.getHora());
-               cancel.executeUpdate();
-               update(request);
+            
+          
+               update(request, tmp);
          } catch (SQLException ex) {
          this.error=ex.getMessage();
          }
        
    return tmp; }
-    public void update(HttpServletRequest r){
-    String sql="UPDATE consulta SET cancelado='SI' WHERE idconsulta=?";
+    public void update(HttpServletRequest r, consulta tmp){
+    String sql="UPDATE consulta SET cancelado='SI' WHERE idconsulta=? && idcrearhabitacion=? && hora=?";
          try {
-             PreparedStatement up=iniciarconeccion.coneccion.prepareStatement(sql);
-             up.setString(1,r.getParameter("idconsulta"));
-             up.executeUpdate();
+             PreparedStatement cancel=iniciarconeccion.coneccion.prepareStatement(sql);
+             cancel.setString(1,r.getParameter("idconsulta"));
+                 cancel.setInt(2, tmp.getId2());
+               cancel.setString(3,tmp.getHora());
+             cancel.executeUpdate();
              
          } catch (SQLException ex) {
          
