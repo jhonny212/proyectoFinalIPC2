@@ -5,13 +5,18 @@
  */
 package servletEncargadoEmpleado;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 
 import javax.servlet.ServletException;
@@ -21,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import paquetescompartidos.empleado;
 import paquetescompartidos.iniciarconeccion;
+import paquetescompartidos.reporte;
 
 
 /**
@@ -181,7 +187,7 @@ public class encargado extends HttpServlet {
                    
              case "7":
                  
-                           String Query="INSERT INTO pagoespecialista (pago, idinternado)  select a.tarifa, b.idinternado from operaciones a join internado b on b.nombre=a.nombreOperacion where b.estado='Si' or b.estado='Cancelado' && b.idinternado=?; ";
+                           String Query="INSERT INTO pagoespecialista (pago, idinternado, fecha)  select a.tarifa, b.idinternado, curdate() from operaciones a join internado b on b.nombre=a.nombreOperacion where b.estado='Si' or b.estado='Cancelado' && b.idinternado=?; ";
        {
            try {
                PreparedStatement Prepared=iniciarconeccion.coneccion.prepareStatement(Query);
@@ -219,7 +225,85 @@ public class encargado extends HttpServlet {
             }
         }
                    
-                   break;                    
+                   break;  
+                   
+               case "9":
+                   File file=new File("");
+                   if(file.exists()){
+                                                response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=9&error=error");
+         }else{
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                        
+                        java.util.Date date = null;
+                        try {
+                        date = sdf1.parse(request.getParameter("fecha1"));
+                         } catch (ParseException ex) {
+                  
+                         
+                         }
+                         
+                        java.util.Date date2 = null;
+                        try {
+                        date2 = sdf2.parse(request.getParameter("fecha2"));
+                         } catch (ParseException ex) {
+                               s.print("entr");
+                         }
+                        
+                   String nombre=request.getParameter("nombre");
+                   reporte re=new reporte();
+                           
+                                 
+                         switch(request.getParameter("codreporte")){
+                
+                        case "Generar reporte 1":
+                            String area="";
+                            area=request.getParameter("area");
+                           
+                            if(area.equals("")){
+                            Map p=new HashMap();
+                            p.put("fecha1", date);
+                            p.put("fecha2", date2);
+                            String ruta="contratoempleado";
+                            s.print("hola");
+                     s.print(re.encargado(nombre, ruta, p, true)+""+ruta);
+                       }else{
+                                 Map p=new HashMap();
+                            p.put("fecha1", date);
+                            p.put("fecha2", date2);
+                       p.put("area", area);
+                        s.print("hola");
+                       re.encargado(nombre, "contratoempleado2", p, true);
+                      
+                            }
+                        break;
+              
+                          case "Generar reporte 2":
+                                    String areas="";
+                            area=request.getParameter("area");
+                         
+                            Map ps=new HashMap();
+                       ps.put("fecha1", date);
+                       ps.put("fecha2", date2);
+                            if(area.equals("")){
+                     
+                       re.encargado(nombre, "reportederetirados", ps, true);
+                       }else{
+                       ps.put("area", area);
+                       re.encargado(nombre, "reportederetirados2", ps, true);
+                    
+                      
+                            }
+                           break;
+                          case "Generar reporte 3":
+                          re.encargado(nombre, "medico", null, true);
+                    
+                        break;
+                        
+                }
+                                      response.sendRedirect("/HospitalProject/encargadoEmpleado/principalEncargado.jsp?id=9&error=erro");
+          }
+                   break;
        }
         //tmp.actualizarVacaciones(request);
     }

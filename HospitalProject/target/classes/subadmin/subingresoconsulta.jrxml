@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subingresoconsulta" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0da03e9e-0c7c-4285-b8ed-5a47b21cfc32">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[($V{pago_1}>$V{var})]]></conditionExpression>
+			<style mode="Opaque" forecolor="#E60002"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="fecha1" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from pagoconsulta where idconsulta between $P{fecha1} and $P{fecha2} ;]]>
+	</queryString>
+	<field name="idconsulta" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idcrearhabitacion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pago" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="pago_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{pago}]]></variableExpression>
+	</variable>
+	<variable name="pago_2" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{pago}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="41" forecolor="#990000" backcolor="#990000" uuid="79cace74-5276-4163-a0f7-a05b1ab2d548"/>
+				<staticText>
+					<reportElement x="267" y="2" width="100" height="20" forecolor="#FFFFFF" uuid="0a4c855a-1cdc-4932-900d-307af39cdae4"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[PAGO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="144" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="0ebe2f34-0886-481b-880a-167d632ef0f3"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[HORA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="2" width="100" height="20" forecolor="#FFFFFF" uuid="80e07eb1-afa6-46df-ac91-7ace17f2a173"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="415" y="2" width="100" height="20" forecolor="#FFFFFF" uuid="c552e7a8-8d21-4442-8a5a-ffabb5fac555"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[TOTAL FINAL]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="57" splitType="Stretch">
+			<textField>
+				<reportElement x="267" y="6" width="100" height="20" uuid="355baa12-c7fa-40f6-adb9-b595e4b405ed"/>
+				<textFieldExpression><![CDATA[$F{pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="6" width="100" height="20" uuid="01343ff6-d68c-4881-934c-173e04fe2488"/>
+				<textFieldExpression><![CDATA[$F{idconsulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="6" width="100" height="20" uuid="3ae4dd07-6ecc-475d-a06c-8285a96c5bbc"/>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="6" width="100" height="20" uuid="6e09d9cb-73aa-42da-a0c7-d6f21e3a5753"/>
+				<textFieldExpression><![CDATA[$V{pago_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="26" width="100" height="20" uuid="a02e2776-6085-4a37-a849-331851ab0f5f"/>
+				<textFieldExpression><![CDATA[$V{pago_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="40" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="36" splitType="Stretch"/>
+	</summary>
+</jasperReport>

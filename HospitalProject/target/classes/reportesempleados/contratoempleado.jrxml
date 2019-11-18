@@ -6,8 +6,16 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["/home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/resources/reportesempleados/"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="fecha1" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select a.nombre, a.sueldo,a.cui, a.nombreEmpleo, a.idcontratoEmpleado, a.horas, a.telefono from contratoEmpleado a order by a.cui asc;]]>
+		<![CDATA[select a.nombre, a.sueldo,a.cui, a.nombreEmpleo, a.idcontratoEmpleado, a.horas, a.telefono, a.estado3 from contratoEmpleado a
+where a.fecha between $P{fecha1} and  $P{fecha2}
+ order by a.cui asc]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -30,26 +38,68 @@
 	<field name="telefono" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="estado3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="79" backcolor="#999999" uuid="10331d37-ed0e-4de3-a146-e96d9b325e07"/>
+				<staticText>
+					<reportElement x="113" y="25" width="363" height="25" uuid="f4b41fcf-6779-4126-84e3-d64b67531ac0"/>
+					<textElement textAlignment="Center">
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[REPORTE DE CONTRATO EMPLEADOS]]></text>
+				</staticText>
+			</frame>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="40" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="40" backcolor="#AE2C45" uuid="e5c830cd-6d62-410f-9124-3c09f4597c84"/>
+			</frame>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="85" splitType="Stretch"/>
+		<band height="85" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="572" height="85" uuid="346fa483-a81d-4744-acb7-591510df967e"/>
+				<subreportParameter name="cui">
+					<subreportParameterExpression><![CDATA[$F{cui}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombre empleado">
+					<subreportParameterExpression><![CDATA[$F{nombre}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sueldo">
+					<subreportParameterExpression><![CDATA[$F{sueldo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tipo empleo">
+					<subreportParameterExpression><![CDATA[$F{nombreEmpleo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="horas de trabajo">
+					<subreportParameterExpression><![CDATA[$F{horas}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="estado">
+					<subreportParameterExpression><![CDATA[$F{estado3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["/home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/resources/subencargado/subcontratoempleado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>

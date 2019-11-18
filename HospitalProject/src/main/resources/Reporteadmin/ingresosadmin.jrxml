@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ingresosadmin" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="080190d1-60f2-4d11-a549-2a07ba5ce9ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" mode="Opaque" backcolor="#9999FF">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[($F{area}.equals(null))]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF" backcolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="style2">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{pago}==0.0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="style3">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{id}.equals(null)]]></conditionExpression>
+			<style forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="style4">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{medicamento}.equals(null)]]></conditionExpression>
+			<style forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="style5">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{tota}==0.0]]></conditionExpression>
+			<style forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="total" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="area" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cod" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="area" class="java.lang.String"/>
+	<field name="pago" class="java.lang.Double"/>
+	<field name="tota" class="java.lang.Double"/>
+	<field name="id" class="java.util.Date"/>
+	<field name="medicamento" class="java.lang.String"/>
+	<variable name="tota_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{tota}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="52" backcolor="#CCCCCC" uuid="e3606e7a-0303-4c9d-a255-ebae3117a871"/>
+				<staticText>
+					<reportElement x="138" y="13" width="332" height="24" uuid="304d4345-2f00-45ea-b99d-a0632bb3b393"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="18"/>
+					</textElement>
+					<text><![CDATA[REPORTE DE INGRESOS EN AREAS]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="28" backcolor="#990000" uuid="3815d7c6-412a-4864-b802-f286cdeab0f3"/>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="9bc081c0-d117-4c3a-baec-206711ab1272"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[AREA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="370" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="e256be12-a4d9-45bf-8dd3-496c14e3b37c"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[FECHA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="249" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="603e36c6-839a-447f-8beb-1b55e1abe72b"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[PAGO]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="69" splitType="Stretch">
+			<textField>
+				<reportElement style="style1" mode="Transparent" x="0" y="0" width="231" height="20" backcolor="#9999FF" uuid="e2ca7fb3-b78a-43b0-965f-03db8d14f00e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style2" x="249" y="20" width="100" height="20" uuid="b9f22bf9-7429-4b3f-993b-2c0221f241f0"/>
+				<textFieldExpression><![CDATA[$F{pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style3" x="370" y="20" width="100" height="20" uuid="2d75366d-6b43-4b0a-9c07-a9ed5fccccc9"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="style5" x="370" y="40" width="100" height="20" uuid="10463071-023d-4d6e-9556-6179a2ee50c0"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="style5" x="470" y="40" width="100" height="20" uuid="f1b2a130-653f-4d1d-9548-0d9272e95e13"/>
+				<textFieldExpression><![CDATA[$F{tota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style4" x="0" y="20" width="231" height="20" uuid="543fce6c-b2e4-4805-b337-c48cbcade8f1"/>
+				<textFieldExpression><![CDATA[$F{medicamento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="440" y="0" width="100" height="20" backcolor="#CCCCFF" uuid="92faa8b6-31d3-4403-93a7-a47e8773a008"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tota_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="402" height="20" forecolor="#FFFFFF" backcolor="#999999" uuid="8c2360ba-32fe-44c7-8530-3cdae0ffbebb"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL DE INGRESOS]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

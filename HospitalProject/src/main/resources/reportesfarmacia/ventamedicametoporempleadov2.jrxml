@@ -48,32 +48,36 @@
 					<text><![CDATA[Nombre medicamento]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="142" y="10" width="100" height="20" uuid="5276e8fd-9089-41ac-b11b-cbf73b955c03"/>
+					<reportElement x="269" y="10" width="62" height="20" uuid="5276e8fd-9089-41ac-b11b-cbf73b955c03"/>
 					<text><![CDATA[Fecha]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="266" y="10" width="100" height="20" uuid="f7e10c94-f024-4896-a5ca-38a9c088e8b8"/>
+					<reportElement x="373" y="10" width="57" height="20" uuid="f7e10c94-f024-4896-a5ca-38a9c088e8b8"/>
 					<text><![CDATA[cantidad]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="390" y="10" width="100" height="20" uuid="f58e4a15-7a46-4681-b867-5732d13fadb4"/>
+					<reportElement x="454" y="10" width="82" height="20" uuid="f58e4a15-7a46-4681-b867-5732d13fadb4"/>
 					<text><![CDATA[precio compra]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="516" y="10" width="100" height="20" uuid="b046f0f5-1555-47cd-a9f4-4afcd96f8b19"/>
+					<reportElement x="566" y="10" width="81" height="20" uuid="b046f0f5-1555-47cd-a9f4-4afcd96f8b19"/>
 					<textElement textAlignment="Center"/>
 					<text><![CDATA[costo venta]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="652" y="10" width="100" height="20" uuid="a3a9ede5-bcbe-4716-a849-b8063b58648d"/>
+					<reportElement x="672" y="10" width="80" height="20" uuid="a3a9ede5-bcbe-4716-a849-b8063b58648d"/>
 					<textElement textAlignment="Center"/>
 					<text><![CDATA[Ganancia]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="149" y="10" width="100" height="20" uuid="0bc2ea6a-1cad-470c-a1a9-8873e1935b4b"/>
+					<text><![CDATA[Empleado]]></text>
 				</staticText>
 			</frame>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="90" splitType="Stretch">
+		<band height="95" splitType="Stretch">
 			<subreport>
 				<reportElement x="0" y="0" width="752" height="36" uuid="9ba0aace-bdb3-41a6-8866-f1a0ca81b69a"/>
 				<subreportParameter name="nombre">
@@ -93,7 +97,7 @@
 				<subreportExpression><![CDATA["/home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/resources/sureportes/subventaempleado2.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="0" y="54" width="752" height="36" uuid="9c37ba1c-870f-4c9d-9226-9d1347b56c50"/>
+				<reportElement x="0" y="59" width="752" height="36" uuid="9c37ba1c-870f-4c9d-9226-9d1347b56c50"/>
 				<subreportParameter name="nombremedicamento">
 					<subreportParameterExpression><![CDATA[$F{nombre}]]></subreportParameterExpression>
 				</subreportParameter>

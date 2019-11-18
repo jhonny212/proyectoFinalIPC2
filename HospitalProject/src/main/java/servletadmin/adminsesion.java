@@ -5,8 +5,13 @@
  */
 package servletadmin;
 
+import administracionreportes.gananciasadmin;
+import administracionreportes.ingresos;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import paquetescompartidos.usuario;
 
 import paquetescompartidos.iniciarconeccion;
+import paquetescompartidos.reporte;
 
 /**
  *
@@ -193,6 +199,20 @@ public class adminsesion extends HttpServlet {
            response.sendRedirect("/HospitalProject/administrador/indexAdmin.jsp?error=error");
         }
       
+                break;
+            case "8":
+               File file=new File("/home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/reportes/"+request.getParameter("nombre")+".pdf"); 
+               if(file.exists()){
+                   response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=8&error=error");
+       
+               }else{
+               reporte report =new reporte();
+               s.print(report.administrador(request.getParameter("nombre"), "", request, true)+"aja");
+                   response.sendRedirect("/HospitalProject/administrador/paginaadmin.jsp?id=8&error=erro");
+       
+               }
+               
+               
                 break;
             
             }

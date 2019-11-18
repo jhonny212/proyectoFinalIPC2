@@ -46,6 +46,7 @@
                 <li><a href="./paginaadmin.jsp?id=5">Registrar medico especialista</a></li>
                 <li><a href="./paginaadmin.jsp?id=6">Contratar empleado</a></li>
                 <li><a href="./paginaadmin.jsp?id=7">Crear usuario</a></li>
+                <li><a href="./paginaadmin.jsp?id=8">Reportes</a></li>
 
 
             </ul>
@@ -96,8 +97,14 @@
                        case "4":
                       %>
                        <%@include file="./crear/crear-operacionEspecialista.jsp" %>
+                      <%    break; 
+                           case "8":
+                      %>
+                       <%@include file="./crear/reportes.jsp" %>
                       <%  
                           
+                          
+                    
                           
                       break;}
                      %>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportederetirados2" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e0e9ee90-a2a0-4e15-9f21-743c1cb1d47d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="areadetrabajo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha1" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.fecha, a.tipo, a.descripcion, a.idcontratoEmpleado
+, b.nombreEmpleo, b.sueldo, b.nombre, c.nombre as area from renunciadespido a left join contratoEmpleado b on a.idcontratoEmpleado=b.idcontratoEmpleado left join crearEmpleo c on b.nombreEmpleo=c.nombreEmpleo where 
+ a.fecha between $P{fecha1} and  $P{fecha2}
+;]]>
+	</queryString>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idcontratoEmpleado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreEmpleo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sueldo" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="area" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="66" backcolor="#999999" uuid="9f7c331c-2e7e-44dd-b4f1-f321d8675df7"/>
+				<staticText>
+					<reportElement mode="Opaque" x="54" y="24" width="440" height="20" uuid="bc326fe0-7117-4faf-9352-3a73c105f943"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<text><![CDATA[REPORTE DE EMPLEADOS RETIRADOS]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="29" backcolor="#9999FF" uuid="4af214dc-5d84-4b0d-b136-85acdeb1ee25"/>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="9" width="80" height="20" backcolor="#CCCCCC" uuid="1ee248c8-379b-42d4-b2a8-22d27f12fa02"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NOMBRE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="160" y="9" width="80" height="20" backcolor="#CCCCCC" uuid="49048c0c-0c53-40db-88f4-5d1fb2041076"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TIPO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="320" y="9" width="128" height="20" backcolor="#CCCCCC" uuid="5e38fe72-9f94-4697-a2d2-78ed2e7cbdb3"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NOMBRE EMPLEO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="80" y="9" width="80" height="20" backcolor="#CCCCCC" uuid="e4e85bbe-3a3c-40c1-b00f-51b1ecd7592c"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[FECHA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="240" y="9" width="80" height="20" backcolor="#CCCCCC" uuid="eca37116-c542-42ee-bf15-3e75ca5a1805"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SUELDO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="448" y="9" width="124" height="20" backcolor="#CCCCCC" uuid="a177b820-1259-4bcb-a30f-2941ff8ca216"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[AREA]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="14" width="80" height="20" uuid="a90340ac-b312-4f27-8cdb-02459ad89676"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="14" width="80" height="20" uuid="81048e6c-0e1b-43c5-b9cc-737655eb1c09"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="66" width="519" height="34" uuid="7434e0ea-dc51-47ac-bdae-abea667f48b6"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="14" width="128" height="20" uuid="5e79bc0a-461a-4f92-8f09-0618fc11883c"/>
+				<textFieldExpression><![CDATA[$F{nombreEmpleo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="14" width="80" height="20" uuid="1c80dc3b-5478-4990-9a2d-6266d98433fd"/>
+				<textFieldExpression><![CDATA[$F{sueldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="14" width="80" height="20" uuid="72233d05-2bc8-4711-bc9e-40f369944d5c"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="34" width="572" height="20" backcolor="#CCCCCC" uuid="8bf2fd36-0ec0-4d0e-aafb-11cc184940e6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="448" y="14" width="124" height="20" uuid="9952c6a6-bcdf-4538-8951-b6f66362d20e"/>
+				<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

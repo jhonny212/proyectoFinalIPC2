@@ -111,7 +111,7 @@ public class Operator extends HttpServlet {
                 break;    
                 
             case "4":
-                 Calendar fecha=Calendar.getInstance();
+                  Calendar fecha=Calendar.getInstance();
                    int año=fecha.get(Calendar.YEAR);
                    int mes=fecha.get(Calendar.MONTH)+1;
                   
@@ -142,12 +142,12 @@ public class Operator extends HttpServlet {
                            report.reporteOperador(request.getParameter("nombre"), "medicamentotipo2", parametros, false);
                          
                         }
+                                         response.sendRedirect("http://localhost:8080/HospitalProject/operador/indexoperador.jsp?id=4&&error=erro");
+         
                         break;
                 
                           case "Generar reporte 2":
-                            
-                            if(!request.getParameter("parametro2").equals("")){
-                        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+                              SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
                         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                         
                         java.util.Date date = null;
@@ -164,6 +164,8 @@ public class Operator extends HttpServlet {
                          } catch (ParseException ex) {
                                s.print("entr");
                          }
+                            if(!request.getParameter("parametro2").equals("")){
+                      
                             Map parametroS=new HashMap();
                             parametroS.put("fecha1",date);
                             parametroS.put("fecha2",date2);
@@ -177,6 +179,8 @@ public class Operator extends HttpServlet {
                         }else{
                            Map parametros=new HashMap();
                             parametros.put("idcola", Integer.toString(año)+""+Integer.toString(mes));
+                                  parametros.put("fecha1",date);
+                            parametros.put("fecha2",date2);
                             reporte report=new reporte();
                             s.print("here");
                           
@@ -184,7 +188,8 @@ public class Operator extends HttpServlet {
                          
                         }
                               
-                              
+                                          response.sendRedirect("http://localhost:8080/HospitalProject/operador/indexoperador.jsp?id=4&&error=erro");
+               
                         break;
                         
                           case "Generar reporte 3":
@@ -208,9 +213,11 @@ public class Operator extends HttpServlet {
                            response.sendRedirect("http://localhost:8080/HospitalProject/operador/indexoperador.jsp?id=4&&error=erro");
          
                         break;
+                        
                 }
                                     
                             }
+                            
                 break;
         
         }

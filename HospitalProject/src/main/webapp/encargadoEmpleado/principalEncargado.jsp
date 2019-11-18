@@ -52,6 +52,7 @@
             
                     <li><a href="./principalEncargado.jsp?id=7">pago especialista</a></li>
                 <li><a href="./principalEncargado.jsp?id=8">aumento salarial</a></li>
+                <li><a href="./principalEncargado.jsp?id=9">Reportes</a></li>
             
                  
             </ul>
@@ -127,6 +128,13 @@
                       %>
                        <%@include file="./src/aumentoSalarial.jsp" %>
                   <%
+                        break;
+                       case "9":
+                       
+                      %>  
+                         <%@include file="./src/reportes.jsp" %>
+                
+                      <% 
                           break;
                        case "5":
                        

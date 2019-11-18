@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subingresomedicamento" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d853c643-e136-417a-8187-d1ef12091c72">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha1" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from pagomedicamento where fecha between $P{fecha1} and $P{fecha2}  ;]]>
+	</queryString>
+	<field name="idpagomedicamento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cui" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="persona" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="total_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="35" backcolor="#000099" uuid="8a968ec4-890c-490c-a446-8373c947e7f8"/>
+				<staticText>
+					<reportElement x="252" y="2" width="100" height="20" forecolor="#FFFFFF" uuid="cd88a175-a1a8-421a-a262-45bacc2ce318"/>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="123" y="2" width="100" height="20" forecolor="#FFFFFF" uuid="e244fe03-6865-4eb4-bb0d-7546912453d9"/>
+					<text><![CDATA[FECHA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="2" width="100" height="20" forecolor="#FFFFFF" uuid="5cd30366-e69b-4bda-982c-44b77cf20593"/>
+					<text><![CDATA[CUI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="409" y="0" width="128" height="20" forecolor="#FFFFFF" uuid="9b1e0196-f8e6-43f3-916d-ff6dda505b7f"/>
+					<text><![CDATA[TOTAL FINAL INGRESADO]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="109" splitType="Stretch">
+			<textField>
+				<reportElement x="252" y="13" width="100" height="20" uuid="3af53f5a-f8be-4ff3-9ea6-4c072b732122"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="13" width="100" height="20" uuid="cd3b6530-e442-4beb-bb50-bbae24470512"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="13" width="100" height="20" uuid="798cbe1a-3adf-4117-acc7-36720a1eb46a"/>
+				<textFieldExpression><![CDATA[$F{cui}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="32" width="100" height="20" uuid="f88fcdac-8a4d-4429-b832-1463123534cc"/>
+				<textFieldExpression><![CDATA[$V{total_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="41" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="40" splitType="Stretch"/>
+	</summary>
+</jasperReport>

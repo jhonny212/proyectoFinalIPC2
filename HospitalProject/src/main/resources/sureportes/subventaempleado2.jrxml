@@ -19,7 +19,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select a.nombre, a.fecha, a.cantidad from pagomedicamento a join contratoEmpleado b on a.cui=b.cui where b.cui like '%$P!{cui}%' && a.nombre=$P{nombre}
+		<![CDATA[select a.nombre, a.fecha, a.cantidad, b.nombre as empleado from pagomedicamento a join contratoEmpleado b on a.cui=b.cui where b.cui like '%$P!{cui}%' && a.nombre=$P{nombre}
 && b.estado3='activo' ;]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
@@ -31,6 +31,7 @@
 	<field name="cantidad" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="empleado" class="java.lang.String"/>
 	<variable name="variable1" class="java.lang.Double">
 		<variableExpression><![CDATA[$F{cantidad}*$P{costo venta}-$P{precio compra}*$F{cantidad}]]></variableExpression>
 	</variable>
@@ -47,30 +48,34 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="33" splitType="Stretch">
+		<band height="53" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="5" width="100" height="20" uuid="2b8947e6-f778-459b-ac70-59efb1c2859f"/>
+				<reportElement x="0" y="0" width="100" height="20" uuid="2b8947e6-f778-459b-ac70-59efb1c2859f"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="5" width="100" height="20" uuid="dfe9c150-26dc-47a4-9503-9b0baa905524"/>
+				<reportElement x="239" y="0" width="100" height="20" uuid="dfe9c150-26dc-47a4-9503-9b0baa905524"/>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="255" y="5" width="100" height="20" uuid="b22788dd-f946-4388-9cbc-4516a3d1c84e"/>
+				<reportElement x="358" y="0" width="100" height="20" uuid="b22788dd-f946-4388-9cbc-4516a3d1c84e"/>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="538" y="5" width="100" height="20" uuid="af530c03-75b5-4b09-84b0-0abf2c467a0e"/>
+				<reportElement x="602" y="0" width="100" height="20" uuid="af530c03-75b5-4b09-84b0-0abf2c467a0e"/>
 				<textFieldExpression><![CDATA[$P{costo venta}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="384" y="5" width="100" height="20" uuid="f69bc89c-4748-40e4-ac1f-8fb15a395ddc"/>
+				<reportElement x="480" y="0" width="100" height="20" uuid="f69bc89c-4748-40e4-ac1f-8fb15a395ddc"/>
 				<textFieldExpression><![CDATA[$P{precio compra}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="685" y="5" width="100" height="20" uuid="5cae7aaf-a124-4573-b44f-4a66358a16e2"/>
+				<reportElement x="702" y="0" width="100" height="20" uuid="5cae7aaf-a124-4573-b44f-4a66358a16e2"/>
 				<textFieldExpression><![CDATA[$V{variable1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="0" width="100" height="20" uuid="afc9e596-13d8-4a89-9ded-9461b264085e"/>
+				<textFieldExpression><![CDATA[$F{empleado}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

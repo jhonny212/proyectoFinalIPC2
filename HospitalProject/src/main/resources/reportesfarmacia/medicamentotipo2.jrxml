@@ -44,7 +44,7 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="572" height="79" backcolor="#666666" uuid="a7f36230-9890-44b5-a946-f89f6318ff7d"/>
 				<staticText>
-					<reportElement x="118" y="17" width="405" height="44" forecolor="#CCCCCC" uuid="051956a1-5a0c-4f30-885c-bd23603d8944"/>
+					<reportElement x="118" y="17" width="440" height="44" forecolor="#CCCCCC" uuid="051956a1-5a0c-4f30-885c-bd23603d8944"/>
 					<textElement>
 						<font fontName="Times New Roman" size="32"/>
 					</textElement>

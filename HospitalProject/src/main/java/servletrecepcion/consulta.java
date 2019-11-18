@@ -8,6 +8,8 @@ package servletrecepcion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
@@ -86,10 +88,21 @@ public class consulta {
     int mes=fecha.get(Calendar.MONTH)+1;
     int dia=fecha.get(Calendar.DAY_OF_MONTH);
     String date=Integer.toString(año)+"-"+Integer.toString(mes)+"-"+Integer.toString(dia);
+    
+    
+SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+java.util.Date dates = null;
+         try {
+             dates = sdf1.parse(date);
+         } catch (ParseException ex) {
+             Logger.getLogger(consulta.class.getName()).log(Level.SEVERE, null, ex);
+         }
+      
+ java.sql.Date sqlStartDate = new java.sql.Date(dates.getTime());
             if(iniciarconeccion.coneccion==null){iniciarconeccion.IniciarConeccion();}
          try {
              PreparedStatement r=iniciarconeccion.coneccion.prepareStatement("INSERT INTO consulta (idconsulta, cui,idcrearhabitacion,idcontratoempleado,hora,cancelado) VALUES (?,?,?,?,?,?)");
-            r.setString(1, date);
+           r.setDate(1, sqlStartDate);
             r.setInt(2,Integer.parseInt(request.getParameter("cui")));
             r.setInt(3,Integer.parseInt(request.getParameter("seleccion")));
             r.setInt(4,Integer.parseInt(request.getParameter("seleccion")));

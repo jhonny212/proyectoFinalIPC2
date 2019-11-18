@@ -145,7 +145,7 @@
 	<queryString>
 		<![CDATA[select a.nombre, a.costo,a.cantidad as precio from medicamento a
 where a.descripcion like '%$P!{clave}%'
-;]]>
+or a.nombre like '%$P!{clave}%' ;]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -162,7 +162,10 @@ where a.descripcion like '%$P!{clave}%'
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="79" backcolor="#7982D5" uuid="22a504dd-e863-41d5-a6c6-dbd7b17c23ba"/>
 				<staticText>
-					<reportElement x="307" y="34" width="205" height="20" uuid="8583d8bb-f61d-4898-84cd-ee2f9691168e"/>
+					<reportElement mode="Transparent" x="103" y="23" width="599" height="31" forecolor="#CCCCCC" uuid="8583d8bb-f61d-4898-84cd-ee2f9691168e"/>
+					<textElement textAlignment="Center">
+						<font size="22" isBold="true"/>
+					</textElement>
 					<text><![CDATA[Reporte de ganancia de medicamentos]]></text>
 				</staticText>
 			</frame>

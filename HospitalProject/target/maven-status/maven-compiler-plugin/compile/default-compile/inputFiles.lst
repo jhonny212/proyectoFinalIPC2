@@ -1,6 +1,8 @@
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/servletenfermera/servletenfermera.java
+/home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/administracionreportes/gastosadmin.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/servletrecepcion/internado.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/servletrecepcion/recepcion.java
+/home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/administracionreportes/ingresos.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/servletenfermera/colamedicamento.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/paquetescompartidos/gastos.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/servletoperador/medicamento.java
@@ -11,6 +13,7 @@
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/servletEncargadoArea/encargadoArea.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/servletrecepcion/habitacioN.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/paquetescompartidos/reporte.java
+/home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/administracionreportes/gananciasadmin.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/paquetescompartidos/servletemployee.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/servletGerente/servletgerente.java
 /home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/HospitalProject/src/main/java/servletrecepcion/enfermera.java

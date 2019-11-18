@@ -171,7 +171,8 @@ java.util.Date date = null;
             crearusuario=iniciarconeccion.coneccion.prepareStatement(sql);
           crearusuario.setString(1, request.getParameter("descripcion"));
           crearusuario.setInt(2,Integer.parseInt(request.getParameter("btn")));
-          crearusuario.setInt(3,Integer.parseInt(request.getParameter("costo")));
+          crearusuario.setDouble(3, Double.parseDouble(request.getParameter("costo")));
+         
            crearusuario.setDate(4, sqlStartDate);
            crearusuario.executeUpdate();
            actualizarHabitacion(request,"deshabilitado");

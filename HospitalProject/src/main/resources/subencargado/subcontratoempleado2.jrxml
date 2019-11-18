@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subcontratoempleado2" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d01af2d2-bc60-4f36-8bbf-f626d7725ba8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1"/>
+	<parameter name="cui" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombre empleado" class="java.lang.String"/>
+	<parameter name="sueldo" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tipo empleo" class="java.lang.String"/>
+	<parameter name="horas de trabajo" class="java.lang.Integer"/>
+	<parameter name="estado" class="java.lang.String"/>
+	<parameter name="area" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.cui, count(*) as cantidad from contratoEmpleado a left join crearEmpleo b
+on a.nombreEmpleo=b.nombreEmpleo
+ where a.cui=$P{cui} && b.nombre=$P{area}
+ group by(a.cui)  order by cantidad desc;]]>
+	</queryString>
+	<field name="cui" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="contrato estado" class="java.lang.String">
+		<variableExpression><![CDATA[($P{estado}.equals("activo") ?"trabajando":
+"no trabaja mas"
+)]]></variableExpression>
+	</variable>
+	<variable name="cOr" class="java.lang.String">
+		<variableExpression><![CDATA[($F{cantidad}==1.0 ? "contratado":
+"recontratado"
+)]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="90" height="20" uuid="0349723e-8592-4d4d-89b1-53bf7d109a13"/>
+				<textFieldExpression><![CDATA[$P{nombre empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="0" width="90" height="20" uuid="163fa4f0-9e4a-43db-99a3-bc5af0552f24"/>
+				<textFieldExpression><![CDATA[$P{cui}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="0" width="75" height="20" uuid="a64782af-0590-4b24-9b1a-0914257d8402"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{sueldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="90" height="20" uuid="a576f089-a2d2-414d-8da0-51cf67738736"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{horas de trabajo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="0" width="90" height="20" uuid="9095c409-775a-49f1-a135-0f6c20f94477"/>
+				<textFieldExpression><![CDATA[$V{contrato estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="488" y="0" width="69" height="20" uuid="4893417b-ca43-4eca-af46-5448d5206d07"/>
+				<textFieldExpression><![CDATA[$V{cOr}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>
