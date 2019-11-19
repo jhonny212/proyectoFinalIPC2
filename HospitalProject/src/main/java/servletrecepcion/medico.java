@@ -50,7 +50,7 @@ public class medico {
    if(iniciarconeccion.coneccion==null)
    {iniciarconeccion.IniciarConeccion();}
    
-   String sql="SELECT * FROM contratoEmpleado WHERE estado2='activo' && estado='libre' && nombreEmpleo='medico' ";
+   String sql="SELECT * FROM contratoEmpleado WHERE estado2='activo' && estado='libre' && nombreEmpleo='medico' &&  estado3='activo' ";
    
        try {
            PreparedStatement getmedico=iniciarconeccion.coneccion.prepareStatement(sql);

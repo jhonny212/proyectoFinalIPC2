@@ -70,13 +70,13 @@ public class servletenfermera extends HttpServlet {
                  s.print(cui);
                  s.print(id1);
                  enfermera.update(cui, id1);
-              response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp?id=1");
+          response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp?id=1");
               
                 break;
               case "2":
                  
-                enfermera.update(cui, id1);
-                response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp?id=2");
+               s.print(enfermera.update(cui, id1));
+              response.sendRedirect("/HospitalProject/enfermera/indexnurse.jsp?id=2");
              
                 break;  
               case "3":

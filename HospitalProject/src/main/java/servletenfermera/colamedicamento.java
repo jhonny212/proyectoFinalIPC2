@@ -41,7 +41,7 @@ public class colamedicamento {
             ResultSet res=prepared.executeQuery();
             if(res.next()){
             if(res.getInt("a.cantidad")>=cantidad){
-            sql="INSERT INTO medicamentosUsados (idinternado, nombre, costo, cantidad, cui) select a.idinternado,e.nombre, e.costo*"+request.getParameter("cantidad")+" ,"+request.getParameter("cantidad")+", "+sesion.getAttribute("cui").toString()+" from medicosDestinados a join contratoEmpleado b join medicamento e  join internado c on a.idcontratoEmpleado=b.idcontratoEmpleado where b.cui=? && c.estado='No' && e.nombre=?; ";
+            sql="INSERT INTO medicamentosUsados (idinternado, nombre, costo, cantidad, cui, fecha) select a.idinternado,e.nombre, e.costo*"+request.getParameter("cantidad")+" ,"+request.getParameter("cantidad")+", "+sesion.getAttribute("cui").toString()+", curdate() from medicosDestinados a join contratoEmpleado b join medicamento e  join internado c on a.idcontratoEmpleado=b.idcontratoEmpleado where b.cui=? && c.estado='No' && e.nombre=?; ";
             PreparedStatement p=iniciarconeccion.coneccion.prepareStatement(sql);
             p.setInt(1, cui);
             p.setString(2, request.getParameter("valor"));

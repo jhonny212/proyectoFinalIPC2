@@ -44,7 +44,7 @@ public class enfermera {
    if(iniciarconeccion.coneccion==null)
    {iniciarconeccion.IniciarConeccion();}
    
-   String sql="SELECT * FROM contratoEmpleado WHERE estado2='activo' && estado='libre' && nombreEmpleo='enfermera' ";
+   String sql="SELECT * FROM contratoEmpleado WHERE estado2='activo' && estado='libre' && nombreEmpleo='enfermera' && estado3='activo' ";
    
        try {
            PreparedStatement getmedico=iniciarconeccion.coneccion.prepareStatement(sql);
@@ -129,26 +129,31 @@ public class enfermera {
         }
     }
     
-    public static void update(int id, int id2){
+    public static String update(int id, int id2){
         String iD=Integer.toString(id2);
-    String sql="INSERT INTO medicosDestinados  (idinternado, idcontratoEmpleado) select a.idinternado, '"+iD+"' from medicosDestinados a join contratoEmpleado b join internado c on b.idcontratoEmpleado=a.idcontratoEmpleado where b.cui=? && c.estado='No'";
-    String w="";  
+        String w="vamos";  
+        
     if(iniciarconeccion.coneccion==null){
-    iniciarconeccion.IniciarConeccion();
+   
+    iniciarconeccion.IniciarConeccion(); }
         try {
+                  String sql="INSERT INTO medicosDestinados  (idinternado, idcontratoEmpleado) select a.idinternado, '"+iD+"' from medicosDestinados a join contratoEmpleado b join internado c on b.idcontratoEmpleado=a.idcontratoEmpleado where b.cui=? && c.estado='No' ";
+   
+   
             PreparedStatement state=iniciarconeccion.coneccion.prepareStatement(sql);
             state.setInt(1, id);
             state.executeUpdate();
             int a=state.executeUpdate();
-            if(a>1){
-            actualizar(id2);}
+            w=Integer.toString(a);
+              actualizar(id2);
+          
         } catch (SQLException ex) {
         w=ex.getMessage();
         
         }
-      }
+     
       
    
     
-   }
+   return w;}
 }
