@@ -4,6 +4,7 @@
     Author     : jhonny
 --%>
 
+<%@page import="servletenfermera.colamedicamento"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="paquetescompartidos.iniciarconeccion"%>
 <%@page import="servletoperador.medicamento"%>
@@ -56,6 +57,7 @@
                  <th>Descripcion</th>
                  <th>Costo</th>
                  <th>cantidad minima</th>
+                 <th>cantidad existente</th>
                  <th>Nombre</th>
                  
                     
@@ -65,21 +67,26 @@
              <tr>
              
              </tr>
-                 <%
+                     <%
                        if(iniciarconeccion.coneccion==null){
         iniciarconeccion.IniciarConeccion();}
-                       LinkedList<medicamento> me=medicamento.lista();
+                       LinkedList<colamedicamento> me=colamedicamento.lista();
                          for(int i=0; i<me.size();i++){
                  out.print("<tr> <td><h2>"+me.get(i).getDescripcion()+"</h2></td>");
-                 %>
-                <%
-                    out.print("<td><h2>"+me.get(i).getCosto()+"</h2></td>");
-                       out.print("<td><h2>"+me.get(i).getMinimo()+"</h2></td>");
+                 out.print("<td><h2>"+me.get(i).getCosto()+"</h2></td>");
+                      out.print("<td><h2>"+me.get(i).getMinimo()+"</h2></td>");
+               
+                 if(me.get(i).getMinimo()<me.get(i).getCantidad()){
+                 out.print("<td><h2>"+me.get(i).getCantidad()+"</h2></td>");
+                }else{
+                 out.print("<td><h2 style='color: red; '>"+me.get(i).getCantidad()+"</h2></td>");
+                 
+                 }
+               
                  out.print("<td><input type='submit' name='valor' value='"+me.get(i).getNombre()+"'></td>");
                  out.print("</tr>");
                  } 
                  %>
-                 
         
         </table>
         </form>

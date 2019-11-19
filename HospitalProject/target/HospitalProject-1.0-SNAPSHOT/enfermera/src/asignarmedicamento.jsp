@@ -63,7 +63,7 @@
                  <th>Descripcion</th>
                  <th>Costo</th>
                  <th>Cantidad</th>
-               
+                 <th>minimo</th>
                  <th>Nombre</th>
                  
                     
@@ -80,17 +80,23 @@
                          for(int i=0; i<me.size();i++){
                  out.print("<tr> <td><h2>"+me.get(i).getDescripcion()+"</h2></td>");
                  out.print("<td><h2>"+me.get(i).getCosto()+"</h2></td>");
+                 if(me.get(i).getMinimo()<me.get(i).getCantidad()){
                  out.print("<td><h2>"+me.get(i).getCantidad()+"</h2></td>");
+                }else{
+                 out.print("<td><h2 style='color: red; '>"+me.get(i).getCantidad()+"</h2></td>");
                  
-                        out.print("</td>");
+                 }
+                    out.print("<td><h2>"+me.get(i).getMinimo()+"</h2></td>");
+               
                  out.print("<td><input type='submit' name='valor' value='"+me.get(i).getNombre()+"'></td>");
                  out.print("</tr>");
                  } 
                  %>
                  
         
-        </table>
-        </form>
+        </table >
+        </form  >
+        
        </div>
     </body>
 </html>

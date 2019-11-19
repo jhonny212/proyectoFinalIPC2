@@ -35,7 +35,7 @@
    <br>
         <h2 style="margin: auto;color: white; width: 550px;">
            Seccion de reportes
-        </h2>
+        </h2  >
           <br>
         <form class="fc1" style="width: 1200px;" action="/HospitalProject/encargado" method="GET" autocomplete="off">
             <%

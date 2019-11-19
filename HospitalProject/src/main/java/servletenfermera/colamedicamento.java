@@ -20,6 +20,15 @@ import servletoperador.medicamento;
  * @author jhonny
  */
 public class colamedicamento {
+    private int minimo;
+
+    public int getMinimo() {
+        return minimo;
+    }
+
+    public void setMinimo(int minimo) {
+        this.minimo = minimo;
+    }
     public static boolean colamedicamento(HttpServletRequest request){
     int cantidad=Integer.parseInt(request.getParameter("cantidad"));
     boolean validar=true;   
@@ -77,7 +86,7 @@ public class colamedicamento {
     iniciarconeccion.IniciarConeccion();}
        try {
             
-            String sql="select a.costo, b.cantidad, a.descripcion, a.nombre from medicamento a join colamedicamento b on a.nombre=b.nombre where b.idcola=?;";
+            String sql="select a.costo, b.cantidad,a.minimo, a.descripcion, a.nombre from medicamento a join colamedicamento b on a.nombre=b.nombre where b.idcola=?;";
             PreparedStatement prepared=iniciarconeccion.coneccion.prepareStatement(sql);
             prepared.setString(1, fechA);
             ResultSet ResultSet = prepared.executeQuery();
@@ -88,6 +97,8 @@ public class colamedicamento {
         tm.setCosto(ResultSet.getInt("a.costo"));
         tm.setDescripcion(ResultSet.getString("a.descripcion"));
            tm.setNombre(ResultSet.getString("a.nombre"));
+           tm.setMinimo(ResultSet.getInt("a.minimo"));
+           
         tmp.add(tm);
         }
            

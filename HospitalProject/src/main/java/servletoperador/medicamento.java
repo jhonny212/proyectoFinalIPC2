@@ -170,6 +170,7 @@ public static LinkedList lista(){
              up.executeUpdate();
              llenar(request,id);
         } catch (SQLException ex) {
+            
              try {
                  sql="SELECT cantidad, inicial FROM colamedicamento WHERE idcola=? && nombre=?";
                  PreparedStatement get=iniciarconeccion.coneccion.prepareStatement(sql);
@@ -180,7 +181,7 @@ public static LinkedList lista(){
                  sql="UPDATE colamedicamento SET cantidad=?, inicial=? WHERE idcola=? && nombre=?";
                  PreparedStatement cant=iniciarconeccion.coneccion.prepareStatement(sql);
                  cant.setInt(1, res.getInt("cantidad")+Integer.parseInt(request.getParameter("cantidad")));
-                 cant.setInt(1, res.getInt("cantidad")+Integer.parseInt(request.getParameter("cantidad")));
+                 cant.setInt(2, res.getInt("cantidad")+Integer.parseInt(request.getParameter("cantidad")));
                 
                  cant.setString(3, id);
                  cant.setString(4, request.getParameter("valor"));
