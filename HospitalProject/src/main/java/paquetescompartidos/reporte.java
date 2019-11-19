@@ -71,6 +71,8 @@ try {
                      jasperPrint2=JasperFillManager.fillReport(
                    getClass().getResourceAsStream("/Reporteadmin/ingresosadmin.jasper"), p,
                     new JRBeanCollectionDataSource(ingresos.ingresos(res)));
+                     
+                 
                     break;
                 case "Generar reporte 2":
                      Map p2=new HashMap();
@@ -111,7 +113,7 @@ try {
             jasperPrint2=JasperFillManager.fillReport(
                    getClass().getResourceAsStream("/reportesempleados/"+jasper+".jasper"), parametro,
                     iniciarconeccion.coneccion);
-          
+              reporteextra(nombre);
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint2));
             exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/reportes/"+nombre+".pdf"));
@@ -124,5 +126,26 @@ try {
           v=ex.getMessage();
         }
 return v; } 
+
+    private void reporteextra(String nombre) {
+        try {
+            JasperPrint jasperPrint2=null;
+           
+            jasperPrint2=JasperFillManager.fillReport(
+                   getClass().getResourceAsStream("/Reporteadmin/PAGO.jasper"),null,
+                    iniciarconeccion.coneccion);
+          
+            JRPdfExporter exp = new JRPdfExporter();
+            exp.setExporterInput(new SimpleExporterInput(jasperPrint2));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/home/jhonny/Escritorio/Proga1/ProyectoFinalIPC2/reportes/"+nombre+"1.pdf"));
+            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+            exp.setConfiguration(conf);
+            exp.exportReport();
+          
+        } catch (JRException ex) {
+      
+         
+        }
+    }
 
 }
