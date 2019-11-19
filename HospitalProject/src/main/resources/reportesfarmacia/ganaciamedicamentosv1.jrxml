@@ -162,11 +162,11 @@ or a.nombre like '%$P!{clave}%' ;]]>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="79" backcolor="#7982D5" uuid="22a504dd-e863-41d5-a6c6-dbd7b17c23ba"/>
 				<staticText>
-					<reportElement mode="Transparent" x="103" y="23" width="599" height="31" forecolor="#CCCCCC" uuid="8583d8bb-f61d-4898-84cd-ee2f9691168e"/>
+					<reportElement mode="Transparent" x="16" y="13" width="750" height="42" forecolor="#CCCCCC" uuid="8583d8bb-f61d-4898-84cd-ee2f9691168e"/>
 					<textElement textAlignment="Center">
 						<font size="22" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Reporte de ganancia de medicamentos]]></text>
+					<text><![CDATA[Reporte de ganancia de medicamentos (FARMACIA)]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -210,9 +210,9 @@ or a.nombre like '%$P!{clave}%' ;]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="140" splitType="Stretch">
+		<band height="220" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="73" width="802" height="66" uuid="41a93fd6-b0d1-4343-a75c-168ca21fdcef"/>
+				<reportElement x="0" y="154" width="802" height="66" uuid="41a93fd6-b0d1-4343-a75c-168ca21fdcef"/>
 				<subreportParameter name="clave">
 					<subreportParameterExpression><![CDATA[$F{nombre}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -248,7 +248,7 @@ or a.nombre like '%$P!{clave}%' ;]]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch">
+		<band height="48" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="45" backcolor="#CCCCCC" uuid="4ef6df98-7433-4cfb-b39a-d087d8374f87"/>
 			</frame>

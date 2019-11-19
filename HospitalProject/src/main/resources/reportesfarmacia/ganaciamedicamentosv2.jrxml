@@ -157,11 +157,11 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="79" backcolor="#7982D5" uuid="22a504dd-e863-41d5-a6c6-dbd7b17c23ba"/>
 				<staticText>
-					<reportElement x="87" y="25" width="601" height="29" forecolor="#CCCCFF" uuid="8583d8bb-f61d-4898-84cd-ee2f9691168e"/>
+					<reportElement x="69" y="24" width="652" height="29" forecolor="#CCCCFF" uuid="8583d8bb-f61d-4898-84cd-ee2f9691168e"/>
 					<textElement textAlignment="Center">
 						<font size="24"/>
 					</textElement>
-					<text><![CDATA[Reporte de ganancia de medicamentos]]></text>
+					<text><![CDATA[Reporte de ganancia de medicamentos (FARMACIA)]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -205,9 +205,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="140" splitType="Stretch">
+		<band height="191" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="73" width="802" height="66" uuid="41a93fd6-b0d1-4343-a75c-168ca21fdcef"/>
+				<reportElement x="0" y="120" width="802" height="66" uuid="41a93fd6-b0d1-4343-a75c-168ca21fdcef"/>
 				<subreportParameter name="clave">
 					<subreportParameterExpression><![CDATA[$F{nombre}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -243,7 +243,7 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch">
+		<band height="51" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="45" backcolor="#CCCCCC" uuid="4ef6df98-7433-4cfb-b39a-d087d8374f87"/>
 			</frame>
