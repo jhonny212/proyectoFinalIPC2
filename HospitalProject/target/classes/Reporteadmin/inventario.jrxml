@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="inventario" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9552b470-2600-49c4-b722-ef6c1d9638e0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{medicamento}.equals(null)]]></conditionExpression>
+			<style forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="style2">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{tipo}.equals(null)]]></conditionExpression>
+			<style forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="style3">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{inicial}==0]]></conditionExpression>
+			<style forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="style4">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{cantidad}==0]]></conditionExpression>
+			<style forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="style5">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{puerba}==-2]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF" backcolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<field name="medicamento" class="java.lang.String"/>
+	<field name="inicial" class="java.lang.Integer"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="diferencia" class="java.lang.Integer"/>
+	<field name="puerba" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="79" backcolor="#990000" uuid="01697799-688c-49dc-b4dc-9631a779a2e5"/>
+				<staticText>
+					<reportElement x="129" y="15" width="327" height="34" forecolor="#CCCCCC" uuid="331e5cc4-10d6-43f4-9cd3-c4e3fda1586f"/>
+					<textElement textAlignment="Center">
+						<font fontName="Serif" size="18"/>
+					</textElement>
+					<text><![CDATA[INVENTARIO]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="35" backcolor="#999999" uuid="fb982240-5491-4297-b8d5-f351942762c4"/>
+				<staticText>
+					<reportElement x="0" y="15" width="100" height="20" uuid="f8047778-034e-4aa5-b0f0-516d126d5534"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[MEDICAMENTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="100" y="15" width="100" height="20" uuid="8d43a496-e489-4e63-962b-6aef6295a83f"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[INICIAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="253" y="15" width="100" height="20" uuid="8ee80c45-d38f-4cc1-b747-6f074d9a0c5b"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[CANTIDAD]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="82" splitType="Stretch">
+			<textField>
+				<reportElement style="style1" x="0" y="0" width="100" height="20" uuid="06510399-5eae-4cfe-afbb-a086c2d50f18"/>
+				<textFieldExpression><![CDATA[$F{medicamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style3" x="100" y="0" width="100" height="20" uuid="26a6a7b7-1b60-478e-a7fa-100ff791bc2f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{inicial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style2" x="44" y="20" width="171" height="20" uuid="f9a837ca-84da-49c7-8c2c-22af1f5ff5cb"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style2" mode="Transparent" x="253" y="20" width="100" height="20" isRemoveLineWhenBlank="true" uuid="ec7bbe17-4b84-4385-ab7f-42d63690e49f"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="20" width="82" height="20" forecolor="#FFFFFF" uuid="f7cd931d-3ae4-4896-a077-350fff496e93"/>
+				<textFieldExpression><![CDATA[$F{puerba}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style5" x="379" y="20" width="100" height="20" forecolor="#FFFFFF" uuid="6a5a9a6e-7e56-4511-b0b7-3e9f18eab178"/>
+				<textFieldExpression><![CDATA[$F{diferencia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="style5" x="379" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="9ddfe6d0-25bc-4504-98b5-fab90e5c8d64"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIFERENCIA]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

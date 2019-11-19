@@ -42,6 +42,7 @@
                 <li><a href="./indexoperador.jsp?id=2">Actualizar minimo</a></li>
                 <li><a href="./indexoperador.jsp?id=3">Actualizar medicamento</a></li>
                 <li><a href="./indexoperador.jsp?id=4">Reportes</a></li>
+                <li><a href="./indexoperador.jsp?id=6">inventario</a></li>
              
             </ul>
         </div>
@@ -83,7 +84,13 @@
                       %>
                        <%@include file="./src/actualizarMinimo.jsp" %>
                       <%   
+                       break;
+                    
                       
+                       case "6":
+                      %>
+                       <%@include file="./src/inventario.jsp" %>
+                      <%   
                       %>
                   
                   
